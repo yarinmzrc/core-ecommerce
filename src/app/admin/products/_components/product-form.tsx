@@ -1,7 +1,10 @@
 "use client"
 
-import { useState } from "react"
-import { Category } from "../../../../../prisma/generated/prisma/client"
+import { useActionState, useState } from "react"
+import {
+  Category,
+  Product,
+} from "../../../../../prisma/generated/prisma/client"
 import { Label } from "@/components/ui/label"
 import { Input } from "@/components/ui/input"
 import { formatCurrency } from "@/lib/format"
@@ -10,25 +13,35 @@ import {
   SelectContent,
   SelectItem,
   SelectValue,
+  SelectTrigger,
 } from "@/components/ui/select"
-import { SelectTrigger } from "@radix-ui/react-select"
 import { Textarea } from "@/components/ui/textarea"
 import { Button } from "@/components/ui/button"
-import { useFormState } from "react-dom"
-import { addProduct } from "../../_actions/products"
+import { addProduct, updateProduct } from "../../_actions/products"
+import { useFormStatus } from "react-dom"
+import Image from "next/image"
 
 type ProductFormProps = {
+  product?: Product
   categories: Category[]
 }
-export function ProductForm({ categories }: ProductFormProps) {
-  const [error, action] = useFormState(addProduct, {})
-  const [price, setPrice] = useState<number>()
+export function ProductForm({ product, categories }: ProductFormProps) {
+  const [error, action] = useActionState(
+    product == null ? addProduct : updateProduct.bind(null, product.id),
+    {},
+  )
+  const [price, setPrice] = useState<number | null>(product?.price ?? null)
 
   return (
     <form action={action} className="space-y-8">
       <div className="space-y-2">
         <Label htmlFor="name">Name</Label>
-        <Input id="name" name="name" required />
+        <Input
+          id="name"
+          name="name"
+          required
+          defaultValue={product?.name ?? ""}
+        />
         {error?.name && <div className="text-red-500">{error.name}</div>}
       </div>
       <div className="space-y-2">
@@ -47,9 +60,9 @@ export function ProductForm({ categories }: ProductFormProps) {
         </div>
       </div>
       <div className="space-y-2">
-        <Label htmlFor="category">Category</Label>
-        <Select name="category" required>
-          <SelectTrigger className="w-[180px]">
+        <Label htmlFor="categoryId">Category</Label>
+        <Select name="categoryId" defaultValue={product?.categoryId} required>
+          <SelectTrigger id="categoryId" className="w-[180px]">
             <SelectValue />
           </SelectTrigger>
           <SelectContent>
@@ -66,14 +79,32 @@ export function ProductForm({ categories }: ProductFormProps) {
       </div>
       <div className="space-y-2">
         <Label htmlFor="description">Description</Label>
-        <Textarea id="description" name="description" required />
+        <Textarea
+          id="description"
+          name="description"
+          required
+          defaultValue={product?.description ?? ""}
+        />
         {error?.description && (
           <div className="text-red-500">{error.description}</div>
         )}
       </div>
       <div className="space-y-2">
         <Label htmlFor="imagePath">Image</Label>
-        <Input type="file" id="imagePath" name="imagePath" required />
+        <Input
+          type="file"
+          id="imagePath"
+          name="imagePath"
+          required={product == null}
+        />
+        {product?.imagePath && (
+          <Image
+            src={product.imagePath}
+            alt={product.name}
+            width={200}
+            height={200}
+          />
+        )}
         {error?.imagePath && (
           <div className="text-red-500">{error.imagePath}</div>
         )}
@@ -84,5 +115,10 @@ export function ProductForm({ categories }: ProductFormProps) {
 }
 
 function SubmitButton() {
-  return <Button type="submit">Submit</Button>
+  const { pending } = useFormStatus()
+  return (
+    <Button disabled={pending} type="submit">
+      {pending ? "Saving..." : "Submit"}
+    </Button>
+  )
 }

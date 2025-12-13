@@ -39,6 +39,9 @@ type CategoriesTableProps = {
 }
 
 function CategoriesTable({ categories }: CategoriesTableProps) {
+  if (categories.length === 0) {
+    return <p>No categories found</p>
+  }
   return (
     <Table>
       <TableHeader>
