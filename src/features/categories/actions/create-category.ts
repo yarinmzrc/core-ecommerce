@@ -2,15 +2,16 @@
 
 import { redirect } from "next/navigation"
 import { z } from "zod"
-
 import { prisma } from "../../../../prisma/client"
 
-const schema = z.object({
+const createCategorySchema = z.object({
   name: z.string().min(1),
 })
 
-export async function addCategory(prevState: unknown, formData: FormData) {
-  const result = schema.safeParse(Object.fromEntries(formData.entries()))
+export async function createCategory(_: unknown, formData: FormData) {
+  const result = createCategorySchema.safeParse(
+    Object.fromEntries(formData.entries()),
+  )
 
   if (result.success === false) {
     return z.flattenError(result.error).fieldErrors

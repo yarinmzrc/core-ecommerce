@@ -12,13 +12,7 @@ import {
 } from "@/components/ui/table"
 import { Category } from "../../../../prisma/generated/prisma/client"
 import { paths } from "@/config/paths"
-async function getCategories() {
-  return await prisma.category.findMany({
-    orderBy: {
-      name: "asc",
-    },
-  })
-}
+import { getCategories } from "@/features/categories/server/get-categories"
 
 export default async function AdminCategoriesPage() {
   const categories = await getCategories()

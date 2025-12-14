@@ -3,14 +3,7 @@ import { prisma } from "../../../../../../prisma/client"
 import { PageHeader } from "../../../_components/page-header"
 import { ProductForm } from "../../_components/product-form"
 import { getProduct } from "@/features/products/server/get-product"
-
-async function getCategories() {
-  return await prisma.category.findMany({
-    orderBy: {
-      name: "asc",
-    },
-  })
-}
+import { getCategories } from "@/features/categories/server/get-categories"
 
 export default async function EditProductPage({
   params,

@@ -3,12 +3,12 @@
 import { Label } from "@/components/ui/label"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
-import { addCategory } from "../../_actions/categories"
 import { useActionState } from "react"
 import { useFormStatus } from "react-dom"
+import { createCategory } from "@/features/categories/actions/create-category"
 
 export function CategoryForm() {
-  const [error, action] = useActionState(addCategory, {})
+  const [error, action] = useActionState(createCategory, {})
 
   return (
     <form action={action} className="space-y-8">
