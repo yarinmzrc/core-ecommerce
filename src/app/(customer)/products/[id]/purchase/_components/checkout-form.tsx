@@ -21,10 +21,9 @@ import {
 } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { FormEvent, useState } from "react"
+import { env } from "@/config/env"
 
-const stripePromise = loadStripe(
-  process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY as string,
-)
+const stripePromise = loadStripe(env.STRIPE_PUBLIC_KEY)
 
 type CheckoutFormProps = {
   product: Product
@@ -76,7 +75,7 @@ function Form({ price }: { price: number }) {
       .confirmPayment({
         elements,
         confirmParams: {
-          return_url: `${process.env.NEXT_PUBLIC_SERVER_URL}/stripe/purchase-success`,
+          return_url: `${env.SERVER_URL}/stripe/purchase-success`,
         },
       })
       .then(({ error }) => {

@@ -6,8 +6,9 @@ import { formatCurrency } from "@/lib/format"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
 import { paths } from "@/config/paths"
+import { env } from "@/config/env"
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string)
+const stripe = new Stripe(env.STRIPE_SECRET_KEY)
 
 export default async function PurchaseSuccessPage({
   searchParams,

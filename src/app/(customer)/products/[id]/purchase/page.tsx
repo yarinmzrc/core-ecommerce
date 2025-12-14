@@ -2,8 +2,9 @@ import { notFound } from "next/navigation"
 import { prisma } from "../../../../../../prisma/client"
 import { Stripe } from "stripe"
 import { CheckoutForm } from "./_components/checkout-form"
+import { env } from "@/config/env"
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string)
+const stripe = new Stripe(env.STRIPE_SECRET_KEY)
 
 export default async function PurchasePage({
   params,
