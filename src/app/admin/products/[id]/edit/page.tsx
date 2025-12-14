@@ -2,6 +2,7 @@ import { notFound } from "next/navigation"
 import { prisma } from "../../../../../../prisma/client"
 import { PageHeader } from "../../../_components/page-header"
 import { ProductForm } from "../../_components/product-form"
+import { getProduct } from "@/features/products/server/get-product"
 
 async function getCategories() {
   return await prisma.category.findMany({
@@ -9,10 +10,6 @@ async function getCategories() {
       name: "asc",
     },
   })
-}
-
-async function getProduct(id: string) {
-  return await prisma.product.findUnique({ where: { id } })
 }
 
 export default async function EditProductPage({

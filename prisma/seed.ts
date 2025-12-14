@@ -23,7 +23,7 @@ async function main() {
     categories.push(category)
   }
 
-  const [appetizers, mainCourses, desserts, drinks, salads] = categories
+  const [appetizers, mainCourses, desserts] = categories
 
   // Create products
   const productsData = [

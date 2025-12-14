@@ -9,7 +9,6 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table"
-import { prisma } from "../../../../prisma/client"
 import { OrderItem, Product } from "../../../../prisma/generated/prisma/client"
 import { formatCurrency, formatNumber } from "@/lib/format"
 import { CheckCircle2, MoreVerticalIcon, XCircle } from "lucide-react"
@@ -25,15 +24,7 @@ import {
   DeleteDropdownItem,
 } from "./_components/product-actions"
 import { paths } from "@/config/paths"
-
-export async function getProducts() {
-  return await prisma.product.findMany({
-    include: {
-      category: { select: { name: true } },
-      orderItems: true,
-    },
-  })
-}
+import { getProducts } from "@/features/products/server/get-products-for-admin"
 
 export default async function AdminProductsPage() {
   const products = await getProducts()

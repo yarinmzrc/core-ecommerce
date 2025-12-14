@@ -5,7 +5,7 @@ import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { ComponentProps } from "react"
 
-export function Nav({ children }: React.PropsWithChildren<{}>) {
+export function Nav({ children }: React.PropsWithChildren) {
   return (
     <nav className="bg-primary text-primary-foreground flex justify-center px-4">
       {children}

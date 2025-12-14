@@ -5,6 +5,7 @@ import { notFound, redirect } from "next/navigation"
 import { z } from "zod"
 import { prisma } from "../../../../prisma/client"
 import { revalidatePath } from "next/cache"
+import { getProduct } from "@/features/products/server/get-product"
 
 const requiredImageSchema = z
   .instanceof(File)
@@ -76,7 +77,7 @@ export async function updateProduct(
   }
 
   const data = result.data
-  const product = await prisma.product.findUnique({ where: { id } })
+  const product = await getProduct(id)
 
   if (product == null) return notFound()
 

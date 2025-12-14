@@ -1,12 +1,12 @@
 import { notFound } from "next/navigation"
 import Stripe from "stripe"
-import { prisma } from "../../../../../prisma/client"
 import Image from "next/image"
 import { formatCurrency } from "@/lib/format"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
 import { paths } from "@/config/paths"
 import { env } from "@/config/env"
+import { getProduct } from "@/features/products/server/get-product"
 
 const stripe = new Stripe(env.STRIPE_SECRET_KEY)
 
@@ -21,9 +21,7 @@ export default async function PurchaseSuccessPage({
 
   if (paymentIntent.metadata.productId == null) return notFound()
 
-  const product = await prisma.product.findUnique({
-    where: { id: paymentIntent.metadata.productId },
-  })
+  const product = await getProduct(paymentIntent.metadata.productId)
 
   if (product == null) return notFound()
 

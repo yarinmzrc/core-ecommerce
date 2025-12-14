@@ -1,8 +1,8 @@
 import { notFound } from "next/navigation"
-import { prisma } from "../../../../../../prisma/client"
 import { Stripe } from "stripe"
 import { CheckoutForm } from "./_components/checkout-form"
 import { env } from "@/config/env"
+import { getProduct } from "@/features/products/server/get-product"
 
 const stripe = new Stripe(env.STRIPE_SECRET_KEY)
 
@@ -12,7 +12,7 @@ export default async function PurchasePage({
   params: Promise<{ id: string }>
 }) {
   const { id } = await params
-  const product = await prisma.product.findUnique({ where: { id } })
+  const product = await getProduct(id)
 
   if (product == null) return notFound()
 
