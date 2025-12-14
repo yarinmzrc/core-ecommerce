@@ -7,6 +7,7 @@ import { Suspense } from "react"
 import { ProductCard, ProductCardSkeleton } from "@/components/product-card"
 import { cache } from "@/lib/cache"
 import { ONE_DAY_IN_SECONDS } from "@/constants"
+import { paths } from "@/config/paths"
 
 const getMostPopularProducts = cache(
   async () => {
@@ -51,7 +52,7 @@ function ProductsGridSection({ fetcher, title }: ProductsGridSectionProps) {
       <div className="flex gap-4">
         <h2 className="text-2xl font-semibold">{title}</h2>
         <Button asChild variant="outline">
-          <Link href="/products">
+          <Link href={paths.app.products.root.getHref()}>
             <span>View all</span>
             <ArrowRight className="size-4" />
           </Link>

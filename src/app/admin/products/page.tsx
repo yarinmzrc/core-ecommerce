@@ -24,6 +24,7 @@ import {
   ActiveToggleDropdownAction,
   DeleteDropdownItem,
 } from "./_components/product-actions"
+import { paths } from "@/config/paths"
 
 export async function getProducts() {
   return await prisma.product.findMany({
@@ -42,7 +43,7 @@ export default async function AdminProductsPage() {
       <div className="mb-4 flex items-center justify-between gap-4">
         <PageHeader>Products</PageHeader>
         <Button asChild>
-          <Link href="/admin/products/new">Add Product</Link>
+          <Link href={paths.admin.products.new.getHref()}>Add Product</Link>
         </Button>
       </div>
       <ProductsTable products={products} />
@@ -106,7 +107,7 @@ function ProductsTable({ products }: ProductsTableProps) {
                 </DropdownMenuTrigger>
                 <DropdownMenuContent>
                   <DropdownMenuItem asChild>
-                    <Link href={`/admin/products/${product.id}/edit`}>
+                    <Link href={paths.admin.products.edit.getHref(product.id)}>
                       Edit
                     </Link>
                   </DropdownMenuItem>

@@ -5,6 +5,7 @@ import Image from "next/image"
 import { formatCurrency } from "@/lib/format"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
+import { paths } from "@/config/paths"
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string)
 
@@ -49,7 +50,9 @@ export default async function PurchaseSuccessPage({
           </div>
           {!isSuccess && (
             <Button asChild className="mt-4" size="lg">
-              <Link href={`/products/${product.id}/purchase`}>Try again</Link>
+              <Link href={paths.app.products.purchase.getHref(product.id)}>
+                Try again
+              </Link>
             </Button>
           )}
         </div>

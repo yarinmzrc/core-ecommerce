@@ -10,6 +10,7 @@ import {
 import { Button } from "./ui/button"
 import Link from "next/link"
 import Image from "next/image"
+import { paths } from "@/config/paths"
 
 type ProductCardProps = {
   id: string
@@ -40,7 +41,7 @@ export function ProductCard({
       </CardContent>
       <CardFooter>
         <Button asChild size="lg" className="w-full">
-          <Link href={`/products/${id}/purchase`}>Purchase</Link>
+          <Link href={paths.app.products.purchase.getHref(id)}>Purchase</Link>
         </Button>
       </CardFooter>
     </Card>

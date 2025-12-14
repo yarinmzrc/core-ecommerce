@@ -11,6 +11,7 @@ import {
   TableRow,
 } from "@/components/ui/table"
 import { Category } from "../../../../prisma/generated/prisma/client"
+import { paths } from "@/config/paths"
 async function getCategories() {
   return await prisma.category.findMany({
     orderBy: {
@@ -26,7 +27,7 @@ export default async function AdminCategoriesPage() {
       <div className="mb-4 flex items-center justify-between gap-4">
         <PageHeader>Categories</PageHeader>
         <Button asChild>
-          <Link href="/admin/categories/new">Add Category</Link>
+          <Link href={paths.admin.categories.new.getHref()}>Add Category</Link>
         </Button>
       </div>
       <CategoriesTable categories={categories} />
@@ -61,7 +62,9 @@ function CategoriesTable({ categories }: CategoriesTableProps) {
             <TableCell>{category.name}</TableCell>
             <TableCell>
               <Button asChild>
-                <Link href={`/admin/categories/${category.id}`}>Edit</Link>
+                <Link href={paths.admin.categories.edit.getHref(category.id)}>
+                  Edit
+                </Link>
               </Button>
             </TableCell>
           </TableRow>
