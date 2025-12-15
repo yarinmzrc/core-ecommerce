@@ -7,6 +7,7 @@ import { prisma } from "../../../../prisma/client"
 import { revalidatePath } from "next/cache"
 import { getProduct } from "@/features/products/server/get-product"
 import { createProductSchema } from "./create-product"
+import { deleteFromCloudinary, uploadToCloudinary } from "@/lib/cloudinary"
 
 const imageSchema = z
   .instanceof(File)
@@ -37,14 +38,17 @@ export async function updateProduct(
 
   if (product == null) return notFound()
 
-  let imagePath = product.imagePath
+  let imageResult = null
   if (data.imagePath != null && data.imagePath.size > 0) {
-    await fs.unlink(`public${product.imagePath}`)
-    imagePath = `/products/${crypto.randomUUID()}-${data.imagePath.name}`
-    await fs.writeFile(
-      `public${imagePath}`,
-      Buffer.from(await data.imagePath.arrayBuffer()),
-    )
+    await deleteFromCloudinary(product.imagePublicId)
+
+    try {
+      const uploadResult = await uploadToCloudinary(data.imagePath, "products")
+      imageResult = uploadResult
+    } catch {
+      console.error("Error uploading image to Cloudinary")
+      throw new Error("Error uploading image to Cloudinary")
+    }
   }
 
   await prisma.product.update({
@@ -53,7 +57,8 @@ export async function updateProduct(
       name: data.name,
       price: data.price,
       description: data.description,
-      imagePath,
+      imagePath: imageResult!.secure_url,
+      imagePublicId: imageResult!.public_id,
       categoryId: data.categoryId,
     },
   })

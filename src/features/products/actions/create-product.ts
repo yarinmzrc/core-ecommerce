@@ -1,11 +1,11 @@
 "use server"
 
 import { z } from "zod"
-import fs from "fs/promises"
 import { prisma } from "../../../../prisma/client"
 import { revalidatePath } from "next/cache"
 import { redirect } from "next/navigation"
 import { paths } from "@/config/paths"
+import { uploadToCloudinary } from "@/lib/cloudinary"
 
 const imageSchema = z
   .instanceof(File)
@@ -31,19 +31,25 @@ export async function createProduct(_: unknown, formData: FormData) {
 
   const data = result.data
 
-  await fs.mkdir("public/products", { recursive: true })
-  const imagePath = `/products/${crypto.randomUUID()}-${data.imagePath.name}`
-  await fs.writeFile(
-    `public${imagePath}`,
-    Buffer.from(await data.imagePath.arrayBuffer()),
-  )
+  let imageResult = null
+
+  if (data.imagePath && data.imagePath.size > 0) {
+    try {
+      const uploadResult = await uploadToCloudinary(data.imagePath, "products")
+      imageResult = uploadResult
+    } catch {
+      console.error("Error uploading image to Cloudinary")
+      throw new Error("Error uploading image to Cloudinary")
+    }
+  }
 
   await prisma.product.create({
     data: {
       name: data.name,
       price: data.price,
       description: data.description,
-      imagePath,
+      imagePath: imageResult!.secure_url,
+      imagePublicId: imageResult!.public_id,
       categoryId: data.categoryId,
     },
   })

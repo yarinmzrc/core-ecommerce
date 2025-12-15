@@ -40,6 +40,7 @@ export type ProductMinAggregateOutputType = {
   price: number | null
   description: string | null
   imagePath: string | null
+  imagePublicId: string | null
   isAvailableForSale: boolean | null
   createdAt: Date | null
   updatedAt: Date | null
@@ -52,6 +53,7 @@ export type ProductMaxAggregateOutputType = {
   price: number | null
   description: string | null
   imagePath: string | null
+  imagePublicId: string | null
   isAvailableForSale: boolean | null
   createdAt: Date | null
   updatedAt: Date | null
@@ -64,6 +66,7 @@ export type ProductCountAggregateOutputType = {
   price: number
   description: number
   imagePath: number
+  imagePublicId: number
   isAvailableForSale: number
   createdAt: number
   updatedAt: number
@@ -85,6 +88,7 @@ export type ProductMinAggregateInputType = {
   price?: true
   description?: true
   imagePath?: true
+  imagePublicId?: true
   isAvailableForSale?: true
   createdAt?: true
   updatedAt?: true
@@ -97,6 +101,7 @@ export type ProductMaxAggregateInputType = {
   price?: true
   description?: true
   imagePath?: true
+  imagePublicId?: true
   isAvailableForSale?: true
   createdAt?: true
   updatedAt?: true
@@ -109,6 +114,7 @@ export type ProductCountAggregateInputType = {
   price?: true
   description?: true
   imagePath?: true
+  imagePublicId?: true
   isAvailableForSale?: true
   createdAt?: true
   updatedAt?: true
@@ -215,6 +221,7 @@ export type ProductGroupByOutputType = {
   price: number
   description: string
   imagePath: string
+  imagePublicId: string
   isAvailableForSale: boolean
   createdAt: Date
   updatedAt: Date
@@ -248,6 +255,7 @@ export type ProductWhereInput = {
   price?: Prisma.IntFilter<"Product"> | number
   description?: Prisma.StringFilter<"Product"> | string
   imagePath?: Prisma.StringFilter<"Product"> | string
+  imagePublicId?: Prisma.StringFilter<"Product"> | string
   isAvailableForSale?: Prisma.BoolFilter<"Product"> | boolean
   createdAt?: Prisma.DateTimeFilter<"Product"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Product"> | Date | string
@@ -265,6 +273,7 @@ export type ProductOrderByWithRelationInput = {
   price?: Prisma.SortOrder
   description?: Prisma.SortOrder
   imagePath?: Prisma.SortOrder
+  imagePublicId?: Prisma.SortOrder
   isAvailableForSale?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -283,6 +292,7 @@ export type ProductWhereUniqueInput = Prisma.AtLeast<
     price?: Prisma.IntFilter<"Product"> | number
     description?: Prisma.StringFilter<"Product"> | string
     imagePath?: Prisma.StringFilter<"Product"> | string
+    imagePublicId?: Prisma.StringFilter<"Product"> | string
     isAvailableForSale?: Prisma.BoolFilter<"Product"> | boolean
     createdAt?: Prisma.DateTimeFilter<"Product"> | Date | string
     updatedAt?: Prisma.DateTimeFilter<"Product"> | Date | string
@@ -302,6 +312,7 @@ export type ProductOrderByWithAggregationInput = {
   price?: Prisma.SortOrder
   description?: Prisma.SortOrder
   imagePath?: Prisma.SortOrder
+  imagePublicId?: Prisma.SortOrder
   isAvailableForSale?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -326,6 +337,7 @@ export type ProductScalarWhereWithAggregatesInput = {
   price?: Prisma.IntWithAggregatesFilter<"Product"> | number
   description?: Prisma.StringWithAggregatesFilter<"Product"> | string
   imagePath?: Prisma.StringWithAggregatesFilter<"Product"> | string
+  imagePublicId?: Prisma.StringWithAggregatesFilter<"Product"> | string
   isAvailableForSale?: Prisma.BoolWithAggregatesFilter<"Product"> | boolean
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Product"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Product"> | Date | string
@@ -338,6 +350,7 @@ export type ProductCreateInput = {
   price: number
   description: string
   imagePath: string
+  imagePublicId: string
   isAvailableForSale?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -351,6 +364,7 @@ export type ProductUncheckedCreateInput = {
   price: number
   description: string
   imagePath: string
+  imagePublicId: string
   isAvailableForSale?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -363,6 +377,7 @@ export type ProductUpdateInput = {
   price?: Prisma.IntFieldUpdateOperationsInput | number
   description?: Prisma.StringFieldUpdateOperationsInput | string
   imagePath?: Prisma.StringFieldUpdateOperationsInput | string
+  imagePublicId?: Prisma.StringFieldUpdateOperationsInput | string
   isAvailableForSale?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -375,6 +390,7 @@ export type ProductUncheckedUpdateInput = {
   price?: Prisma.IntFieldUpdateOperationsInput | number
   description?: Prisma.StringFieldUpdateOperationsInput | string
   imagePath?: Prisma.StringFieldUpdateOperationsInput | string
+  imagePublicId?: Prisma.StringFieldUpdateOperationsInput | string
   isAvailableForSale?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -388,6 +404,7 @@ export type ProductCreateManyInput = {
   price: number
   description: string
   imagePath: string
+  imagePublicId: string
   isAvailableForSale?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -399,6 +416,7 @@ export type ProductUpdateManyMutationInput = {
   price?: Prisma.IntFieldUpdateOperationsInput | number
   description?: Prisma.StringFieldUpdateOperationsInput | string
   imagePath?: Prisma.StringFieldUpdateOperationsInput | string
+  imagePublicId?: Prisma.StringFieldUpdateOperationsInput | string
   isAvailableForSale?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -409,6 +427,7 @@ export type ProductUncheckedUpdateManyInput = {
   price?: Prisma.IntFieldUpdateOperationsInput | number
   description?: Prisma.StringFieldUpdateOperationsInput | string
   imagePath?: Prisma.StringFieldUpdateOperationsInput | string
+  imagePublicId?: Prisma.StringFieldUpdateOperationsInput | string
   isAvailableForSale?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -421,6 +440,7 @@ export type ProductCountOrderByAggregateInput = {
   price?: Prisma.SortOrder
   description?: Prisma.SortOrder
   imagePath?: Prisma.SortOrder
+  imagePublicId?: Prisma.SortOrder
   isAvailableForSale?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -437,6 +457,7 @@ export type ProductMaxOrderByAggregateInput = {
   price?: Prisma.SortOrder
   description?: Prisma.SortOrder
   imagePath?: Prisma.SortOrder
+  imagePublicId?: Prisma.SortOrder
   isAvailableForSale?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -449,6 +470,7 @@ export type ProductMinOrderByAggregateInput = {
   price?: Prisma.SortOrder
   description?: Prisma.SortOrder
   imagePath?: Prisma.SortOrder
+  imagePublicId?: Prisma.SortOrder
   isAvailableForSale?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
@@ -604,6 +626,7 @@ export type ProductCreateWithoutCategoryInput = {
   price: number
   description: string
   imagePath: string
+  imagePublicId: string
   isAvailableForSale?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -616,6 +639,7 @@ export type ProductUncheckedCreateWithoutCategoryInput = {
   price: number
   description: string
   imagePath: string
+  imagePublicId: string
   isAvailableForSale?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -673,6 +697,7 @@ export type ProductScalarWhereInput = {
   price?: Prisma.IntFilter<"Product"> | number
   description?: Prisma.StringFilter<"Product"> | string
   imagePath?: Prisma.StringFilter<"Product"> | string
+  imagePublicId?: Prisma.StringFilter<"Product"> | string
   isAvailableForSale?: Prisma.BoolFilter<"Product"> | boolean
   createdAt?: Prisma.DateTimeFilter<"Product"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Product"> | Date | string
@@ -685,6 +710,7 @@ export type ProductCreateWithoutOrderItemsInput = {
   price: number
   description: string
   imagePath: string
+  imagePublicId: string
   isAvailableForSale?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -697,6 +723,7 @@ export type ProductUncheckedCreateWithoutOrderItemsInput = {
   price: number
   description: string
   imagePath: string
+  imagePublicId: string
   isAvailableForSale?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -736,6 +763,7 @@ export type ProductUpdateWithoutOrderItemsInput = {
   price?: Prisma.IntFieldUpdateOperationsInput | number
   description?: Prisma.StringFieldUpdateOperationsInput | string
   imagePath?: Prisma.StringFieldUpdateOperationsInput | string
+  imagePublicId?: Prisma.StringFieldUpdateOperationsInput | string
   isAvailableForSale?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -747,6 +775,7 @@ export type ProductUncheckedUpdateWithoutOrderItemsInput = {
   price?: Prisma.IntFieldUpdateOperationsInput | number
   description?: Prisma.StringFieldUpdateOperationsInput | string
   imagePath?: Prisma.StringFieldUpdateOperationsInput | string
+  imagePublicId?: Prisma.StringFieldUpdateOperationsInput | string
   isAvailableForSale?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -759,6 +788,7 @@ export type ProductCreateManyCategoryInput = {
   price: number
   description: string
   imagePath: string
+  imagePublicId: string
   isAvailableForSale?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
@@ -769,6 +799,7 @@ export type ProductUpdateWithoutCategoryInput = {
   price?: Prisma.IntFieldUpdateOperationsInput | number
   description?: Prisma.StringFieldUpdateOperationsInput | string
   imagePath?: Prisma.StringFieldUpdateOperationsInput | string
+  imagePublicId?: Prisma.StringFieldUpdateOperationsInput | string
   isAvailableForSale?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -780,6 +811,7 @@ export type ProductUncheckedUpdateWithoutCategoryInput = {
   price?: Prisma.IntFieldUpdateOperationsInput | number
   description?: Prisma.StringFieldUpdateOperationsInput | string
   imagePath?: Prisma.StringFieldUpdateOperationsInput | string
+  imagePublicId?: Prisma.StringFieldUpdateOperationsInput | string
   isAvailableForSale?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -791,6 +823,7 @@ export type ProductUncheckedUpdateManyWithoutCategoryInput = {
   price?: Prisma.IntFieldUpdateOperationsInput | number
   description?: Prisma.StringFieldUpdateOperationsInput | string
   imagePath?: Prisma.StringFieldUpdateOperationsInput | string
+  imagePublicId?: Prisma.StringFieldUpdateOperationsInput | string
   isAvailableForSale?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -844,6 +877,7 @@ export type ProductSelect<
     price?: boolean
     description?: boolean
     imagePath?: boolean
+    imagePublicId?: boolean
     isAvailableForSale?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -861,6 +895,7 @@ export type ProductSelectScalar = {
   price?: boolean
   description?: boolean
   imagePath?: boolean
+  imagePublicId?: boolean
   isAvailableForSale?: boolean
   createdAt?: boolean
   updatedAt?: boolean
@@ -876,6 +911,7 @@ export type ProductOmit<
   | "price"
   | "description"
   | "imagePath"
+  | "imagePublicId"
   | "isAvailableForSale"
   | "createdAt"
   | "updatedAt"
@@ -907,6 +943,7 @@ export type $ProductPayload<
       price: number
       description: string
       imagePath: string
+      imagePublicId: string
       isAvailableForSale: boolean
       createdAt: Date
       updatedAt: Date
@@ -1488,6 +1525,7 @@ export interface ProductFieldRefs {
   readonly price: Prisma.FieldRef<"Product", "Int">
   readonly description: Prisma.FieldRef<"Product", "String">
   readonly imagePath: Prisma.FieldRef<"Product", "String">
+  readonly imagePublicId: Prisma.FieldRef<"Product", "String">
   readonly isAvailableForSale: Prisma.FieldRef<"Product", "Boolean">
   readonly createdAt: Prisma.FieldRef<"Product", "DateTime">
   readonly updatedAt: Prisma.FieldRef<"Product", "DateTime">

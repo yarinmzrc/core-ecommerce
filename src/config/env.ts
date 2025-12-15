@@ -9,6 +9,9 @@ const createEnv = () => {
     SERVER_URL: z.string(),
     STRIPE_SECRET_KEY: z.string(),
     STRIPE_PUBLIC_KEY: z.string(),
+    CLOUDINARY_CLOUD_NAME: z.string(),
+    CLOUDINARY_API_KEY: z.string(),
+    CLOUDINARY_API_SECRET: z.string(),
   })
 
   const envVars = {
@@ -18,6 +21,9 @@ const createEnv = () => {
     SERVER_URL: process.env.NEXT_PUBLIC_SERVER_URL,
     STRIPE_SECRET_KEY: process.env.STRIPE_SECRET_KEY,
     STRIPE_PUBLIC_KEY: process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY,
+    CLOUDINARY_CLOUD_NAME: process.env.CLOUDINARY_CLOUD_NAME,
+    CLOUDINARY_API_KEY: process.env.CLOUDINARY_API_KEY,
+    CLOUDINARY_API_SECRET: process.env.CLOUDINARY_API_SECRET,
   }
 
   const parsedEnv = EnvSchema.safeParse(envVars)
