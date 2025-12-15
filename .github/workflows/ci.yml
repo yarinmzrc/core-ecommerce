@@ -9,7 +9,7 @@ on:
       - main
 
 env:
-  DATABASE_URL: "mongodb+srv://yarinmzrc:Nikolic88*@db.bj8decd.mongodb.net/db"
+  DATABASE_URL: "mongodb+srv://xxxxxx:xxxxxx@db.bj8decd.mongodb.net/db"
   CLOUDINARY_CLOUD_NAME: ""
   CLOUDINARY_API_KEY: ""
   CLOUDINARY_API_SECRET: ""
