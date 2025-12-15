@@ -1,9 +1,8 @@
-import { cache } from "@/lib/cache"
 import { prisma } from "../../../../prisma/client"
 
-export const getProducts = cache(async () => {
+export const getProducts = async () => {
   return await prisma.product.findMany({
     where: { isAvailableForSale: true },
     orderBy: { name: "asc" },
   })
-}, ["/products", "getProducts"])
+}
