@@ -1,10 +1,11 @@
 import { Button } from "@/components/ui/button"
 import { paths } from "@/config/paths"
-import { ArrowRight, Link } from "lucide-react"
+import { ArrowRight } from "lucide-react"
 import { Suspense } from "react"
 import { CategoryCard, CategoryCardSkeleton } from "./category-card"
 import { getCategories } from "../server/get-categories"
 import { BaseGrid } from "@/components/base-grid"
+import Link from "next/link"
 
 export function CategoriesGrid() {
   return (
@@ -36,7 +37,11 @@ async function CategoriesSuspense() {
 }
 
 function getCategoriesSkeletons() {
-  return Array.from({ length: 4 }, (_, index) => (
-    <CategoryCardSkeleton key={index} />
-  ))
+  return (
+    <>
+      {Array.from({ length: 4 }, (_, index) => (
+        <CategoryCardSkeleton key={index} />
+      ))}
+    </>
+  )
 }

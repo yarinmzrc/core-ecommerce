@@ -1,9 +1,10 @@
 import { Button } from "@/components/ui/button"
 import { Product } from "../../../../prisma/generated/prisma/client"
-import { ArrowRight, Link } from "lucide-react"
+import { ArrowRight } from "lucide-react"
 import { paths } from "@/config/paths"
 import { Suspense } from "react"
 import { ProductCard, ProductCardSkeleton } from "./product-card"
+import Link from "next/link"
 
 type ProductsGridSectionProps = {
   fetcher: () => Promise<Product[]>
@@ -40,7 +41,11 @@ async function ProductsSuspense({ fetcher }: ProductsSuspenseProps) {
 }
 
 function getProductsSkeletons() {
-  return Array.from({ length: 6 }, (_, index) => (
-    <ProductCardSkeleton key={index} />
-  ))
+  return (
+    <>
+      {Array.from({ length: 6 }, (_, index) => (
+        <ProductCardSkeleton key={index} />
+      ))}
+    </>
+  )
 }

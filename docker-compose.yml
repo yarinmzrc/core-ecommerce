@@ -3,6 +3,7 @@ version: "3.8"
 services:
   mongo:
     image: mongo:latest
+    container_name: catering-mongodb
     restart: always
     ports:
       - "27017:27017"
