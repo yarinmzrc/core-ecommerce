@@ -13,7 +13,7 @@ export default function AppLayout({
       <Nav>
         <NavLink href={paths.app.root.getHref()}>Home</NavLink>
         <NavLink href={paths.app.products.root.getHref()}>Products</NavLink>
-        <NavLink href={paths.app.orders.root.getHref()}>My Orders</NavLink>
+        <NavLink href={paths.app.categories.getHref()}>Categories</NavLink>
       </Nav>
       <div className="container mx-auto p-6">{children}</div>
     </>
