@@ -1,10 +1,10 @@
 import AppLayout from "./(customer)/layout"
-import ProductsPage from "./(customer)/products/page"
+import HomePage from "./(customer)/page"
 
-export default function Home({ children }: React.PropsWithChildren) {
+export default function Home() {
   return (
     <AppLayout>
-      <ProductsPage />
+      <HomePage />
     </AppLayout>
   )
 }
