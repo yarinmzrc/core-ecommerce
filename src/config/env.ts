@@ -12,6 +12,7 @@ const createEnv = () => {
     CLOUDINARY_API_KEY: z.string(),
     CLOUDINARY_API_SECRET: z.string(),
     NEXTAUTH_SECRET: z.string(),
+    ADMIN_PASSWORD: z.string().optional(),
   })
 
   const envVars = {
@@ -25,6 +26,7 @@ const createEnv = () => {
     CLOUDINARY_API_KEY: process.env.CLOUDINARY_API_KEY,
     CLOUDINARY_API_SECRET: process.env.CLOUDINARY_API_SECRET,
     NEXTAUTH_SECRET: process.env.NEXTAUTH_SECRET,
+    ADMIN_PASSWORD: process.env.ADMIN_PASSWORD,
   }
 
   const parsedEnv = EnvSchema.safeParse(envVars)

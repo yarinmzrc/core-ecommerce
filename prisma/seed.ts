@@ -1,4 +1,8 @@
+import "dotenv/config"
+import { hash } from "bcryptjs"
 import { prisma } from "./client"
+import { env } from "@/config/env"
+import { Role } from "./generated/prisma/enums"
 
 async function main() {
   // Clean up existsing data
@@ -6,6 +10,18 @@ async function main() {
   await prisma.order.deleteMany()
   await prisma.product.deleteMany()
   await prisma.category.deleteMany()
+
+  // Create Admin user for testing
+  const password = await hash(env.ADMIN_PASSWORD ?? "password", 12)
+  await prisma.user.upsert({
+    where: { email: "admin@admin.com" },
+    update: {},
+    create: {
+      email: "admin@admin.com",
+      passwordHash: password,
+      role: Role.ADMIN,
+    },
+  })
 
   // Create categories
   const categoriesData = [
