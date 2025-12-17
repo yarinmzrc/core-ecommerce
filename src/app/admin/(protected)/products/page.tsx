@@ -1,34 +1,10 @@
 import { Button } from "@/components/ui/button"
 import { PageHeader } from "../../_components/page-header"
 import Link from "next/link"
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table"
-import { formatCurrency, formatNumber } from "@/lib/format"
-import { CheckCircle2, MoreVerticalIcon, XCircle } from "lucide-react"
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
-import {
-  ActiveToggleDropdownAction,
-  DeleteDropdownItem,
-} from "./_components/product-actions"
+
 import { paths } from "@/config/paths"
-import {
-  Product,
-  WithCategory,
-  WithOrderCount,
-  getProductsForAdmin,
-} from "@/features/products"
+import { getProductsForAdmin } from "@/features/products"
+import { ProductsTable } from "@/features/products"
 
 export default async function AdminProductsPage() {
   const products = await getProductsForAdmin()
@@ -43,81 +19,5 @@ export default async function AdminProductsPage() {
       </div>
       <ProductsTable products={products} />
     </>
-  )
-}
-
-type ProductsTableProps = {
-  products: (Product & WithCategory & WithOrderCount)[]
-}
-
-function ProductsTable({ products }: ProductsTableProps) {
-  if (products.length === 0) {
-    return <p>No products found.</p>
-  }
-
-  return (
-    <Table>
-      <TableHeader>
-        <TableRow>
-          <TableHead className="w-0">
-            <span className="sr-only">Available for purchase</span>
-          </TableHead>
-          <TableHead>Name</TableHead>
-          <TableHead>Price</TableHead>
-          <TableHead>Category</TableHead>
-          <TableHead>Order Items</TableHead>
-          <TableHead className="w-0">
-            <span className="sr-only">Actions</span>
-          </TableHead>
-        </TableRow>
-      </TableHeader>
-      <TableBody>
-        {products.map((product) => (
-          <TableRow key={product.id}>
-            <TableCell>
-              {product.isAvailableForSale ? (
-                <>
-                  <span className="sr-only">Available for purchase</span>
-                  <CheckCircle2 />
-                </>
-              ) : (
-                <>
-                  <span className="sr-only">Not available for purchase</span>
-                  <XCircle className="text-red-800" />
-                </>
-              )}
-            </TableCell>
-            <TableCell>{product.name}</TableCell>
-            <TableCell>{formatCurrency(product.price)}</TableCell>
-            <TableCell>{product.category.name}</TableCell>
-            <TableCell>{formatNumber(product.orderCount ?? 0)}</TableCell>
-            <TableCell>
-              <DropdownMenu>
-                <DropdownMenuTrigger>
-                  <MoreVerticalIcon />
-                  <span className="sr-only">Actions</span>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent>
-                  <DropdownMenuItem asChild>
-                    <Link href={paths.admin.products.edit.getHref(product.id)}>
-                      Edit
-                    </Link>
-                  </DropdownMenuItem>
-                  <ActiveToggleDropdownAction
-                    id={product.id}
-                    isAvailableForSale={product.isAvailableForSale}
-                  />
-                  <DropdownMenuSeparator />
-                  <DeleteDropdownItem
-                    id={product.id}
-                    disabled={product.orderCount > 0}
-                  />
-                </DropdownMenuContent>
-              </DropdownMenu>
-            </TableCell>
-          </TableRow>
-        ))}
-      </TableBody>
-    </Table>
   )
 }

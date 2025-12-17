@@ -11,3 +11,4 @@ export * from "./server/get-products-for-admin"
 // components
 export * from "./components/product-card"
 export * from "./components/products-grid"
+export * from "./components/products-table"
