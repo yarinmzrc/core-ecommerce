@@ -15,7 +15,7 @@ This is a Next.js application that allows users to browse and purchase catering 
 1. **Clone the repository:**
 
    ```bash
-   git clone [https://github.com/yourusername/catering-app.git](https://github.com/yourusername/catering-app.git)
+   git clone https://github.com/yarinmzrc/catering-app.git
    ```
 
 2. **Start the Database**
