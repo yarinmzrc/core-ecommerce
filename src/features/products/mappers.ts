@@ -1,7 +1,4 @@
-import {
-  Prisma,
-  Product as PrismaProduct,
-} from "../../../prisma/generated/prisma/client"
+import { Product as PrismaProduct } from "../../../prisma/generated/prisma/client"
 import {
   PrismaProductWithCategory,
   PrismaProductWithOrderCount,
