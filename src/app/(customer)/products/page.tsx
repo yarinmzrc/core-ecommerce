@@ -1,8 +1,8 @@
+import { getProductsForStore } from "@/features/products"
 import {
   ProductCard,
   ProductCardSkeleton,
 } from "@/features/products/components/product-card"
-import { getProducts } from "@/features/products/server/get-products-for-store"
 import { Suspense } from "react"
 
 export default function ProductsPage() {
@@ -27,7 +27,7 @@ export default function ProductsPage() {
 }
 
 async function ProductsSuspense() {
-  const products = await getProducts()
+  const products = await getProductsForStore()
 
   if (products.length === 0) return <p>No products found</p>
 

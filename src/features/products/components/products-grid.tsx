@@ -1,10 +1,10 @@
 import { Button } from "@/components/ui/button"
-import { Product } from "../../../../prisma/generated/prisma/client"
 import { ArrowRight } from "lucide-react"
 import { paths } from "@/config/paths"
 import { Suspense } from "react"
 import { ProductCard, ProductCardSkeleton } from "./product-card"
 import Link from "next/link"
+import { Product } from "../types"
 
 type ProductsGridSectionProps = {
   fetcher: () => Promise<Product[]>

@@ -1,8 +1,7 @@
-import { Card, CardHeader, CardTitle } from "@/components/ui/card"
-import { Category } from "../../../../prisma/generated/prisma/client"
 import { paths } from "@/config/paths"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
+import { Category } from "../types"
 
 export function CategoryCard({ category }: { category: Category }) {
   return (

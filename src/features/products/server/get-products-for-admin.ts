@@ -1,10 +1,15 @@
 import { prisma } from "../../../../prisma/client"
+import { mapProductWithCategoryAndOrderCount } from "../mappers"
 
-export async function getProducts() {
-  return await prisma.product.findMany({
+export async function getProductsForAdmin() {
+  const products = await prisma.product.findMany({
     include: {
-      category: { select: { name: true } },
-      orderItems: true,
+      category: true,
+      _count: {
+        select: { orderItems: true },
+      },
     },
   })
+
+  return products.map(mapProductWithCategoryAndOrderCount)
 }

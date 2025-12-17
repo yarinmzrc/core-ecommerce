@@ -9,9 +9,9 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table"
-import { Category } from "../../../../../prisma/generated/prisma/client"
 import { paths } from "@/config/paths"
 import { getCategories } from "@/features/categories/server/get-categories"
+import { Category } from "@/features/categories"
 
 export default async function AdminCategoriesPage() {
   const categories = await getCategories()

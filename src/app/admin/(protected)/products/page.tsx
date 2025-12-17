@@ -9,10 +9,6 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table"
-import {
-  OrderItem,
-  Product,
-} from "../../../../../prisma/generated/prisma/client"
 import { formatCurrency, formatNumber } from "@/lib/format"
 import { CheckCircle2, MoreVerticalIcon, XCircle } from "lucide-react"
 import {
@@ -27,10 +23,15 @@ import {
   DeleteDropdownItem,
 } from "./_components/product-actions"
 import { paths } from "@/config/paths"
-import { getProducts } from "@/features/products/server/get-products-for-admin"
+import {
+  Product,
+  WithCategory,
+  WithOrderCount,
+  getProductsForAdmin,
+} from "@/features/products"
 
 export default async function AdminProductsPage() {
-  const products = await getProducts()
+  const products = await getProductsForAdmin()
 
   return (
     <>
@@ -46,10 +47,7 @@ export default async function AdminProductsPage() {
 }
 
 type ProductsTableProps = {
-  products: (Product & {
-    category: { name: string }
-    orderItems: OrderItem[]
-  })[]
+  products: (Product & WithCategory & WithOrderCount)[]
 }
 
 function ProductsTable({ products }: ProductsTableProps) {
@@ -92,7 +90,7 @@ function ProductsTable({ products }: ProductsTableProps) {
             <TableCell>{product.name}</TableCell>
             <TableCell>{formatCurrency(product.price)}</TableCell>
             <TableCell>{product.category.name}</TableCell>
-            <TableCell>{formatNumber(product.orderItems.length)}</TableCell>
+            <TableCell>{formatNumber(product.orderCount ?? 0)}</TableCell>
             <TableCell>
               <DropdownMenu>
                 <DropdownMenuTrigger>
@@ -112,7 +110,7 @@ function ProductsTable({ products }: ProductsTableProps) {
                   <DropdownMenuSeparator />
                   <DeleteDropdownItem
                     id={product.id}
-                    disabled={product.orderItems.length > 0}
+                    disabled={product.orderCount > 0}
                   />
                 </DropdownMenuContent>
               </DropdownMenu>
