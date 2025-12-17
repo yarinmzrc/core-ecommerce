@@ -8,9 +8,7 @@ import { cn } from "@/lib/utils"
 
 export function Nav({ children }: React.PropsWithChildren) {
   return (
-    <nav className="bg-primary text-primary-foreground flex justify-center px-4">
-      {children}
-    </nav>
+    <nav className="bg-primary text-primary-foreground px-4">{children}</nav>
   )
 }
 
@@ -20,7 +18,7 @@ export function NavLink(props: Omit<ComponentProps<typeof Link>, "className">) {
     <Link
       {...props}
       className={cn(
-        "hover:bg-secondary hover:text-secondary-foreground focus-visible:bg-secondary focus-visible:text-secondary-foreground p-4",
+        "hover:bg-secondary hover:text-secondary-foreground focus-visible:bg-secondary focus-visible:text-secondary-foreground inline-flex p-4",
         pathname === props.href && "bg-background text-foreground",
       )}
     />

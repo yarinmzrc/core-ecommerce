@@ -1,10 +1,10 @@
-import Link from "next/link"
+"use client"
 
 import { Image } from "@/components/image"
-import { paths } from "@/config/paths"
+import { Button } from "@/components/ui/button"
 import { formatCurrency } from "@/lib/format"
+import { useCartStore } from "@/stores/cart-store"
 
-import { Button } from "../../../components/ui/button"
 import {
   Card,
   CardContent,
@@ -23,11 +23,15 @@ type ProductCardProps = {
 }
 
 export function ProductCard({
+  id,
   name,
   price,
   description,
   imagePath,
 }: ProductCardProps) {
+  const addItem = useCartStore((s) => s.addItem)
+  const removeItem = useCartStore((s) => s.removeItem)
+
   return (
     <Card className="flex flex-col overflow-hidden pt-0">
       <div className="relative aspect-video h-auto w-full">
@@ -40,9 +44,18 @@ export function ProductCard({
       <CardContent className="grow">
         <p className="line-clamp-4">{description}</p>
       </CardContent>
-      <CardFooter>
-        <Button asChild size="lg" className="w-full">
-          <Link href={paths.app.products.root.getHref()}>Purchase</Link>
+      <CardFooter className="flex flex-col gap-2">
+        <Button
+          size="lg"
+          className="w-full"
+          onClick={() =>
+            addItem({ id, name, imagePath, price, quantity: 2 }, 4)
+          }
+        >
+          Add
+        </Button>
+        <Button size="lg" className="w-full" onClick={() => removeItem(id)}>
+          Remove
         </Button>
       </CardFooter>
     </Card>
