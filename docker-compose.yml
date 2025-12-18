@@ -1,8 +1,6 @@
-version: "3.8"
-
 services:
   mongo:
-    image: mongo:latest
+    image: mongo:7
     container_name: catering-mongodb
     restart: always
     ports:
@@ -10,6 +8,27 @@ services:
     command: ["mongod", "--replSet", "rs0", "--bind_ip_all"]
     volumes:
       - mongo-data:/data/db
+    healthcheck:
+      test: ["CMD", "mongosh", "--eval", "db.adminCommand('ping')"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  mongo-init:
+    image: mongo:7
+    depends_on:
+      mongo:
+        condition: service_healthy
+    restart: "no"
+    entrypoint: >
+      bash -c "
+      mongosh --host mongo:27017 --eval '
+        rs.initiate({
+          _id: \"rs0\",
+          members: [{ _id: 0, host: \"mongo:27017\" }]
+        })
+      '
+      "
 
 volumes:
   mongo-data:

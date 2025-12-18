@@ -47,44 +47,49 @@ async function main() {
   // Create products
   const productsData = [
     {
+      name: "Hamburger",
+      price: 5.99,
+      description: "A Cheeseburger",
+      categoryId: mainCourses.id,
+      imagePath:
+        "https://res.cloudinary.com/dexzucg7a/image/upload/v1766057709/products/x4upbn9zchl06z6jd1rt.jpg",
+      imagePublicId: "products/x4upbn9zchl06z6jd1rt",
+    },
+    {
       name: "Cheeseburger",
       price: 5.99,
       description: "A Cheeseburger",
       categoryId: mainCourses.id,
-      imagePath: "",
-      imagePublicId: "",
-    },
-    {
-      name: "Hamburger",
-      price: 5.99,
-      description: "A Hamburger",
-      categoryId: mainCourses.id,
-      imagePath: "",
-      imagePublicId: "",
+      imagePath:
+        "https://res.cloudinary.com/dexzucg7a/image/upload/v1766057968/products/eqleq3f0zuhk5gifgq4c.jpg",
+      imagePublicId: "products/eqleq3f0zuhk5gifgq4c",
     },
     {
       name: "French Fries",
       price: 2.99,
       description: "French Fries",
       categoryId: appetizers.id,
-      imagePath: "",
-      imagePublicId: "",
+      imagePath:
+        "https://res.cloudinary.com/dexzucg7a/image/upload/v1766058043/products/z7ekt9wnl46dgkhzwxdg.jpg",
+      imagePublicId: "products/z7ekt9wnl46dgkhzwxdg",
     },
     {
       name: "Onion Rings",
       price: 3.99,
       description: "Onion Rings",
       categoryId: appetizers.id,
-      imagePath: "",
-      imagePublicId: "",
+      imagePath:
+        "https://res.cloudinary.com/dexzucg7a/image/upload/v1766058110/products/lilzyflbzuj9h7z3givd.jpg",
+      imagePublicId: "products/lilzyflbzuj9h7z3givd",
     },
     {
       name: "Ice Cream",
       price: 3.99,
       description: "Ice Cream",
       categoryId: desserts.id,
-      imagePath: "",
-      imagePublicId: "",
+      imagePath:
+        "https://res.cloudinary.com/dexzucg7a/image/upload/v1766058179/products/zb74kk1lzx2fns1rnkb5.jpg",
+      imagePublicId: "products/zb74kk1lzx2fns1rnkb5",
     },
   ]
 
