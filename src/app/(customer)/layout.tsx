@@ -13,6 +13,7 @@ export default function AppLayout({
     <>
       <Nav>
         <div className="flex items-center justify-between">
+          <p>Catering</p>
           <div>
             <NavLink href={paths.app.root.getHref()}>Home</NavLink>
             <NavLink href={paths.app.products.root.getHref()}>Products</NavLink>

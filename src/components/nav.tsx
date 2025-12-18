@@ -7,9 +7,7 @@ import { ComponentProps } from "react"
 import { cn } from "@/lib/utils"
 
 export function Nav({ children }: React.PropsWithChildren) {
-  return (
-    <nav className="bg-primary text-primary-foreground px-4">{children}</nav>
-  )
+  return <nav className="border-b px-4">{children}</nav>
 }
 
 export function NavLink(props: Omit<ComponentProps<typeof Link>, "className">) {
