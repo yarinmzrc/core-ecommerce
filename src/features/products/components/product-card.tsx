@@ -1,9 +1,13 @@
 "use client"
 
+import { useState } from "react"
+import { toast } from "sonner"
+
 import { Image } from "@/components/image"
 import { Button } from "@/components/ui/button"
 import { useCart } from "@/features/cart/hooks/use-cart"
 import { formatCurrency } from "@/lib/format"
+import { cn } from "@/lib/utils"
 
 import {
   Card,
@@ -30,8 +34,23 @@ export function ProductCard({
   imagePath,
 }: ProductCardProps) {
   const { items, updateQuantity, addItem } = useCart()
-
   const cartItem = items.find((i) => i.id === id)
+
+  const [isAdding, setIsAdding] = useState(false)
+
+  const handleAddToCart = async () => {
+    setIsAdding(true)
+
+    if (cartItem) {
+      updateQuantity(cartItem.id, cartItem.quantity + 1)
+    } else {
+      addItem({ id, name, price, imagePath, quantity: 0 })
+    }
+
+    await new Promise((resolve) => setTimeout(resolve, 500))
+    toast.success("Product added to cart")
+    setIsAdding(false)
+  }
 
   return (
     <Card className="flex flex-col overflow-hidden pt-0">
@@ -48,14 +67,12 @@ export function ProductCard({
       <CardFooter className="flex flex-col gap-2">
         <Button
           size="lg"
-          className="w-full"
-          onClick={() =>
-            cartItem
-              ? updateQuantity(cartItem.id, cartItem.quantity + 1)
-              : addItem({ id, name, price, imagePath, quantity: 0 })
-          }
+          className={cn("w-full", {
+            "pointer-events-none opacity-50": isAdding,
+          })}
+          onClick={handleAddToCart}
         >
-          Add To Cart
+          {isAdding ? "Adding..." : "Add to Cart"}
         </Button>
       </CardFooter>
     </Card>
