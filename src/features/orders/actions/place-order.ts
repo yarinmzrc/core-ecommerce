@@ -18,7 +18,7 @@ export async function createOrder(
   )
 
   if (result.success === false) {
-    return z.flattenError(result.error).fieldErrors
+    return { error: z.flattenError(result.error).fieldErrors }
   }
 
   const products = await prisma.product.findMany({
@@ -28,14 +28,13 @@ export async function createOrder(
   })
 
   if (products.length !== cartItems.length) {
-    throw new Error("Invalid cart")
+    throw new Error("Product not found")
   }
 
   const orderItems = cartItems.map((item) => {
     const product = products.find((p) => p.id === item.id)!
     return {
       productId: product.id,
-      productName: product.name,
       price: product.price,
       quantity: item.quantity,
     }
@@ -59,4 +58,6 @@ export async function createOrder(
       },
     },
   })
+
+  return { success: true }
 }
