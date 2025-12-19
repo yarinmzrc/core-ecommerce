@@ -15,8 +15,8 @@ import {
   SelectValue,
 } from "@/components/ui/select"
 import { Textarea } from "@/components/ui/textarea"
-import { createProduct } from "@/features/products/actions/create-product"
-import { updateProduct } from "@/features/products/actions/update-product"
+import { createProduct } from "@/features/products/server/create-product"
+import { updateProduct } from "@/features/products/server/update-product"
 import { formatCurrency } from "@/lib/format"
 
 import {

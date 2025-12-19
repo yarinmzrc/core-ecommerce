@@ -10,7 +10,7 @@ import { SheetFooter } from "@/components/ui/sheet"
 import { paths } from "@/config/paths"
 import { useCartStore } from "@/stores/cart-store"
 
-import { createOrder } from "../actions/place-order"
+import { createOrder } from "../server/place-order"
 
 export function CheckoutForm() {
   const router = useRouter()
@@ -25,7 +25,7 @@ export function CheckoutForm() {
       router.push(paths.app.purchaseSuccess.getHref())
       clearCart()
     }
-  }, [data])
+  }, [data, clearCart, router])
 
   return (
     <form action={action}>

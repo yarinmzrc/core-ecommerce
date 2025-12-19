@@ -22,8 +22,8 @@ import {
 } from "@/components/ui/table"
 import { paths } from "@/config/paths"
 import { Product, WithCategory, WithOrderCount } from "@/features/products"
-import { deleteProduct } from "@/features/products/actions/delete-product"
-import { toggleProductAvailability } from "@/features/products/actions/toggle-product-availability"
+import { deleteProduct } from "@/features/products/server/delete-product"
+import { toggleProductAvailability } from "@/features/products/server/toggle-product-availability"
 import { formatCurrency, formatNumber } from "@/lib/format"
 
 type ProductsTableProps = {
