@@ -1,9 +1,6 @@
-import { prisma } from "../../../../prisma/client"
+import { CategoryService } from "../services/category-service"
 
 export const getCategories = async () => {
-  return await prisma.category.findMany({
-    orderBy: {
-      name: "asc",
-    },
-  })
+  const categoryService = new CategoryService()
+  return categoryService.getCategories()
 }

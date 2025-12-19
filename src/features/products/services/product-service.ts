@@ -8,8 +8,8 @@ export class ProductService {
     private readonly imageRepository = new ImageRepository(),
   ) {}
 
-  async findById(id: string) {
-    return this.productRepository.findById(id)
+  async getProduct(id: string) {
+    return this.productRepository.getProduct(id)
   }
 
   async createProduct(data: {
@@ -54,7 +54,7 @@ export class ProductService {
       categoryId: string
     },
   ) {
-    const product = await this.productRepository.findById(id)
+    const product = await this.productRepository.getProduct(id)
     if (!product) throw new Error("Not found")
 
     let imageResult = null
@@ -84,7 +84,7 @@ export class ProductService {
   }
 
   async deleteProduct(id: string) {
-    const product = await this.productRepository.findById(id)
+    const product = await this.productRepository.getProduct(id)
     if (!product) throw new Error("Not found")
 
     await this.imageRepository.delete(product.imagePublicId)

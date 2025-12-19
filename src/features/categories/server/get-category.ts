@@ -1,8 +1,6 @@
-import { prisma } from "../../../../prisma/client"
+import { CategoryService } from "../services/category-service"
 
 export async function getCategory(id: string) {
-  return await prisma.category.findUnique({
-    where: { id },
-    include: { products: true },
-  })
+  const categoryService = new CategoryService()
+  return categoryService.getCategory(id)
 }

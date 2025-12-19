@@ -19,7 +19,7 @@ export class ProductRepository {
     return prisma.product.delete({ where: { id } })
   }
 
-  async findById(id: string) {
+  async getProduct(id: string) {
     return prisma.product.findUnique({ where: { id } })
   }
 

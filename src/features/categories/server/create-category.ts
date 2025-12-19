@@ -5,7 +5,7 @@ import { z } from "zod"
 
 import { paths } from "@/config/paths"
 
-import { prisma } from "../../../../prisma/client"
+import { CategoryService } from "../services/category-service"
 
 const createCategorySchema = z.object({
   name: z.string().min(1),
@@ -22,11 +22,8 @@ export async function createCategory(_: unknown, formData: FormData) {
 
   const data = result.data
 
-  await prisma.category.create({
-    data: {
-      name: data.name,
-    },
-  })
+  const categoryService = new CategoryService()
+  await categoryService.createCategory(data.name)
 
   redirect(paths.admin.categories.root.getHref())
 }
