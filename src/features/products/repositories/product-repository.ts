@@ -23,6 +23,10 @@ export class ProductRepository {
     return prisma.product.findUnique({ where: { id } })
   }
 
+  async getProductsByIds(ids: string[]) {
+    return prisma.product.findMany({ where: { id: { in: ids } } })
+  }
+
   async getMostPopularProducts() {
     return prisma.product.findMany({
       where: { isAvailableForSale: true },

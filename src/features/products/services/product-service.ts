@@ -114,4 +114,8 @@ export class ProductService {
       isAvailableForSale,
     )
   }
+
+  async getProductsByIds(ids: string[]) {
+    return this.productRepository.getProductsByIds(ids)
+  }
 }

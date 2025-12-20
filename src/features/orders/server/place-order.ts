@@ -2,8 +2,8 @@
 
 import { z } from "zod"
 
-import { prisma } from "../../../../prisma/client"
 import { createOrderSchema } from "../schemas"
+import { OrderService } from "../services/order-service"
 
 export async function createOrder(
   cartItems: {
@@ -21,43 +21,19 @@ export async function createOrder(
     return { error: z.flattenError(result.error).fieldErrors }
   }
 
-  const products = await prisma.product.findMany({
-    where: {
-      id: { in: cartItems.map((i) => i.id) },
-    },
-  })
+  const orderService = new OrderService()
 
-  if (products.length !== cartItems.length) {
-    throw new Error("Product not found")
+  const dto = {
+    guestEmail: result.data.email,
+    guestName: result.data.name,
+    guestPhone: result.data.phone,
+    items: cartItems.map((item) => ({
+      productId: item.id,
+      quantity: item.quantity,
+    })),
   }
 
-  const orderItems = cartItems.map((item) => {
-    const product = products.find((p) => p.id === item.id)!
-    return {
-      productId: product.id,
-      price: product.price,
-      quantity: item.quantity,
-    }
-  })
-
-  const pricePaid = orderItems.reduce(
-    (sum, item) => sum + item.price * item.quantity,
-    0,
-  )
-
-  const data = result.data
-
-  await prisma.order.create({
-    data: {
-      pricePaid,
-      guestEmail: data.email,
-      guestName: data.name,
-      guestPhone: data.phone,
-      orderItems: {
-        create: orderItems,
-      },
-    },
-  })
+  await orderService.createOrder(dto)
 
   return { success: true }
 }
