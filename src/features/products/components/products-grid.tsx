@@ -5,11 +5,11 @@ import { Suspense } from "react"
 import { Button } from "@/components/ui/button"
 import { paths } from "@/config/paths"
 
-import { Product } from "../dtos"
+import { ProductDTO } from "../dtos"
 import { ProductCard, ProductCardSkeleton } from "./product-card"
 
 type ProductsGridSectionProps = {
-  fetcher: () => Promise<Product[]>
+  fetcher: () => Promise<ProductDTO[]>
   title: string
 }
 
@@ -34,7 +34,7 @@ export function ProductsGrid({ fetcher, title }: ProductsGridSectionProps) {
   )
 }
 type ProductsSuspenseProps = {
-  fetcher: () => Promise<Product[]>
+  fetcher: () => Promise<ProductDTO[]>
 }
 async function ProductsSuspense({ fetcher }: ProductsSuspenseProps) {
   return (await fetcher()).map((product) => (
