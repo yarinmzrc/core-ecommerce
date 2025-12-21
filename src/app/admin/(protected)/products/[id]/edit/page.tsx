@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation"
 
-import { getCategories } from "@/features/categories/server/get-categories"
-import { getProduct } from "@/features/products/server/get-product"
+import { getCategories } from "@/features/categories/dal/queries"
+import { getProduct } from "@/features/products/dal/queries"
 
 import { PageHeader } from "../../../../_components/page-header"
 import { ProductForm } from "../../_components/product-form"

@@ -1,8 +1,8 @@
 import { notFound } from "next/navigation"
 
 import { BaseGrid } from "@/components/base-grid"
-import { getCategory } from "@/features/categories/server/get-category"
-import { ProductCard } from "@/features/products"
+import { getCategory } from "@/features/categories/dal/queries"
+import { ProductCard } from "@/features/products/components/product-card"
 
 export default async function CategoryPage({
   params,

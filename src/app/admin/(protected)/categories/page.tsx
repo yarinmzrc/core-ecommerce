@@ -10,8 +10,8 @@ import {
   TableRow,
 } from "@/components/ui/table"
 import { paths } from "@/config/paths"
-import { Category } from "@/features/categories"
-import { getCategories } from "@/features/categories/server/get-categories"
+import { getCategories } from "@/features/categories/dal/queries"
+import { Category } from "@/features/categories/types"
 
 import { PageHeader } from "../../_components/page-header"
 

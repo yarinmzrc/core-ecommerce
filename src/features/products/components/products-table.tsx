@@ -21,10 +21,10 @@ import {
   TableRow,
 } from "@/components/ui/table"
 import { paths } from "@/config/paths"
-import { Product, WithCategory, WithOrderCount } from "@/features/products"
-import { deleteProduct } from "@/features/products/server/delete-product"
-import { toggleProductAvailability } from "@/features/products/server/toggle-product-availability"
 import { formatCurrency, formatNumber } from "@/lib/format"
+
+import { deleteProduct, toggleProductAvailability } from "../dal/mutations"
+import { Product, WithCategory, WithOrderCount } from "../types"
 
 type ProductsTableProps = {
   products: (Product & WithCategory & WithOrderCount)[]

@@ -5,13 +5,13 @@ import { z } from "zod"
 
 import { paths } from "@/config/paths"
 
-import { CategoryService } from "../services/category-service"
+import { createCategory } from "../dal/mutations"
 
 const createCategorySchema = z.object({
   name: z.string().min(1),
 })
 
-export async function createCategory(_: unknown, formData: FormData) {
+export async function createCategoryAction(_: unknown, formData: FormData) {
   const result = createCategorySchema.safeParse(
     Object.fromEntries(formData.entries()),
   )
@@ -22,8 +22,7 @@ export async function createCategory(_: unknown, formData: FormData) {
 
   const data = result.data
 
-  const categoryService = new CategoryService()
-  await categoryService.createCategory(data.name)
+  await createCategory(data.name)
 
   redirect(paths.admin.categories.root.getHref())
 }

@@ -3,13 +3,11 @@
 import { revalidatePath } from "next/cache"
 import { notFound } from "next/navigation"
 
-import { ProductService } from "../services/product-service"
+import { deleteProduct } from "../dal/mutations"
 
-export async function deleteProduct(productId: string) {
-  const productService = new ProductService()
-
+export async function deleteProductAction(productId: string) {
   try {
-    await productService.deleteProduct(productId)
+    await deleteProduct(productId)
   } catch (error) {
     console.error(error)
     return notFound()

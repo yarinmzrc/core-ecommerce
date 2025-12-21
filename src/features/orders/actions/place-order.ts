@@ -2,10 +2,10 @@
 
 import { z } from "zod"
 
+import { createOrder } from "../dal/mutations"
 import { createOrderSchema } from "../schemas"
-import { OrderService } from "../services/order-service"
 
-export async function createOrder(
+export async function createOrderAction(
   cartItems: {
     id: string
     quantity: number
@@ -21,8 +21,6 @@ export async function createOrder(
     return { error: z.flattenError(result.error).fieldErrors }
   }
 
-  const orderService = new OrderService()
-
   const dto = {
     guestEmail: result.data.email,
     guestName: result.data.name,
@@ -33,7 +31,7 @@ export async function createOrder(
     })),
   }
 
-  await orderService.createOrder(dto)
+  await createOrder(dto)
 
   return { success: true }
 }

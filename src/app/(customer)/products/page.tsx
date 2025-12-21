@@ -1,10 +1,10 @@
 import { Suspense } from "react"
 
-import { getProductsForStore } from "@/features/products"
 import {
   ProductCard,
   ProductCardSkeleton,
 } from "@/features/products/components/product-card"
+import { getProductsForStore } from "@/features/products/dal/queries"
 
 export default function ProductsPage() {
   return (

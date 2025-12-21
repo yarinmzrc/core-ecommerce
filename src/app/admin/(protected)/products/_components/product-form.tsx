@@ -15,8 +15,8 @@ import {
   SelectValue,
 } from "@/components/ui/select"
 import { Textarea } from "@/components/ui/textarea"
-import { createProduct } from "@/features/products/server/create-product"
-import { updateProduct } from "@/features/products/server/update-product"
+import { createProductAction } from "@/features/products/actions/create-product"
+import { updateProductAction } from "@/features/products/actions/update-product"
 import { formatCurrency } from "@/lib/format"
 
 import {
@@ -30,7 +30,9 @@ type ProductFormProps = {
 }
 export function ProductForm({ product, categories }: ProductFormProps) {
   const [error, action] = useActionState(
-    product == null ? createProduct : updateProduct.bind(null, product.id),
+    product == null
+      ? createProductAction
+      : updateProductAction.bind(null, product.id),
     {},
   )
   const [price, setPrice] = useState<number | null>(product?.price ?? null)

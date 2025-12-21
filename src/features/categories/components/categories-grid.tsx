@@ -6,7 +6,7 @@ import { BaseGrid } from "@/components/base-grid"
 import { Button } from "@/components/ui/button"
 import { paths } from "@/config/paths"
 
-import { getCategories } from "../server/get-categories"
+import { getCategories } from "../dal/queries"
 import { CategoryCard, CategoryCardSkeleton } from "./category-card"
 
 export function CategoriesGrid() {

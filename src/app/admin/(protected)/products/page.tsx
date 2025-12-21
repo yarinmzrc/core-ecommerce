@@ -2,8 +2,8 @@ import Link from "next/link"
 
 import { Button } from "@/components/ui/button"
 import { paths } from "@/config/paths"
-import { getProductsForAdmin } from "@/features/products"
-import { ProductsTable } from "@/features/products"
+import { ProductsTable } from "@/features/products/components/products-table"
+import { getProductsForAdmin } from "@/features/products/dal/queries"
 
 import { PageHeader } from "../../_components/page-header"
 

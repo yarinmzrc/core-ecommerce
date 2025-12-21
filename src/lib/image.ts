@@ -9,7 +9,7 @@ cloudinary.config({
   secure: true,
 })
 
-const uploadToCloudinary = async (
+export const uploadImage = async (
   file: File,
   folder: string = "catering-app",
 ) => {
@@ -35,7 +35,7 @@ const uploadToCloudinary = async (
   )
 }
 
-const deleteFromCloudinary = async (publicId: string) => {
+export const deleteImage = async (publicId: string) => {
   return new Promise<void>((resolve, reject) => {
     cloudinary.uploader.destroy(publicId, (error) => {
       if (error) {
@@ -46,9 +46,4 @@ const deleteFromCloudinary = async (publicId: string) => {
       }
     })
   })
-}
-
-export class ImageRepository {
-  upload = uploadToCloudinary
-  delete = deleteFromCloudinary
 }

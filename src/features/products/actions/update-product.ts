@@ -8,11 +8,10 @@ import { z } from "zod"
 import { paths } from "@/config/paths"
 
 import { prisma } from "../../../../prisma/client"
-import { ProductRepository } from "../repositories/product-repository"
+import { updateProduct } from "../dal/mutations"
 import { updateProductSchema } from "../schemas"
-import { ProductService } from "../services/product-service"
 
-export async function updateProduct(
+export async function updateProductAction(
   id: string,
   _: unknown,
   formData: FormData,
@@ -27,8 +26,7 @@ export async function updateProduct(
   const data = result.data
 
   try {
-    const productService = new ProductService()
-    await productService.updateProduct(id, data)
+    await updateProduct(id, data)
   } catch (error) {
     console.error(error)
     return notFound()

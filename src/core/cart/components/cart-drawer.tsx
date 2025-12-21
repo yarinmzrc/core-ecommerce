@@ -107,11 +107,9 @@ function CartTrigger({ itemsCount }: { itemsCount: number }) {
 
 function CartStepContent({
   step,
-  onBack,
   onCheckout,
 }: {
   step: string
-  onBack: () => void
   onCheckout: () => void
 }) {
   return (
@@ -130,7 +128,6 @@ export function CartSheet() {
   const { itemsCount } = useCart()
   const [step, setStep] = useState(CartStep.Items)
 
-  const goToItems = () => setStep(CartStep.Items)
   const goToCheckout = () => setStep(CartStep.Checkout)
 
   return (
@@ -160,11 +157,7 @@ export function CartSheet() {
         {itemsCount === 0 ? (
           <CartEmptyState />
         ) : (
-          <CartStepContent
-            step={step}
-            onBack={goToItems}
-            onCheckout={goToCheckout}
-          />
+          <CartStepContent step={step} onCheckout={goToCheckout} />
         )}
       </SheetContent>
     </Sheet>

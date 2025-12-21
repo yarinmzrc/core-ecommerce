@@ -6,10 +6,10 @@ import { useFormStatus } from "react-dom"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import { createCategory } from "@/features/categories/server/create-category"
+import { createCategoryAction } from "@/features/categories/actions/create-category"
 
 export function CategoryForm() {
-  const [error, action] = useActionState(createCategory, {})
+  const [error, action] = useActionState(createCategoryAction, {})
 
   return (
     <form action={action} className="space-y-8">

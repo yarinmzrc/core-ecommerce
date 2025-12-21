@@ -1,4 +1,4 @@
-import { getCategories } from "@/features/categories/server/get-categories"
+import { getCategories } from "@/features/categories/dal/queries"
 
 import { PageHeader } from "../../../_components/page-header"
 import { ProductForm } from "../_components/product-form"

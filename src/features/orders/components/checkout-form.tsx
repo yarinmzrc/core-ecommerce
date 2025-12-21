@@ -10,13 +10,13 @@ import { SheetFooter } from "@/components/ui/sheet"
 import { paths } from "@/config/paths"
 import { useCartStore } from "@/stores/cart-store"
 
-import { createOrder } from "../server/place-order"
+import { createOrderAction } from "../actions/place-order"
 
 export function CheckoutForm() {
   const router = useRouter()
   const { items, clearCart } = useCartStore()
   const [data, action, isPending] = useActionState(
-    createOrder.bind(null, items),
+    createOrderAction.bind(null, items),
     null,
   )
 
