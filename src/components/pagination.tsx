@@ -39,7 +39,7 @@ export function Pagination({ metadata, activePage = 1 }: PaginationProps) {
               e.preventDefault()
               metadata.hasPreviousPage && goToPage(activePage - 1)
             }}
-          ></PaginationPrevious>
+          />
         </PaginationItem>
         {metadata.totalPages > 1 &&
           Array.from({ length: metadata.totalPages }, (_, i) => i + 1).map(
@@ -65,7 +65,7 @@ export function Pagination({ metadata, activePage = 1 }: PaginationProps) {
               e.preventDefault()
               metadata.hasNextPage && goToPage(activePage + 1)
             }}
-          ></PaginationNext>
+          />
         </PaginationItem>
       </PaginationContent>
     </ShadcnPagination>
