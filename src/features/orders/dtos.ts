@@ -1,5 +1,3 @@
-import { Prisma } from "../../../prisma/generated/prisma/client"
-
 export type OrderDTO = {
   id: string
   total: number
@@ -7,7 +5,6 @@ export type OrderDTO = {
   guestEmail: string
   guestName?: string
   guestPhone?: string
-  orderItems: OrderItemDTO[]
   createdAt: Date
   updatedAt: Date
 }
