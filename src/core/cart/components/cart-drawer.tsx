@@ -4,6 +4,7 @@ import {
   ArrowLeftIcon,
   MinusIcon,
   PlusIcon,
+  ShoppingBagIcon,
   ShoppingCartIcon,
 } from "lucide-react"
 import { Activity, useState } from "react"
@@ -95,11 +96,9 @@ function CartItems({ onCheckout }: { onCheckout: () => void }) {
 function CartTrigger({ itemsCount }: { itemsCount: number }) {
   return (
     <div className="relative cursor-pointer rounded-full p-2">
-      <ShoppingCartIcon size={20} />
-      <div className="bg-primary absolute -top-1 -right-0.5 flex h-4 w-4 items-center justify-center rounded-full">
-        <span className="text-primary-foreground text-xs font-bold">
-          {itemsCount}
-        </span>
+      <ShoppingBagIcon size={20} />
+      <div className="bg-primary absolute top-0 right-0 flex h-3 w-3 items-center justify-center rounded-full">
+        <span className="text-primary-foreground text-[8px]">{itemsCount}</span>
       </div>
     </div>
   )
