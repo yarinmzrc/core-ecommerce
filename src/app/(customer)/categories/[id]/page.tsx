@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation"
 
 import { BaseGrid } from "@/components/base-grid"
-import { getCategory } from "@/features/categories/dal/queries"
+import { getCategoryWithProducts } from "@/features/categories/dal/queries"
 import { ProductCard } from "@/features/products/components/product-card"
 
 export default async function CategoryPage({
@@ -10,7 +10,7 @@ export default async function CategoryPage({
   params: Promise<{ id: string }>
 }) {
   const id = (await params).id
-  const category = await getCategory(id)
+  const category = await getCategoryWithProducts(id)
 
   if (!category) return notFound()
 

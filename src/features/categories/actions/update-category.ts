@@ -2,11 +2,15 @@
 
 import { z } from "zod"
 
-import { createCategory } from "../dal/mutations"
-import { createCategorySchema } from "../schemas"
+import { updateCategory } from "../dal/mutations"
+import { updateCategorySchema } from "../schemas"
 
-export async function createCategoryAction(_: unknown, formData: FormData) {
-  const result = createCategorySchema.safeParse(
+export async function updateCategoryAction(
+  id: string,
+  _: unknown,
+  formData: FormData,
+) {
+  const result = updateCategorySchema.safeParse(
     Object.fromEntries(formData.entries()),
   )
 
@@ -17,13 +21,14 @@ export async function createCategoryAction(_: unknown, formData: FormData) {
   const data = result.data
 
   try {
-    await createCategory(data)
+    await updateCategory(id, data)
+
     return { success: true }
   } catch (error) {
     console.log(error)
     return {
       error: {
-        _form: "Error creating category, please try again",
+        _form: "Error updating category, please try again",
       },
     }
   }

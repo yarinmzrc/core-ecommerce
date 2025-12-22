@@ -11,7 +11,7 @@ import {
 } from "@/components/ui/table"
 import { paths } from "@/config/paths"
 import { getCategories } from "@/features/categories/dal/queries"
-import { Category } from "@/features/categories/types"
+import { Category } from "@/features/categories/dtos"
 
 import { PageHeader } from "../../_components/page-header"
 

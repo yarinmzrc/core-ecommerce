@@ -833,7 +833,9 @@ export const CategoryScalarFieldEnum = {
   id: 'id',
   name: 'name',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  imagePath: 'imagePath',
+  imagePublicId: 'imagePublicId'
 } as const
 
 export type CategoryScalarFieldEnum = (typeof CategoryScalarFieldEnum)[keyof typeof CategoryScalarFieldEnum]

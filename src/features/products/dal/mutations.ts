@@ -60,19 +60,19 @@ export async function updateProduct(
       console.error("Error uploading image to Cloudinary")
       throw new Error("Error uploading image to Cloudinary")
     }
-
-    return db.product.update({
-      where: { id: product.id },
-      data: {
-        name: data.name,
-        price: data.price,
-        description: data.description,
-        imagePath: imageResult!.secure_url,
-        imagePublicId: imageResult!.public_id,
-        categoryId: data.categoryId,
-      },
-    })
   }
+
+  return db.product.update({
+    where: { id: product.id },
+    data: {
+      name: data.name,
+      price: data.price,
+      description: data.description,
+      imagePath: imageResult!.secure_url,
+      imagePublicId: imageResult!.public_id,
+      categoryId: data.categoryId,
+    },
+  })
 }
 
 export async function deleteProduct(id: string) {

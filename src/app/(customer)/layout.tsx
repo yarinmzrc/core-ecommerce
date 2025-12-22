@@ -8,13 +8,13 @@ export default function AppLayout({
   children: React.ReactNode
 }>) {
   return (
-    <>
+    <div>
       <AppNav />
       <section
-        className="relative mt-12 flex h-[60vh] w-full items-center justify-center bg-cover bg-center md:h-[70vh]"
+        className="relative flex h-[60vh] w-full items-center justify-center bg-cover bg-center pt-20 md:h-[70vh]"
         style={{ backgroundImage: `url(/images/hero.jpg)` }}
       />
       <div className="container mx-auto p-6">{children}</div>
-    </>
+    </div>
   )
 }

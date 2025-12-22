@@ -3,6 +3,12 @@ import db from "@/lib/db"
 export async function getCategory(id: string) {
   return db.category.findUnique({
     where: { id },
+  })
+}
+
+export async function getCategoryWithProducts(id: string) {
+  return db.category.findUnique({
+    where: { id },
     include: { products: true },
   })
 }

@@ -28,11 +28,11 @@ async function main() {
 
   // Create categories
   const categoriesData = [
-    { name: "Appetizers" },
-    { name: "Main Courses" },
-    { name: "Desserts" },
-    { name: "Drinks" },
-    { name: "Salads" },
+    { name: "Appetizers", imagePath: "", imagePublicId: "" },
+    { name: "Main Courses", imagePath: "", imagePublicId: "" },
+    { name: "Desserts", imagePath: "", imagePublicId: "" },
+    { name: "Drinks", imagePath: "", imagePublicId: "" },
+    { name: "Salads", imagePath: "", imagePublicId: "" },
   ]
 
   const categories = []
