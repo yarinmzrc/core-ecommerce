@@ -7,7 +7,7 @@ import {
 
 export default function HomePage() {
   return (
-    <main className="space-y-12">
+    <main className="flex flex-col gap-12 py-12">
       <CategoriesGrid />
       <ProductsGrid title="Most Popular" fetcher={getMostPopularProducts} />
       <ProductsGrid title="Newest" fetcher={getNewestProducts} />

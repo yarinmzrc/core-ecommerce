@@ -9,7 +9,7 @@ import { CategoryCard, CategoryCardSkeleton } from "./category-card"
 
 export function CategoriesGrid() {
   return (
-    <div className="space-y-4">
+    <div className="space-y-12">
       <div className="grid grid-cols-1 gap-4 md:grid-cols-3 lg:grid-cols-5">
         <Suspense fallback={getCategoriesSkeletons()}>
           <CategoriesSuspense />

@@ -8,13 +8,18 @@ export default function AppLayout({
   children: React.ReactNode
 }>) {
   return (
-    <div>
+    <>
       <AppNav />
       <section
         className="relative flex h-[60vh] w-full items-center justify-center bg-cover bg-center pt-20 md:h-[70vh]"
         style={{ backgroundImage: `url(/images/hero.jpg)` }}
       />
       <div className="container mx-auto p-6">{children}</div>
-    </div>
+      <footer className="bg-primary">
+        <div className="container mx-auto flex items-center justify-between p-6">
+          <span className="text-primary-foreground">footer goes here</span>
+        </div>
+      </footer>
+    </>
   )
 }
