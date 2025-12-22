@@ -94,8 +94,8 @@ function CartItems({ onCheckout }: { onCheckout: () => void }) {
 
 function CartTrigger({ itemsCount }: { itemsCount: number }) {
   return (
-    <div className="relative rounded-full border p-2">
-      <ShoppingCartIcon size={16} />
+    <div className="relative cursor-pointer rounded-full p-2">
+      <ShoppingCartIcon size={20} />
       <div className="bg-primary absolute -top-1 -right-0.5 flex h-4 w-4 items-center justify-center rounded-full">
         <span className="text-primary-foreground text-xs font-bold">
           {itemsCount}

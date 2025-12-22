@@ -35,7 +35,6 @@ export function ProductCard({
 }: ProductCardProps) {
   const { items, updateQuantity, addItem } = useCart()
   const cartItem = items.find((i) => i.id === id)
-
   const [isAdding, setIsAdding] = useState(false)
 
   const handleAddToCart = async () => {

@@ -1,6 +1,4 @@
-import { Nav, NavLink } from "@/components/nav"
-import { paths } from "@/config/paths"
-import { CartSheet } from "@/core/cart/components/cart-drawer"
+import { AppNav } from "./_components/app-nav"
 
 export const dynamic = "force-dynamic"
 
@@ -11,17 +9,11 @@ export default function AppLayout({
 }>) {
   return (
     <>
-      <Nav>
-        <div className="flex items-center justify-between">
-          <p>Catering</p>
-          <div>
-            <NavLink href={paths.app.root.getHref()}>Home</NavLink>
-            <NavLink href={paths.app.products.root.getHref()}>Products</NavLink>
-            <NavLink href={paths.app.categories.getHref()}>Categories</NavLink>
-          </div>
-          <CartSheet />
-        </div>
-      </Nav>
+      <AppNav />
+      <section
+        className="relative mt-12 flex h-[60vh] w-full items-center justify-center bg-cover bg-center md:h-[70vh]"
+        style={{ backgroundImage: `url(/images/hero.jpg)` }}
+      />
       <div className="container mx-auto p-6">{children}</div>
     </>
   )
