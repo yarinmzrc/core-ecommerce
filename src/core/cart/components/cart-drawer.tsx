@@ -51,7 +51,10 @@ function CartItem({ item }: { item: CartProduct }) {
       : updateQuantity(item.id, item.quantity - 1)
 
   return (
-    <div key={item.id} className="flex items-center gap-2 border-b p-4">
+    <div
+      key={item.id}
+      className="flex flex-row-reverse items-center gap-2 border-b p-4"
+    >
       <Image src={item.imagePath} alt={item.name} width={40} height={40} />
 
       <div className="flex flex-col gap-2">
@@ -86,7 +89,7 @@ function CartItems({ onCheckout }: { onCheckout: () => void }) {
       </ScrollArea>
       <SheetFooter>
         <Button className="w-full" onClick={onCheckout}>
-          Checkout
+          להשלמת הזמנה
         </Button>
       </SheetFooter>
     </>
@@ -134,7 +137,7 @@ export function CartSheet() {
       <SheetTrigger>
         <CartTrigger itemsCount={itemsCount} />
       </SheetTrigger>
-      <SheetContent className="gap-0">
+      <SheetContent side="left" className="gap-0">
         <SheetHeader>
           <SheetTitle>
             <div className="flex items-center">
@@ -146,12 +149,10 @@ export function CartSheet() {
                   <ArrowLeftIcon />
                 </Button>
               )}
-              <span>Catering Cart</span>
+              <span>עגלת קניות</span>
             </div>
           </SheetTitle>
-          <SheetDescription>
-            Lets see how much you want to buy!
-          </SheetDescription>
+          <SheetDescription>בוא נראה כמה אתה רוצה לקנות!</SheetDescription>
         </SheetHeader>
         {itemsCount === 0 ? (
           <CartEmptyState />

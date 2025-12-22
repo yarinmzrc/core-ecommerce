@@ -28,11 +28,11 @@ async function main() {
 
   // Create categories
   const categoriesData = [
-    { name: "Appetizers", imagePath: "", imagePublicId: "" },
-    { name: "Main Courses", imagePath: "", imagePublicId: "" },
-    { name: "Desserts", imagePath: "", imagePublicId: "" },
-    { name: "Drinks", imagePath: "", imagePublicId: "" },
-    { name: "Salads", imagePath: "", imagePublicId: "" },
+    { name: "ראשונות", imagePath: "", imagePublicId: "" },
+    { name: "עיקריות", imagePath: "", imagePublicId: "" },
+    { name: "קינוחים", imagePath: "", imagePublicId: "" },
+    { name: "שתייה", imagePath: "", imagePublicId: "" },
+    { name: "סלטים", imagePath: "", imagePublicId: "" },
   ]
 
   const categories = []
@@ -47,45 +47,45 @@ async function main() {
   // Create products
   const productsData = [
     {
-      name: "Hamburger",
-      price: 5.99,
-      description: "A Cheeseburger",
+      name: "המבורגר",
+      price: 70,
+      description: "המבורגר נדיר בשוק",
       categoryId: mainCourses.id,
       imagePath:
         "https://res.cloudinary.com/dexzucg7a/image/upload/v1766057709/products/x4upbn9zchl06z6jd1rt.jpg",
       imagePublicId: "products/x4upbn9zchl06z6jd1rt",
     },
     {
-      name: "Cheeseburger",
-      price: 5.99,
-      description: "A Cheeseburger",
+      name: "צ׳יזבורגר",
+      price: 77,
+      description: "צ׳יזבורגר עם גבינה",
       categoryId: mainCourses.id,
       imagePath:
         "https://res.cloudinary.com/dexzucg7a/image/upload/v1766057968/products/eqleq3f0zuhk5gifgq4c.jpg",
       imagePublicId: "products/eqleq3f0zuhk5gifgq4c",
     },
     {
-      name: "French Fries",
-      price: 2.99,
-      description: "French Fries",
+      name: "צ׳יפס",
+      price: 24,
+      description: "צ׳יפס נדיר",
       categoryId: appetizers.id,
       imagePath:
         "https://res.cloudinary.com/dexzucg7a/image/upload/v1766058043/products/z7ekt9wnl46dgkhzwxdg.jpg",
       imagePublicId: "products/z7ekt9wnl46dgkhzwxdg",
     },
     {
-      name: "Onion Rings",
-      price: 3.99,
-      description: "Onion Rings",
+      name: "טבעות בצל",
+      price: 26,
+      description: "טבעות בצל נדירות",
       categoryId: appetizers.id,
       imagePath:
         "https://res.cloudinary.com/dexzucg7a/image/upload/v1766058110/products/lilzyflbzuj9h7z3givd.jpg",
       imagePublicId: "products/lilzyflbzuj9h7z3givd",
     },
     {
-      name: "Ice Cream",
+      name: "גלידה",
       price: 3.99,
-      description: "Ice Cream",
+      description: "הגלידה הגדול",
       categoryId: desserts.id,
       imagePath:
         "https://res.cloudinary.com/dexzucg7a/image/upload/v1766058179/products/zb74kk1lzx2fns1rnkb5.jpg",

@@ -33,10 +33,10 @@ export async function OrdersTable({ page = 1 }: { page: number }) {
       <Table>
         <TableHeader>
           <TableRow>
-            <TableHead>Email Of Customer</TableHead>
-            <TableHead>Created At</TableHead>
-            <TableHead>Price</TableHead>
-            <TableHead>Status</TableHead>
+            <TableHead>מייל לקוח</TableHead>
+            <TableHead>נוצרה ב</TableHead>
+            <TableHead>מחיר</TableHead>
+            <TableHead>סטטוס</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
@@ -51,9 +51,9 @@ export async function OrdersTable({ page = 1 }: { page: number }) {
                     <SelectValue />
                   </SelectTrigger>
                   <SelectContent>
-                    {Object.keys(OrderStatus).map((status) => (
-                      <SelectItem key={status} value={status}>
-                        {status}
+                    {Object.entries(OrderStatus).map(([key, value]) => (
+                      <SelectItem key={key} value={key}>
+                        {value}
                       </SelectItem>
                     ))}
                   </SelectContent>
@@ -73,10 +73,10 @@ export function OrdersTableSkeleton() {
     <Table>
       <TableHeader>
         <TableRow>
-          <TableHead>Email Of Customer</TableHead>
-          <TableHead>Created At</TableHead>
-          <TableHead>Price</TableHead>
-          <TableHead>Status</TableHead>
+          <TableHead>מייל לקוח</TableHead>
+          <TableHead>נוצר ב</TableHead>
+          <TableHead>מחיר</TableHead>
+          <TableHead>סטטוס</TableHead>
         </TableRow>
       </TableHeader>
       <TableBody>

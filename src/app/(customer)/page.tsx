@@ -9,8 +9,8 @@ export default function HomePage() {
   return (
     <main className="flex flex-col gap-12 py-12">
       <CategoriesGrid />
-      <ProductsGrid title="Most Popular" fetcher={getMostPopularProducts} />
-      <ProductsGrid title="Newest" fetcher={getNewestProducts} />
+      <ProductsGrid title="הפופולרים ביותר" fetcher={getMostPopularProducts} />
+      <ProductsGrid title="החדשים ביותר" fetcher={getNewestProducts} />
     </main>
   )
 }

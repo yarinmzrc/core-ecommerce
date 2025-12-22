@@ -1,4 +1,4 @@
-import { ArrowRight } from "lucide-react"
+import { ArrowLeft } from "lucide-react"
 import Link from "next/link"
 import { Suspense } from "react"
 
@@ -20,8 +20,8 @@ export function ProductsGrid({ fetcher, title }: ProductsGridSectionProps) {
         <h2 className="text-2xl font-semibold">{title}</h2>
         <Button asChild variant="outline">
           <Link href={paths.app.products.root.getHref()}>
-            <span>View all</span>
-            <ArrowRight className="size-4" />
+            <ArrowLeft className="size-4" />
+            <span>הצג הכל</span>
           </Link>
         </Button>
       </div>

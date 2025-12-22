@@ -18,7 +18,7 @@ export function CategoriesGrid() {
       <div className="text-center">
         <Button asChild>
           <Link href={paths.app.products.root.getHref()}>
-            <span>For all the products click here &rsaquo;&rsaquo;</span>
+            <span>לכל המוצרים לחץ כאן</span>
           </Link>
         </Button>
       </div>

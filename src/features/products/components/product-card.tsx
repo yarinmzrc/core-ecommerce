@@ -71,7 +71,7 @@ export function ProductCard({
           })}
           onClick={handleAddToCart}
         >
-          {isAdding ? "Adding..." : "Add to Cart"}
+          {isAdding ? "מוסיף..." : "הוסף לסל"}
         </Button>
       </CardFooter>
     </Card>

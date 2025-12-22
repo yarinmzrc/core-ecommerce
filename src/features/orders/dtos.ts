@@ -18,10 +18,10 @@ export type OrderItemDTO = {
 }
 
 export const OrderStatus = {
-  PENDING: "PENDING",
-  PAID: "PAID",
-  CANCELLED: "CANCELLED",
-  FULFILLED: "FULFILLED",
+  PENDING: "ממתין",
+  PAID: "שולם",
+  CANCELLED: "בוטל",
+  FULFILLED: "הושלם",
 }
 
 export type OrderStatus = keyof typeof OrderStatus

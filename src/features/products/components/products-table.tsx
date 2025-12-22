@@ -40,14 +40,14 @@ export function ProductsTable({ products }: ProductsTableProps) {
       <TableHeader>
         <TableRow>
           <TableHead className="w-0">
-            <span className="sr-only">Available for purchase</span>
+            <span className="sr-only">זמין לרכישה</span>
           </TableHead>
-          <TableHead>Name</TableHead>
-          <TableHead>Price</TableHead>
-          <TableHead>Category</TableHead>
-          <TableHead>Order Items</TableHead>
+          <TableHead>שם המוצר</TableHead>
+          <TableHead>מחיר</TableHead>
+          <TableHead>קטגוריה</TableHead>
+          <TableHead>מספר הזמנות</TableHead>
           <TableHead className="w-0">
-            <span className="sr-only">Actions</span>
+            <span className="sr-only">פעולות</span>
           </TableHead>
         </TableRow>
       </TableHeader>
@@ -57,12 +57,12 @@ export function ProductsTable({ products }: ProductsTableProps) {
             <TableCell>
               {product.isAvailableForSale ? (
                 <>
-                  <span className="sr-only">Available for purchase</span>
+                  <span className="sr-only">זמין לרכישה</span>
                   <CheckCircle2 />
                 </>
               ) : (
                 <>
-                  <span className="sr-only">Not available for purchase</span>
+                  <span className="sr-only">לא זמין לרכישה</span>
                   <XCircle className="text-red-800" />
                 </>
               )}
@@ -123,7 +123,7 @@ export function ActiveToggleDropdownAction({
         })
       }}
     >
-      {isAvailableForSale ? "Deactivate" : "Activate"}
+      {isAvailableForSale ? "הסרה מזמינות" : "הוספה לזמינות"}
     </DropdownMenuItem>
   )
 }
@@ -145,7 +145,7 @@ export function DeleteDropdownItem({ id, disabled }: DeleteDropdownItemProps) {
         })
       }}
     >
-      <span className="text-red-500">Delete</span>
+      <span className="text-red-500">מחיקה</span>
     </DropdownMenuItem>
   )
 }

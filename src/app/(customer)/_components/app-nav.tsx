@@ -19,9 +19,9 @@ export function AppNav() {
         Catering
       </p>
       <div className="flex flex-1 items-center justify-center gap-4">
-        <NavLink href={paths.app.root.getHref()}>Home</NavLink>
-        <NavLink href={paths.app.products.root.getHref()}>Products</NavLink>
-        <NavLink href={paths.app.categories.getHref()}>Categories</NavLink>
+        <NavLink href={paths.app.root.getHref()}>דף הבית</NavLink>
+        <NavLink href={paths.app.products.root.getHref()}>מוצרים</NavLink>
+        <NavLink href={paths.app.categories.getHref()}>קטגוריות</NavLink>
       </div>
       <CartSheet />
     </Nav>

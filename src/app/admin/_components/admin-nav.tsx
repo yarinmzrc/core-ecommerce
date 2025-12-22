@@ -10,12 +10,10 @@ export function AdminNav() {
   return (
     <Nav scrolled={scrolled}>
       <div className="flex flex-1 items-center justify-center gap-4">
-        <NavLink href={paths.admin.root.getHref()}>Dashboard</NavLink>
-        <NavLink href={paths.admin.products.root.getHref()}>Products</NavLink>
-        <NavLink href={paths.admin.categories.root.getHref()}>
-          Categories
-        </NavLink>
-        <NavLink href={paths.admin.orders.root.getHref()}>Orders</NavLink>
+        <NavLink href={paths.admin.root.getHref()}>דשבורד</NavLink>
+        <NavLink href={paths.admin.products.root.getHref()}>מוצרים</NavLink>
+        <NavLink href={paths.admin.categories.root.getHref()}>קטגוריות</NavLink>
+        <NavLink href={paths.admin.orders.root.getHref()}>הזמנות</NavLink>
       </div>
     </Nav>
   )
