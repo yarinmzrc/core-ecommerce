@@ -11,7 +11,7 @@ import {
 } from "@/components/ui/table"
 import { paths } from "@/config/paths"
 import { getCategories } from "@/features/categories/dal/queries"
-import { Category } from "@/features/categories/dtos"
+import { CategoryDTO } from "@/features/categories/dtos"
 
 import { PageHeader } from "../../_components/page-header"
 
@@ -31,7 +31,7 @@ export default async function AdminCategoriesPage() {
 }
 
 type CategoriesTableProps = {
-  categories: Category[]
+  categories: CategoryDTO[]
 }
 
 function CategoriesTable({ categories }: CategoriesTableProps) {
