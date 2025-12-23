@@ -1,8 +1,18 @@
 import "../src/app/globals.css"
 
 import type { Preview } from "@storybook/nextjs-vite"
+import { NextIntlClientProvider } from "next-intl"
+
+import defaultMessages from "../messages/he.json"
 
 const preview: Preview = {
+  decorators: [
+    (Story) => (
+      <NextIntlClientProvider messages={defaultMessages} locale="he">
+        <Story />
+      </NextIntlClientProvider>
+    ),
+  ],
   parameters: {
     nextjs: {
       appDirectory: true,
@@ -13,11 +23,7 @@ const preview: Preview = {
         date: /Date$/i,
       },
     },
-
     a11y: {
-      // 'todo' - show a11y violations in the test UI only
-      // 'error' - fail CI on a11y violations
-      // 'off' - skip a11y checks entirely
       test: "todo",
     },
   },

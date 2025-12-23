@@ -10,6 +10,7 @@ const config: StorybookConfig = {
     "@storybook/addon-onboarding",
     "@storybook/addon-essentials",
     "@storybook/nextjs",
+    "storybook-next-intl",
   ],
   framework: "@storybook/nextjs-vite",
   staticDirs: ["../public"],

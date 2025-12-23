@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button/button"
 import { paths } from "@/config/paths"
 
 import { ProductDTO } from "../dtos"
-import { ProductCard, ProductCardSkeleton } from "./product-card"
+import { ProductCard, ProductCardSkeleton } from "./product-card/product-card"
 
 type ProductsGridSectionProps = {
   fetcher: () => Promise<ProductDTO[]>
