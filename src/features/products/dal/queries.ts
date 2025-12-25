@@ -1,37 +1,56 @@
+import { unstable_cache as cache } from "next/cache"
+
+import { CACHE_TTL_IN_SECONDS } from "@/constants"
 import db from "@/lib/db"
 
 import { mapProductListItem } from "../mappers"
 
-export async function getProduct(id: string) {
-  return db.product.findUnique({ where: { id } })
-}
+export const getProduct = cache(
+  async (id: string) => {
+    return db.product.findUnique({ where: { id } })
+  },
+  ["product"],
+  { revalidate: CACHE_TTL_IN_SECONDS },
+)
 
-export async function getProductsByIds(ids: string[]) {
+export const getProductsByIds = async (ids: string[]) => {
   return db.product.findMany({ where: { id: { in: ids } } })
 }
 
-export async function getMostPopularProducts() {
-  return db.product.findMany({
-    where: { isAvailableForSale: true },
-    orderBy: { orderItems: { _count: "desc" } },
-    take: 6,
-  })
-}
+export const getMostPopularProducts = cache(
+  async () => {
+    return db.product.findMany({
+      where: { isAvailableForSale: true },
+      orderBy: { orderItems: { _count: "desc" } },
+      take: 6,
+    })
+  },
+  ["most-popular-products"],
+  { revalidate: CACHE_TTL_IN_SECONDS },
+)
 
-export async function getNewestProducts() {
-  return db.product.findMany({
-    where: { isAvailableForSale: true },
-    orderBy: { createdAt: "desc" },
-    take: 6,
-  })
-}
+export const getNewestProducts = cache(
+  async () => {
+    return db.product.findMany({
+      where: { isAvailableForSale: true },
+      orderBy: { createdAt: "desc" },
+      take: 6,
+    })
+  },
+  ["newest-products"],
+  { revalidate: CACHE_TTL_IN_SECONDS },
+)
 
-export async function getProductsForStore() {
-  return db.product.findMany({
-    where: { isAvailableForSale: true },
-    orderBy: { name: "asc" },
-  })
-}
+export const getProductsForStore = cache(
+  async () => {
+    return db.product.findMany({
+      where: { isAvailableForSale: true },
+      orderBy: { name: "asc" },
+    })
+  },
+  ["products-for-store"],
+  { revalidate: CACHE_TTL_IN_SECONDS },
+)
 
 export async function getProductsForAdmin() {
   const products = await db.product.findMany({
@@ -44,14 +63,4 @@ export async function getProductsForAdmin() {
   })
 
   return products.map(mapProductListItem)
-}
-
-export async function toggleProductAvailability(
-  id: string,
-  isAvailableForSale: boolean,
-) {
-  return db.product.update({
-    where: { id },
-    data: { isAvailableForSale },
-  })
 }

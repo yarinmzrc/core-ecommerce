@@ -6,6 +6,9 @@ import { Role } from "../../prisma/generated/prisma/enums"
 import db from "./db"
 export const authOptions: NextAuthOptions = {
   session: { strategy: "jwt" },
+  pages: {
+    signIn: "/admin/login",
+  },
   providers: [
     CredentialsProvider({
       name: "Admin Login",
