@@ -61,19 +61,6 @@ export async function updateProduct(
   const product = await getProduct(id)
   if (!product) throw new Error("Not found")
 
-  // let imageResult = null
-  // if (data.imagePath != null && data.imagePath.size > 0) {
-  //   await deleteImage(product.imagePublicId)
-
-  //   try {
-  //     const uploadResult = await uploadImage(data.imagePath, "products")
-  //     imageResult = uploadResult
-  //   } catch {
-  //     console.error("Error uploading image to Cloudinary")
-  //     throw new Error("Error uploading image to Cloudinary")
-  //   }
-  // }
-
   const keptImages = product.images.filter((img) =>
     data.keptImages?.includes(img.publicId),
   )

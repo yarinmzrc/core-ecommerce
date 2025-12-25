@@ -54,23 +54,23 @@ export function CategoryForm({ category }: CategoryFormProps) {
         )}
       </div>
       <div className="space-y-2">
-        <Label htmlFor="imagePath">{t("image")}</Label>
+        <Label htmlFor="imageUrl">{t("image")}</Label>
         <Input
           type="file"
-          id="imagePath"
-          name="imagePath"
+          id="imageUrl"
+          name="imageUrl"
           required={category == null}
         />
-        {category?.imagePath && (
+        {category?.imageUrl && (
           <Image
-            src={category.imagePath}
+            src={category.imageUrl}
             alt={category.name}
             width={200}
             height={200}
           />
         )}
-        {data?.error && "imagePath" in data.error && (
-          <div className="text-red-500">{data.error.imagePath}</div>
+        {data?.error && "imageUrl" in data.error && (
+          <div className="text-red-500">{data.error.imageUrl}</div>
         )}
       </div>
       <SubmitButton />

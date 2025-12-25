@@ -33,6 +33,7 @@ export type ProductDTO = {
   isAvailableForSale: boolean
   variants: ProductVariantDTO[]
   options: ProductOptionDTO[]
+  categoryId: string
 
   createdAt: Date
   updatedAt: Date

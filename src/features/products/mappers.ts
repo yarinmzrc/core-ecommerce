@@ -15,6 +15,7 @@ export function mapBaseProduct(prisma: PrismaProduct): ProductDTO {
     description: prisma.description,
     variants: [],
     options: [],
+    categoryId: prisma.categoryId,
     images: prisma.images,
     isAvailableForSale: prisma.isAvailableForSale,
     createdAt: prisma.createdAt,

@@ -7,7 +7,7 @@ const createCategoryImageSchema = z
 
 export const createCategorySchema = z.object({
   name: z.string().min(1),
-  imagePath: createCategoryImageSchema,
+  imageUrl: createCategoryImageSchema,
 })
 
 const updateCategoryImageSchema = z
@@ -16,7 +16,7 @@ const updateCategoryImageSchema = z
   .optional()
 
 export const updateCategorySchema = createCategorySchema
-  .omit({ imagePath: true })
+  .omit({ imageUrl: true })
   .extend({
-    imagePath: updateCategoryImageSchema,
+    imageUrl: updateCategoryImageSchema,
   })

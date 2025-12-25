@@ -3,12 +3,12 @@ import { deleteImage, uploadImage } from "@/lib/image"
 
 import { getCategory } from "./queries"
 
-export async function createCategory(data: { name: string; imagePath: File }) {
+export async function createCategory(data: { name: string; imageUrl: File }) {
   let imageResult = null
 
-  if (data.imagePath && data.imagePath.size > 0) {
+  if (data.imageUrl && data.imageUrl.size > 0) {
     try {
-      const uploadResult = await uploadImage(data.imagePath, "products")
+      const uploadResult = await uploadImage(data.imageUrl, "products")
       imageResult = uploadResult
     } catch {
       console.error("Error uploading image to Cloudinary")
@@ -19,7 +19,7 @@ export async function createCategory(data: { name: string; imagePath: File }) {
   return db.category.create({
     data: {
       name: data.name,
-      imagePath: imageResult!.secure_url,
+      imageUrl: imageResult!.secure_url,
       imagePublicId: imageResult!.public_id,
     },
   })
@@ -27,7 +27,7 @@ export async function createCategory(data: { name: string; imagePath: File }) {
 
 export async function updateCategory(
   id: string,
-  data: { name: string; imagePath?: File },
+  data: { name: string; imageUrl?: File },
 ) {
   const category = await getCategory(id)
   if (!category) throw new Error("Not found")
@@ -35,11 +35,11 @@ export async function updateCategory(
   let imageResult = null
 
   try {
-    if (data.imagePath != null && data.imagePath.size > 0) {
+    if (data.imageUrl != null && data.imageUrl.size > 0) {
       if (category.imagePublicId) {
         await deleteImage(category.imagePublicId)
       }
-      const uploadResult = await uploadImage(data.imagePath, "categories")
+      const uploadResult = await uploadImage(data.imageUrl, "categories")
       imageResult = uploadResult
     }
   } catch {
@@ -52,7 +52,7 @@ export async function updateCategory(
     data: {
       name: data.name,
       ...(imageResult != null && {
-        imagePath: imageResult.secure_url,
+        imageUrl: imageResult.secure_url,
         imagePublicId: imageResult.public_id,
       }),
     },

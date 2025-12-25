@@ -55,7 +55,7 @@ function CartItem({ item }: { item: CartProduct }) {
 
   return (
     <div key={item.id} className="flex items-center gap-2 border-b p-4">
-      <Image src={item.imagePath} alt={item.name} width={40} height={40} />
+      <Image src={item.imageUrl} alt={item.name} width={40} height={40} />
 
       <div className="flex flex-col gap-2">
         <p className="font-bold">{item.name}</p>

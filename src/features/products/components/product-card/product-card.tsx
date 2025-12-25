@@ -25,7 +25,7 @@ type ProductCardProps = {
   name: string
   basePrice: number
   description: string
-  images: ImageDTO[]
+  image: string
 }
 
 export function ProductCard({
@@ -33,7 +33,7 @@ export function ProductCard({
   name,
   basePrice,
   description,
-  images,
+  image,
 }: ProductCardProps) {
   const t = useTranslations()
 
@@ -51,7 +51,7 @@ export function ProductCard({
         id,
         name,
         price: basePrice,
-        imagePath: images[0].url,
+        imageUrl: image,
         quantity: 0,
       })
     }
@@ -64,7 +64,7 @@ export function ProductCard({
   return (
     <Card className="flex max-w-sm flex-col overflow-hidden pt-0">
       <div className="relative aspect-video h-auto w-full">
-        <Image src={images[0].url} alt={name} fill className="object-cover" />
+        <Image src={image} alt={name} fill className="object-cover" />
       </div>
       <CardHeader>
         <CardTitle>{name}</CardTitle>

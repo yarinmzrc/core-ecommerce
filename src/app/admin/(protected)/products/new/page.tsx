@@ -1,7 +1,7 @@
 import { getCategories } from "@/features/categories/dal/queries"
+import { ProductForm } from "@/features/products/components/product-form/product-form"
 
 import { PageHeader } from "../../../_components/page-header"
-import { ProductForm } from "../_components/product-form"
 
 export default async function NewProductPage() {
   const categories = await getCategories()

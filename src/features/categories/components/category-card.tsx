@@ -12,7 +12,7 @@ export function CategoryCard({ category }: { category: CategoryDTO }) {
         <div
           className="absolute inset-0 bg-cover bg-center transition-transform duration-300 ease-in-out group-hover:scale-105"
           style={{
-            backgroundImage: `url(${category.imagePath})`,
+            backgroundImage: `url(${category.imageUrl})`,
           }}
         />
         <div className="absolute inset-0 bg-black/30" />

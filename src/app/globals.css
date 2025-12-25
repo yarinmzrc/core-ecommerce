@@ -47,58 +47,58 @@
   --radius: 0.625rem;
 
   /* Base surfaces */
-  --background: oklch(0.97 0.01 215);
-  --foreground: oklch(0.17 0.02 215);
+  --background: oklch(0.985 0.005 230);
+  --foreground: oklch(0.18 0.025 225);
 
   --card: oklch(1 0 0);
-  --card-foreground: oklch(0.17 0.02 215);
+  --card-foreground: oklch(0.18 0.025 225);
 
   --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.17 0.02 215);
+  --popover-foreground: oklch(0.18 0.025 225);
 
   /* Brand */
-  --primary: #2b9eb3;
-  --primary-foreground: oklch(0.98 0.005 215); /* LIGHT TEXT ✅ */
+  --primary: #38618c;
+  --primary-foreground: oklch(0.98 0.005 230); /* BRIGHT TEXT ✅ */
 
-  /* Secondary – deep teal / navy */
-  --secondary: oklch(0.32 0.08 225);
-  --secondary-foreground: oklch(0.98 0.005 215);
+  /* Secondary – deep slate blue */
+  --secondary: oklch(0.34 0.07 235);
+  --secondary-foreground: oklch(0.98 0.005 230);
 
   /* Muted UI */
-  --muted: oklch(0.94 0.015 215);
-  --muted-foreground: oklch(0.46 0.03 215);
+  --muted: oklch(0.94 0.01 230);
+  --muted-foreground: oklch(0.48 0.03 230);
 
-  --accent: oklch(0.9 0.03 215);
-  --accent-foreground: oklch(0.2 0.04 215);
+  --accent: oklch(0.91 0.025 230);
+  --accent-foreground: oklch(0.22 0.035 230);
 
-  /* Feedback */
-  --destructive: oklch(0.55 0.22 30);
+  /* Feedback – darker destructive */
+  --destructive: oklch(0.42 0.18 25);
   --destructive-foreground: oklch(0.98 0.01 30);
 
   /* Borders & focus */
-  --border: oklch(0.88 0.02 215);
-  --input: oklch(0.88 0.02 215);
-  --ring: oklch(0.68 0.1 215);
+  --border: oklch(0.88 0.015 230);
+  --input: oklch(0.88 0.015 230);
+  --ring: oklch(0.66 0.09 230);
 
-  /* Charts (clean, data-friendly) */
-  --chart-1: oklch(0.65 0.12 215); /* teal */
-  --chart-2: oklch(0.5 0.14 190); /* cyan */
-  --chart-3: oklch(0.45 0.1 240); /* blue */
-  --chart-4: oklch(0.72 0.1 170); /* mint */
-  --chart-5: oklch(0.6 0.12 260); /* indigo */
+  /* Charts (cool, professional, readable) */
+  --chart-1: oklch(0.62 0.12 230); /* steel blue */
+  --chart-2: oklch(0.55 0.13 200); /* cyan-blue */
+  --chart-3: oklch(0.48 0.1 255); /* indigo */
+  --chart-4: oklch(0.7 0.1 190); /* soft aqua */
+  --chart-5: oklch(0.6 0.11 270); /* muted violet */
 
   /* Sidebar */
-  --sidebar: oklch(0.96 0.01 215);
-  --sidebar-foreground: oklch(0.17 0.02 215);
+  --sidebar: oklch(0.965 0.01 230);
+  --sidebar-foreground: oklch(0.18 0.025 225);
 
-  --sidebar-primary: oklch(0.32 0.08 225);
-  --sidebar-primary-foreground: oklch(0.98 0.005 215);
+  --sidebar-primary: oklch(0.34 0.07 235);
+  --sidebar-primary-foreground: oklch(0.98 0.005 230);
 
-  --sidebar-accent: oklch(0.9 0.03 215);
-  --sidebar-accent-foreground: oklch(0.2 0.04 215);
+  --sidebar-accent: oklch(0.91 0.025 230);
+  --sidebar-accent-foreground: oklch(0.22 0.035 230);
 
-  --sidebar-border: oklch(0.88 0.02 215);
-  --sidebar-ring: oklch(0.68 0.1 215);
+  --sidebar-border: oklch(0.88 0.015 230);
+  --sidebar-ring: oklch(0.66 0.09 230);
 }
 
 .dark {
