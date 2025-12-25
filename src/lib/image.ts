@@ -47,3 +47,16 @@ export const deleteImage = async (publicId: string) => {
     })
   })
 }
+
+export const uploadImages = async (
+  files: File[],
+  folder: string = "core-ecommerce",
+) => {
+  const uploadImagePromises = files.map((file) => uploadImage(file, folder))
+  return Promise.all(uploadImagePromises)
+}
+
+export const deleteImages = async (publicIds: string[]) => {
+  const deleteImagePromises = publicIds.map((publicId) => deleteImage(publicId))
+  return Promise.all(deleteImagePromises)
+}

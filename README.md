@@ -26,25 +26,15 @@ This is a Next.js application that allows users to browse and purchase catering 
    docker compose up -d
    ```
 
-3. **Setup Prisma**
+3. **First Setup**
 
-   Generate the prisma client and push the schema to the database:
-
-   ```bash
-   npm run db:init
-   npx prisma generate
-   npx prisma db push
-   ```
-
-4. **Seed the Database**
-
-   Populate the database with initial data:
+   First setup to initialize the db and seed.
 
    ```bash
-   npm run seed
+   npm run db:setup
    ```
 
-5. **Run the Application**
+4. **Run the Application**
 
    Start the development server:
 
@@ -52,7 +42,7 @@ This is a Next.js application that allows users to browse and purchase catering 
    npm run dev
    ```
 
-6. **Visit the App**
+5. **Visit the App**
 
    Open [http://localhost:3000](http://localhost:3000)
    in your browser.

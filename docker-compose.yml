@@ -1,7 +1,7 @@
 services:
   mongo:
     image: mongo:7
-    container_name: catering-mongodb
+    container_name: core-ecommerce-mongodb
     restart: always
     ports:
       - "27017:27017"

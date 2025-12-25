@@ -29,7 +29,7 @@ export type CategoryMinAggregateOutputType = {
   name: string | null
   createdAt: Date | null
   updatedAt: Date | null
-  imagePath: string | null
+  imageUrl: string | null
   imagePublicId: string | null
 }
 
@@ -38,7 +38,7 @@ export type CategoryMaxAggregateOutputType = {
   name: string | null
   createdAt: Date | null
   updatedAt: Date | null
-  imagePath: string | null
+  imageUrl: string | null
   imagePublicId: string | null
 }
 
@@ -47,7 +47,7 @@ export type CategoryCountAggregateOutputType = {
   name: number
   createdAt: number
   updatedAt: number
-  imagePath: number
+  imageUrl: number
   imagePublicId: number
   _all: number
 }
@@ -58,7 +58,7 @@ export type CategoryMinAggregateInputType = {
   name?: true
   createdAt?: true
   updatedAt?: true
-  imagePath?: true
+  imageUrl?: true
   imagePublicId?: true
 }
 
@@ -67,7 +67,7 @@ export type CategoryMaxAggregateInputType = {
   name?: true
   createdAt?: true
   updatedAt?: true
-  imagePath?: true
+  imageUrl?: true
   imagePublicId?: true
 }
 
@@ -76,7 +76,7 @@ export type CategoryCountAggregateInputType = {
   name?: true
   createdAt?: true
   updatedAt?: true
-  imagePath?: true
+  imageUrl?: true
   imagePublicId?: true
   _all?: true
 }
@@ -158,7 +158,7 @@ export type CategoryGroupByOutputType = {
   name: string
   createdAt: Date
   updatedAt: Date
-  imagePath: string
+  imageUrl: string
   imagePublicId: string
   _count: CategoryCountAggregateOutputType | null
   _min: CategoryMinAggregateOutputType | null
@@ -188,7 +188,7 @@ export type CategoryWhereInput = {
   name?: Prisma.StringFilter<"Category"> | string
   createdAt?: Prisma.DateTimeFilter<"Category"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Category"> | Date | string
-  imagePath?: Prisma.StringFilter<"Category"> | string
+  imageUrl?: Prisma.StringFilter<"Category"> | string
   imagePublicId?: Prisma.StringFilter<"Category"> | string
   products?: Prisma.ProductListRelationFilter
 }
@@ -198,7 +198,7 @@ export type CategoryOrderByWithRelationInput = {
   name?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
-  imagePath?: Prisma.SortOrder
+  imageUrl?: Prisma.SortOrder
   imagePublicId?: Prisma.SortOrder
   products?: Prisma.ProductOrderByRelationAggregateInput
 }
@@ -211,7 +211,7 @@ export type CategoryWhereUniqueInput = Prisma.AtLeast<{
   NOT?: Prisma.CategoryWhereInput | Prisma.CategoryWhereInput[]
   createdAt?: Prisma.DateTimeFilter<"Category"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Category"> | Date | string
-  imagePath?: Prisma.StringFilter<"Category"> | string
+  imageUrl?: Prisma.StringFilter<"Category"> | string
   imagePublicId?: Prisma.StringFilter<"Category"> | string
   products?: Prisma.ProductListRelationFilter
 }, "id" | "name">
@@ -221,7 +221,7 @@ export type CategoryOrderByWithAggregationInput = {
   name?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
-  imagePath?: Prisma.SortOrder
+  imageUrl?: Prisma.SortOrder
   imagePublicId?: Prisma.SortOrder
   _count?: Prisma.CategoryCountOrderByAggregateInput
   _max?: Prisma.CategoryMaxOrderByAggregateInput
@@ -236,7 +236,7 @@ export type CategoryScalarWhereWithAggregatesInput = {
   name?: Prisma.StringWithAggregatesFilter<"Category"> | string
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Category"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Category"> | Date | string
-  imagePath?: Prisma.StringWithAggregatesFilter<"Category"> | string
+  imageUrl?: Prisma.StringWithAggregatesFilter<"Category"> | string
   imagePublicId?: Prisma.StringWithAggregatesFilter<"Category"> | string
 }
 
@@ -245,7 +245,7 @@ export type CategoryCreateInput = {
   name: string
   createdAt?: Date | string
   updatedAt?: Date | string
-  imagePath: string
+  imageUrl: string
   imagePublicId: string
   products?: Prisma.ProductCreateNestedManyWithoutCategoryInput
 }
@@ -255,7 +255,7 @@ export type CategoryUncheckedCreateInput = {
   name: string
   createdAt?: Date | string
   updatedAt?: Date | string
-  imagePath: string
+  imageUrl: string
   imagePublicId: string
   products?: Prisma.ProductUncheckedCreateNestedManyWithoutCategoryInput
 }
@@ -264,7 +264,7 @@ export type CategoryUpdateInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  imagePath?: Prisma.StringFieldUpdateOperationsInput | string
+  imageUrl?: Prisma.StringFieldUpdateOperationsInput | string
   imagePublicId?: Prisma.StringFieldUpdateOperationsInput | string
   products?: Prisma.ProductUpdateManyWithoutCategoryNestedInput
 }
@@ -273,7 +273,7 @@ export type CategoryUncheckedUpdateInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  imagePath?: Prisma.StringFieldUpdateOperationsInput | string
+  imageUrl?: Prisma.StringFieldUpdateOperationsInput | string
   imagePublicId?: Prisma.StringFieldUpdateOperationsInput | string
   products?: Prisma.ProductUncheckedUpdateManyWithoutCategoryNestedInput
 }
@@ -283,7 +283,7 @@ export type CategoryCreateManyInput = {
   name: string
   createdAt?: Date | string
   updatedAt?: Date | string
-  imagePath: string
+  imageUrl: string
   imagePublicId: string
 }
 
@@ -291,7 +291,7 @@ export type CategoryUpdateManyMutationInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  imagePath?: Prisma.StringFieldUpdateOperationsInput | string
+  imageUrl?: Prisma.StringFieldUpdateOperationsInput | string
   imagePublicId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
@@ -299,7 +299,7 @@ export type CategoryUncheckedUpdateManyInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  imagePath?: Prisma.StringFieldUpdateOperationsInput | string
+  imageUrl?: Prisma.StringFieldUpdateOperationsInput | string
   imagePublicId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
@@ -313,7 +313,7 @@ export type CategoryCountOrderByAggregateInput = {
   name?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
-  imagePath?: Prisma.SortOrder
+  imageUrl?: Prisma.SortOrder
   imagePublicId?: Prisma.SortOrder
 }
 
@@ -322,7 +322,7 @@ export type CategoryMaxOrderByAggregateInput = {
   name?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
-  imagePath?: Prisma.SortOrder
+  imageUrl?: Prisma.SortOrder
   imagePublicId?: Prisma.SortOrder
 }
 
@@ -331,7 +331,7 @@ export type CategoryMinOrderByAggregateInput = {
   name?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
-  imagePath?: Prisma.SortOrder
+  imageUrl?: Prisma.SortOrder
   imagePublicId?: Prisma.SortOrder
 }
 
@@ -354,7 +354,7 @@ export type CategoryCreateWithoutProductsInput = {
   name: string
   createdAt?: Date | string
   updatedAt?: Date | string
-  imagePath: string
+  imageUrl: string
   imagePublicId: string
 }
 
@@ -363,7 +363,7 @@ export type CategoryUncheckedCreateWithoutProductsInput = {
   name: string
   createdAt?: Date | string
   updatedAt?: Date | string
-  imagePath: string
+  imageUrl: string
   imagePublicId: string
 }
 
@@ -387,7 +387,7 @@ export type CategoryUpdateWithoutProductsInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  imagePath?: Prisma.StringFieldUpdateOperationsInput | string
+  imageUrl?: Prisma.StringFieldUpdateOperationsInput | string
   imagePublicId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
@@ -395,7 +395,7 @@ export type CategoryUncheckedUpdateWithoutProductsInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  imagePath?: Prisma.StringFieldUpdateOperationsInput | string
+  imageUrl?: Prisma.StringFieldUpdateOperationsInput | string
   imagePublicId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
@@ -435,7 +435,7 @@ export type CategorySelect<ExtArgs extends runtime.Types.Extensions.InternalArgs
   name?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  imagePath?: boolean
+  imageUrl?: boolean
   imagePublicId?: boolean
   products?: boolean | Prisma.Category$productsArgs<ExtArgs>
   _count?: boolean | Prisma.CategoryCountOutputTypeDefaultArgs<ExtArgs>
@@ -448,11 +448,11 @@ export type CategorySelectScalar = {
   name?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  imagePath?: boolean
+  imageUrl?: boolean
   imagePublicId?: boolean
 }
 
-export type CategoryOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "createdAt" | "updatedAt" | "imagePath" | "imagePublicId", ExtArgs["result"]["category"]>
+export type CategoryOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "createdAt" | "updatedAt" | "imageUrl" | "imagePublicId", ExtArgs["result"]["category"]>
 export type CategoryInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   products?: boolean | Prisma.Category$productsArgs<ExtArgs>
   _count?: boolean | Prisma.CategoryCountOutputTypeDefaultArgs<ExtArgs>
@@ -468,7 +468,7 @@ export type $CategoryPayload<ExtArgs extends runtime.Types.Extensions.InternalAr
     name: string
     createdAt: Date
     updatedAt: Date
-    imagePath: string
+    imageUrl: string
     imagePublicId: string
   }, ExtArgs["result"]["category"]>
   composites: {}
@@ -867,7 +867,7 @@ export interface CategoryFieldRefs {
   readonly name: Prisma.FieldRef<"Category", 'String'>
   readonly createdAt: Prisma.FieldRef<"Category", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"Category", 'DateTime'>
-  readonly imagePath: Prisma.FieldRef<"Category", 'String'>
+  readonly imageUrl: Prisma.FieldRef<"Category", 'String'>
   readonly imagePublicId: Prisma.FieldRef<"Category", 'String'>
 }
     

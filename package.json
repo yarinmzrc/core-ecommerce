@@ -13,7 +13,8 @@
     "type:check": "tsc --noEmit",
     "check": "npm run format:check && npm run lint:check && npm run type:check",
     "seed": "npx tsx prisma/seed.ts",
-    "db:init": "docker exec -it catering-mongodb mongosh --eval 'rs.initiate({_id: \"rs0\", members: [{ _id: 0, host: \"localhost:27017\" }]})'",
+    "db:init": "docker exec -it core-ecommerce-mongodb mongosh --eval 'try { rs.status(); print(\"Replica set already initialized\") } catch (e) { rs.initiate({_id: \"rs0\", members: [{ _id: 0, host: \"localhost:27017\" }]}); }'",
+    "db:setup": "npm run db:init && npx prisma generate && npx prisma db push && npm run seed",
     "prepare": "husky",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"

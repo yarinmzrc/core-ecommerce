@@ -28,11 +28,11 @@ async function main() {
 
   // Create categories
   const categoriesData = [
-    { name: "ראשונות", imagePath: "", imagePublicId: "" },
-    { name: "עיקריות", imagePath: "", imagePublicId: "" },
-    { name: "קינוחים", imagePath: "", imagePublicId: "" },
-    { name: "שתייה", imagePath: "", imagePublicId: "" },
-    { name: "סלטים", imagePath: "", imagePublicId: "" },
+    { name: "ראשונות", imageUrl: "", imagePublicId: "" },
+    { name: "עיקריות", imageUrl: "", imagePublicId: "" },
+    { name: "קינוחים", imageUrl: "", imagePublicId: "" },
+    { name: "שתייה", imageUrl: "", imagePublicId: "" },
+    { name: "סלטים", imageUrl: "", imagePublicId: "" },
   ]
 
   const categories = []
@@ -48,48 +48,80 @@ async function main() {
   const productsData = [
     {
       name: "המבורגר",
-      price: 70,
+      slug: "hamburger",
+      basePrice: 70,
       description: "המבורגר נדיר בשוק",
       categoryId: mainCourses.id,
-      imagePath:
-        "https://res.cloudinary.com/dexzucg7a/image/upload/v1766057709/products/x4upbn9zchl06z6jd1rt.jpg",
-      imagePublicId: "products/x4upbn9zchl06z6jd1rt",
+      images: [
+        {
+          url: "https://res.cloudinary.com/dexzucg7a/image/upload/v1766057709/products/x4upbn9zchl06z6jd1rt.jpg",
+          publicId: "products/x4upbn9zchl06z6jd1rt",
+        },
+      ],
+      options: {
+        create: [
+          {
+            name: "מידת עשייה",
+            values: [
+              { name: "M", extraPrice: 0 },
+              { name: "MW", extraPrice: 0 },
+              { name: "WD", extraPrice: 0 },
+            ],
+          },
+        ],
+      },
     },
     {
       name: "צ׳יזבורגר",
-      price: 77,
+      slug: "cheeseburger",
+      basePrice: 77,
       description: "צ׳יזבורגר עם גבינה",
       categoryId: mainCourses.id,
-      imagePath:
-        "https://res.cloudinary.com/dexzucg7a/image/upload/v1766057968/products/eqleq3f0zuhk5gifgq4c.jpg",
-      imagePublicId: "products/eqleq3f0zuhk5gifgq4c",
+      images: [
+        {
+          url: "https://res.cloudinary.com/dexzucg7a/image/upload/v1766057867/products/eqleq3f0zuhk5gifgq4c.jpg",
+          publicId: "products/eqleq3f0zuhk5gifgq4c",
+        },
+      ],
     },
     {
       name: "צ׳יפס",
-      price: 24,
+      slug: "chips",
+      basePrice: 24,
       description: "צ׳יפס נדיר",
       categoryId: appetizers.id,
-      imagePath:
-        "https://res.cloudinary.com/dexzucg7a/image/upload/v1766058043/products/z7ekt9wnl46dgkhzwxdg.jpg",
-      imagePublicId: "products/z7ekt9wnl46dgkhzwxdg",
+      images: [
+        {
+          url: "https://res.cloudinary.com/dexzucg7a/image/upload/v1766058043/products/z7ekt9wnl46dgkhzwxdg.jpg",
+          publicId: "products/z7ekt9wnl46dgkhzwxdg",
+        },
+      ],
     },
     {
       name: "טבעות בצל",
-      price: 26,
+      slug: "lilzy",
+      basePrice: 26,
       description: "טבעות בצל נדירות",
       categoryId: appetizers.id,
-      imagePath:
-        "https://res.cloudinary.com/dexzucg7a/image/upload/v1766058110/products/lilzyflbzuj9h7z3givd.jpg",
-      imagePublicId: "products/lilzyflbzuj9h7z3givd",
+      images: [
+        {
+          url: "https://res.cloudinary.com/dexzucg7a/image/upload/v1766058110/products/lilzyflbzuj9h7z3givd.jpg",
+          publicId: "products/lilzyflbzuj9h7z3givd",
+        },
+      ],
     },
     {
       name: "גלידה",
-      price: 3.99,
+      slug: "ice-cream",
+      basePrice: 3.99,
       description: "הגלידה הגדול",
       categoryId: desserts.id,
-      imagePath:
-        "https://res.cloudinary.com/dexzucg7a/image/upload/v1766058179/products/zb74kk1lzx2fns1rnkb5.jpg",
-      imagePublicId: "products/zb74kk1lzx2fns1rnkb5",
+      images: [
+        {
+          url: "https://res.cloudinary.com/dexzucg7a/image/upload/v1766058179/products/zb74kk1lzx2fns1rnkb5.jpg",
+          publicId: "products/zb74kk1lzx2fns1rnkb5",
+        },
+      ],
     },
   ]
 
