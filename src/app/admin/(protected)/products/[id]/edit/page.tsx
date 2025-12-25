@@ -1,10 +1,10 @@
 import { notFound } from "next/navigation"
 
 import { getCategories } from "@/features/categories/dal/queries"
+import { ProductForm } from "@/features/products/components/product-form/product-form"
 import { getProduct } from "@/features/products/dal/queries"
 
 import { PageHeader } from "../../../../_components/page-header"
-import { ProductForm } from "../../_components/product-form"
 
 export default async function EditProductPage({
   params,

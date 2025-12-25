@@ -16,13 +16,12 @@ export type ProductOptionDTO = {
 }
 
 export type ProductVariantDTO = {
-  sku?: string
+  sku: string | null
   price: number
   stockQuantity: number
   images: ImageDTO[]
-  selectedOptions: Record<string, string>
+  selectedOptions: Record<string, string> | null
 }
-
 export type ProductDTO = {
   id: string
   name: string
@@ -31,9 +30,8 @@ export type ProductDTO = {
   description: string
   images: ImageDTO[]
   isAvailableForSale: boolean
-  variants: ProductVariantDTO[]
-  options: ProductOptionDTO[]
   categoryId: string
+  attributes: Record<string, string> | null
 
   createdAt: Date
   updatedAt: Date

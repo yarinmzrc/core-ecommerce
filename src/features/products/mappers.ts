@@ -1,10 +1,26 @@
-import { Product as PrismaProduct } from "../../../prisma/generated/prisma/client"
+import {
+  Product as PrismaProduct,
+  ProductVariant as PrismaProductVariant,
+} from "../../../prisma/generated/prisma/client"
 import {
   PrismaProductWithCategory,
   PrismaProductWithOrderCount,
   ProductDTO,
   ProductListItemDTO,
+  ProductVariantDTO,
 } from "./dtos"
+
+export function mapProductVariant(
+  prisma: PrismaProductVariant,
+): ProductVariantDTO {
+  return {
+    sku: prisma.sku,
+    price: prisma.price,
+    stockQuantity: prisma.stockQuantity,
+    images: prisma.images,
+    selectedOptions: (prisma.selectedOptions as Record<string, string>) ?? {},
+  }
+}
 
 export function mapBaseProduct(prisma: PrismaProduct): ProductDTO {
   return {
@@ -13,10 +29,9 @@ export function mapBaseProduct(prisma: PrismaProduct): ProductDTO {
     slug: prisma.slug,
     basePrice: prisma.basePrice,
     description: prisma.description,
-    variants: [],
-    options: [],
     categoryId: prisma.categoryId,
     images: prisma.images,
+    attributes: prisma.attributes as Record<string, string> | null,
     isAvailableForSale: prisma.isAvailableForSale,
     createdAt: prisma.createdAt,
     updatedAt: prisma.updatedAt,

@@ -40,7 +40,6 @@ export function ProductForm({ product, categories }: ProductFormProps) {
 
   const {
     existingImages,
-    setExistingImages,
     newImageInputs,
     addImageInput,
     removeNewImageInput,

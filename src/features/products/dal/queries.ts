@@ -3,12 +3,16 @@ import { unstable_cache as cache } from "next/cache"
 import { CACHE_TTL_IN_SECONDS } from "@/constants"
 import db from "@/lib/db"
 
-import { mapProductListItem } from "../mappers"
+import { mapBaseProduct, mapProductListItem } from "../mappers"
 
 export const getProduct = cache(
   async (id: string) => {
-    return db.product.findUnique({ where: { id } })
+    const product = await db.product.findUnique({ where: { id } })
+    if (!product) return null
+
+    return mapBaseProduct(product)
   },
+
   ["product"],
   { revalidate: CACHE_TTL_IN_SECONDS },
 )
