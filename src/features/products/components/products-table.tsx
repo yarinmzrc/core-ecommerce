@@ -32,10 +32,11 @@ type ProductsTableProps = {
 }
 
 export function ProductsTable({ products }: ProductsTableProps) {
-  const t = useTranslations("admin.products.table")
+  const commonT = useTranslations("common")
+  const tableT = useTranslations("admin.products.table")
 
   if (products.length === 0) {
-    return <p>{t("emptyState")}</p>
+    return <p>{commonT("empty.products")}</p>
   }
 
   return (
@@ -43,14 +44,14 @@ export function ProductsTable({ products }: ProductsTableProps) {
       <TableHeader>
         <TableRow>
           <TableHead className="w-0">
-            <span className="sr-only">{t("columns.availableForPurchase")}</span>
+            <span className="sr-only">{tableT("columns.available")}</span>
           </TableHead>
-          <TableHead>{t("columns.name")}</TableHead>
-          <TableHead>{t("columns.price")}</TableHead>
-          <TableHead>{t("columns.category")}</TableHead>
-          <TableHead>{t("columns.orderCount")}</TableHead>
+          <TableHead>{tableT("columns.name")}</TableHead>
+          <TableHead>{tableT("columns.price")}</TableHead>
+          <TableHead>{tableT("columns.category")}</TableHead>
+          <TableHead>{tableT("columns.orderCount")}</TableHead>
           <TableHead className="w-0">
-            <span className="sr-only">{t("columns.actions")}</span>
+            <span className="sr-only">{tableT("columns.actions")}</span>
           </TableHead>
         </TableRow>
       </TableHeader>
@@ -60,12 +61,14 @@ export function ProductsTable({ products }: ProductsTableProps) {
             <TableCell>
               {product.isAvailableForSale ? (
                 <>
-                  <span className="sr-only">{t("columns.available")}</span>
+                  <span className="sr-only">{tableT("columns.available")}</span>
                   <CheckCircle2 />
                 </>
               ) : (
                 <>
-                  <span className="sr-only">{t("columns.notAvailable")}</span>
+                  <span className="sr-only">
+                    {tableT("columns.notAvailable")}
+                  </span>
                   <XCircle className="text-red-800" />
                 </>
               )}

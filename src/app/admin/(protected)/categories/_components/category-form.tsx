@@ -79,7 +79,7 @@ export function CategoryForm({ category }: CategoryFormProps) {
 }
 
 function SubmitButton() {
-  const t = useTranslations("admin.categories.form")
+  const t = useTranslations("buttons")
 
   const { pending } = useFormStatus()
   return (

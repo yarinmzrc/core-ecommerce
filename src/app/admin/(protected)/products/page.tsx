@@ -10,6 +10,7 @@ import { PageHeader } from "../../_components/page-header"
 
 export default async function AdminProductsPage() {
   const t = await getTranslations("admin.products")
+
   const products = await getProductsForAdmin()
 
   return (
@@ -18,7 +19,7 @@ export default async function AdminProductsPage() {
         <PageHeader>{t("title")}</PageHeader>
         <Button asChild>
           <Link href={paths.admin.products.new.getHref()}>
-            {t("addButton")}
+            {t("actions.add")}
           </Link>
         </Button>
       </div>

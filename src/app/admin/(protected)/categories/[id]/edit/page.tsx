@@ -11,7 +11,7 @@ export default async function AdminEditCategoryPage({
 }: {
   params: Promise<{ id: string }>
 }) {
-  const t = await getTranslations("admin.categories")
+  const t = await getTranslations("admin.products.pages")
 
   const id = (await params).id
   const category = await getCategory(id)
@@ -20,7 +20,7 @@ export default async function AdminEditCategoryPage({
 
   return (
     <div className="flex flex-col gap-12">
-      <PageHeader>{t("edit.title")}</PageHeader>
+      <PageHeader>{t("edit")}</PageHeader>
       <CategoryForm category={category} />
     </div>
   )

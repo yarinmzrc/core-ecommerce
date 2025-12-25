@@ -1,3 +1,7 @@
+"use client"
+
+import { useTranslations } from "next-intl"
+
 import { Image } from "@/components/image"
 import { Button } from "@/components/ui/button/button"
 import { FormError } from "@/components/ui/form/form-error"
@@ -23,9 +27,11 @@ export function ProductImages({
   onRemoveNew,
   error,
 }: ProductImagesProps) {
+  const t = useTranslations("admin.products.form")
+
   return (
     <div className="space-y-2">
-      <Label>Images</Label>
+      <Label>{t("images")}</Label>
       {existingImages.length > 0 && (
         <div className="grid grid-cols-2 gap-4 md:grid-cols-4 lg:grid-cols-6">
           {existingImages.map((image, index) => (
@@ -54,7 +60,7 @@ export function ProductImages({
       <div className="space-y-2">
         {newImageInputs.map((id) => (
           <div key={id} className="flex items-center gap-2">
-            <Input type="file" name="images" />
+            <Input type="file" name="images" accept="image/*" />
             <Button
               type="button"
               variant="destructive"

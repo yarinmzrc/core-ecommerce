@@ -56,7 +56,7 @@ export function ProductCard({
     }
 
     await new Promise((resolve) => setTimeout(resolve, 500))
-    toast.success(t("product.addedToBasket"))
+    toast.success(t("pages.products.addedToBasket"))
     setIsAdding(false)
   }
 
@@ -81,7 +81,7 @@ export function ProductCard({
           })}
           onClick={handleAddToCart}
         >
-          {isAdding ? t("buttons.addingToBusket") : t("buttons.addToBusket")}
+          {isAdding ? t("buttons.addingToBasket") : t("buttons.addToBasket")}
         </Button>
       </CardFooter>
     </Card>

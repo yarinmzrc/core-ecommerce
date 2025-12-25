@@ -1,42 +1,53 @@
 {
+  "common": {
+    "marketingSubtitle": "בוא נראה כמה אתה רוצה לקנות!",
+    "empty": {
+      "products": "אין מוצרים",
+      "categories": "אין קטגוריות",
+      "orders": "אין הזמנות",
+      "cart": "עגלת הקניות שלך ריקה"
+    },
+    "status": {
+      "enabled": "פעיל",
+      "disabled": "לא פעיל",
+      "available": "זמין לרכישה",
+      "notAvailable": "לא זמין לרכישה"
+    }
+  },
   "nav": {
     "home": "דף הבית",
     "products": "מוצרים",
     "categories": "קטגוריות",
     "orders": "הזמנות"
   },
-  "homePage": {
-    "popular": "הפופולרים ביותר",
-    "new": "החדשים ביותר"
-  },
-  "cart": {
-    "title": "עגלת קניות",
-    "subtitle": "בוא נראה כמה אתה רוצה לקנות!",
-    "emptyState": "עגלת הקניות שלך ריקה"
-  },
   "buttons": {
-    "toAllProductsClickHere": "לכל המוצרים לחץ כאן",
-    "addToBusket": "הוסף לסל",
-    "addingToBusket": "מוסיף...",
-    "showAll": "הצג הכל",
+    "save": "שמור",
+    "saving": "שומר...",
     "cancel": "בטל",
-    "save": "שמור"
+    "submit": "שלח",
+    "submitting": "שולח...",
+    "addToBasket": "הוסף לסל",
+    "addingToBasket": "מוסיף..."
   },
-  "category": {
-    "title": "קטגוריות",
-    "subtitle": "בוא נראה כמה אתה רוצה לקנות!",
-    "emptyState": "אין קטגוריות"
-  },
-  "product": {
-    "title": "מוצרים",
-    "subtitle": "בוא נראה כמה אתה רוצה לקנות!",
-    "emptyState": "אין מוצרים",
-    "addedToBasket": "נוסף לעגלת הקניות"
-  },
-  "order": {
-    "title": "הזמנות",
-    "subtitle": "בוא נראה כמה אתה רוצה לקנות!",
-    "emptyState": "אין הזמנות"
+  "pages": {
+    "home": {
+      "popular": "הפופולרים ביותר",
+      "new": "החדשים ביותר",
+      "showAll": "הצג את כל המוצרים"
+    },
+    "cart": {
+      "title": "עגלת קניות"
+    },
+    "products": {
+      "title": "מוצרים",
+      "addedToBasket": "נוסף לעגלת הקניות"
+    },
+    "categories": {
+      "title": "קטגוריות"
+    },
+    "orders": {
+      "title": "הזמנות"
+    }
   },
   "admin": {
     "nav": {
@@ -45,40 +56,44 @@
       "categories": "קטגוריות",
       "orders": "הזמנות"
     },
+
     "dashboard": {
       "title": "דשבורד",
       "cards": {
-        "sales": {
-          "title": "מכירות"
-        },
-        "customers": {
-          "title": "לקוחות",
-          "subtitle": "{count} לקוחות"
-        },
-        "activeProducts": {
-          "title": "מוצרים פעילים",
-          "subtitle": "{count} לא פעילים"
-        }
+        "sales": "מכירות",
+        "customers": "{count} לקוחות",
+        "activeProducts": "{count} מוצרים פעילים"
       }
     },
+
     "products": {
       "title": "מוצרים",
-      "addButton": "הוסף מוצר",
       "actions": {
+        "add": "הוסף מוצר",
         "edit": "ערוך",
         "delete": "מחק",
         "enable": "הפעל",
         "disable": "השבת"
       },
+      "form": {
+        "name": "שם המוצר",
+        "price": "מחיר",
+        "category": "קטגוריה",
+        "images": "תמונות",
+        "description": "תיאור",
+        "available": "זמין לרכישה"
+      },
+      "pages": {
+        "create": "הוסף מוצר",
+        "edit": "ערוך מוצר"
+      },
       "table": {
-        "emptyState": "אין מוצרים",
         "columns": {
           "name": "שם המוצר",
           "price": "מחיר",
           "category": "קטגוריה",
-          "orderCount": "מספר ההזמנות",
-          "availableForPurchase": "זמין לרכישה",
-          "enabled": "פעיל",
+          "orderCount": "מספר הזמנות",
+          "status": "סטטוס",
           "actions": "פעולות",
           "available": "זמין לרכישה",
           "notAvailable": "לא זמין לרכישה"
@@ -86,46 +101,13 @@
       }
     },
     "categories": {
-      "title": "קטגוריות",
-      "addButton": "הוסף קטגוריה",
-      "actions": {
-        "edit": "ערוך",
-        "delete": "מחק"
-      },
-      "table": {
-        "emptyState": "אין קטגוריות",
-        "columns": {
-          "name": "שם הקטגוריה",
-          "actions": "פעולות"
-        }
+      "pages": {
+        "create": "הוסף קטגוריה",
+        "edit": "ערוך קטגוריה"
       },
       "form": {
         "name": "שם הקטגוריה",
-        "image": "תמונה",
-        "submit": "שמור",
-        "submitting": "שומר..."
-      },
-      "create": {
-        "title": "הוסף קטגוריה"
-      },
-      "edit": {
-        "title": "ערוך קטגוריה"
-      }
-    },
-    "orders": {
-      "title": "הזמנות",
-      "table": {
-        "emptyState": "אין הזמנות",
-        "columns": {
-          "email": "מייל לקוח",
-          "createdAt": "תאריך הזמנה",
-          "name": "שם המוצר",
-          "price": "מחיר",
-          "category": "קטגוריה",
-          "orderCount": "מספר ההזמנות",
-          "actions": "פעולות",
-          "status": "סטטוס"
-        }
+        "image": "תמונה"
       }
     }
   }

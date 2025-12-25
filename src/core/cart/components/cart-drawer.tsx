@@ -34,11 +34,12 @@ const CartStep = {
 }
 
 function CartEmptyState() {
-  const t = useTranslations("cart")
+  const t = useTranslations("common")
+
   return (
     <div className="flex items-center border-y p-4">
       <ShoppingCartIcon size={16} className="ml-2" />{" "}
-      <span>{t("emptyState")}</span>
+      <span>{t("empty.cart")}</span>
     </div>
   )
 }
@@ -127,7 +128,8 @@ function CartStepContent({
 }
 
 export function CartSheet() {
-  const t = useTranslations("cart")
+  const t = useTranslations("common")
+  const pagesT = useTranslations("pages")
 
   const { itemsCount } = useCart()
   const [step, setStep] = useState(CartStep.Items)
@@ -151,10 +153,10 @@ export function CartSheet() {
                   <ArrowLeftIcon />
                 </Button>
               )}
-              <span>{t("title")}</span>
+              <span>{pagesT("cart.title")}</span>
             </div>
           </SheetTitle>
-          <SheetDescription>{t("subtitle")}</SheetDescription>
+          <SheetDescription>{t("marketingSubtitle")}</SheetDescription>
         </SheetHeader>
         {itemsCount === 0 ? (
           <CartEmptyState />

@@ -18,14 +18,15 @@ export async function ProductsGrid({
   fetcher,
   title,
 }: ProductsGridSectionProps) {
-  const t = await getTranslations("buttons")
+  const t = await getTranslations("pages")
+
   return (
     <div className="space-y-4">
       <div className="flex gap-4">
         <h2 className="text-2xl font-semibold">{title}</h2>
         <Button asChild variant="outline">
           <Link href={paths.app.products.root.getHref()}>
-            <span>{t("showAll")}</span>
+            <span>{t("home.showAll")}</span>
             <ArrowLeft className="size-4" />
           </Link>
         </Button>

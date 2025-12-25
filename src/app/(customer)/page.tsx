@@ -8,7 +8,7 @@ import {
 } from "@/features/products/dal/queries"
 
 export default async function HomePage() {
-  const t = await getTranslations("homePage")
+  const t = await getTranslations("pages.home")
 
   return (
     <main className="flex flex-col gap-12 py-12">

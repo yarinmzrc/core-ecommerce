@@ -1,3 +1,6 @@
+"use client"
+
+import { useTranslations } from "next-intl"
 import { useActionState, useState } from "react"
 
 import { Button } from "@/components/ui/button/button"
@@ -27,6 +30,9 @@ type ProductFormProps = {
 }
 
 export function ProductForm({ product, categories }: ProductFormProps) {
+  const t = useTranslations("admin.products.form")
+  const buttonsT = useTranslations("buttons")
+
   const [error, action, pending] = useActionState(
     product == null
       ? createProductAction
@@ -60,7 +66,7 @@ export function ProductForm({ product, categories }: ProductFormProps) {
 
       {/* Name Field */}
       <div className="space-y-2">
-        <Label htmlFor="name">Name</Label>
+        <Label htmlFor="name">{t("name")}</Label>
         <Input
           id="name"
           name="name"
@@ -72,7 +78,7 @@ export function ProductForm({ product, categories }: ProductFormProps) {
 
       {/* Price Field */}
       <div className="space-y-2">
-        <Label htmlFor="basePrice">Price</Label>
+        <Label htmlFor="basePrice">{t("price")}</Label>
         <Input
           type="number"
           id="basePrice"
@@ -91,7 +97,7 @@ export function ProductForm({ product, categories }: ProductFormProps) {
 
       {/* Category Field */}
       <div className="space-y-2">
-        <Label htmlFor="categoryId">Category</Label>
+        <Label htmlFor="categoryId">{t("category")}</Label>
         <Select name="categoryId" defaultValue={product?.categoryId} required>
           <SelectTrigger id="categoryId" className="w-[180px]">
             <SelectValue />
@@ -111,7 +117,7 @@ export function ProductForm({ product, categories }: ProductFormProps) {
 
       {/* Description Field */}
       <div className="space-y-2">
-        <Label htmlFor="description">Description</Label>
+        <Label htmlFor="description">{t("description")}</Label>
         <Textarea
           id="description"
           name="description"
@@ -135,7 +141,7 @@ export function ProductForm({ product, categories }: ProductFormProps) {
 
       {/* Submit Button */}
       <Button type="submit" disabled={pending}>
-        {pending ? "Saving..." : "Submit"}
+        {pending ? buttonsT("saving") : buttonsT("save")}
       </Button>
     </form>
   )
