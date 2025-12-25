@@ -10,9 +10,16 @@ import { createProduct } from "../dal/mutations"
 import { createProductSchema } from "../schemas"
 
 export async function createProductAction(_: unknown, formData: FormData) {
-  const result = createProductSchema.safeParse(
-    Object.fromEntries(formData.entries()),
+  const rawData = Object.fromEntries(formData.entries())
+
+  const images = (formData.getAll("images") as File[]).filter(
+    (file) => file.size > 0,
   )
+
+  const result = createProductSchema.safeParse({
+    ...rawData,
+    images: images.length > 0 ? images : undefined,
+  })
 
   if (result.success === false) {
     return z.flattenError(result.error).fieldErrors

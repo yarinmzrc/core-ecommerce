@@ -18,21 +18,22 @@ import {
   CardHeader,
   CardTitle,
 } from "../../../../components/ui/card"
+import { ImageDTO } from "../../dtos"
 
 type ProductCardProps = {
   id: string
   name: string
-  price: number
+  basePrice: number
   description: string
-  imagePath: string
+  images: ImageDTO[]
 }
 
 export function ProductCard({
   id,
   name,
-  price,
+  basePrice,
   description,
-  imagePath,
+  images,
 }: ProductCardProps) {
   const t = useTranslations()
 
@@ -46,7 +47,13 @@ export function ProductCard({
     if (cartItem) {
       updateQuantity(cartItem.id, cartItem.quantity + 1)
     } else {
-      addItem({ id, name, price, imagePath, quantity: 0 })
+      addItem({
+        id,
+        name,
+        price: basePrice,
+        imagePath: images[0].url,
+        quantity: 0,
+      })
     }
 
     await new Promise((resolve) => setTimeout(resolve, 500))
@@ -57,11 +64,11 @@ export function ProductCard({
   return (
     <Card className="flex max-w-sm flex-col overflow-hidden pt-0">
       <div className="relative aspect-video h-auto w-full">
-        <Image src={imagePath} alt={name} fill className="object-cover" />
+        <Image src={images[0].url} alt={name} fill className="object-cover" />
       </div>
       <CardHeader>
         <CardTitle>{name}</CardTitle>
-        <CardDescription>{formatCurrency(price)}</CardDescription>
+        <CardDescription>{formatCurrency(basePrice)}</CardDescription>
       </CardHeader>
       <CardContent className="grow">
         <p className="line-clamp-4">{description}</p>

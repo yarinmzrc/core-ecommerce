@@ -3,7 +3,7 @@ import { Suspense } from "react"
 import {
   ProductCard,
   ProductCardSkeleton,
-} from "@/features/products/components/product-card"
+} from "@/features/products/components/product-card/product-card"
 import { getProductsForStore } from "@/features/products/dal/queries"
 
 export default function ProductsPage() {

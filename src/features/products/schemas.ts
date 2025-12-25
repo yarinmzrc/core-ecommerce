@@ -7,19 +7,19 @@ const createProductImageSchema = z
 
 export const createProductSchema = z.object({
   name: z.string().min(1),
-  price: z.coerce.number().int().min(1),
+  basePrice: z.coerce.number().int().min(1),
   description: z.string().min(1),
-  imagePath: createProductImageSchema,
+  images: createProductImageSchema.array().min(1),
   categoryId: z.string(),
 })
 
 const updateProductImageSchema = z
   .instanceof(File)
   .refine((file) => file.type.startsWith("image/"), "Invalid image type")
-  .optional()
 
 export const updateProductSchema = createProductSchema
-  .omit({ imagePath: true })
+  .omit({ images: true })
   .extend({
-    imagePath: updateProductImageSchema,
+    images: z.array(updateProductImageSchema).optional(),
+    keptImages: z.union([z.string(), z.array(z.string())]).optional(),
   })

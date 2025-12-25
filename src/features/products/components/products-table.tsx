@@ -71,7 +71,7 @@ export function ProductsTable({ products }: ProductsTableProps) {
               )}
             </TableCell>
             <TableCell>{product.name}</TableCell>
-            <TableCell>{formatCurrency(product.price)}</TableCell>
+            <TableCell>{formatCurrency(product.basePrice)}</TableCell>
             <TableCell>{product.categoryName}</TableCell>
             <TableCell>{formatNumber(product.orderCount ?? 0)}</TableCell>
             <TableCell>

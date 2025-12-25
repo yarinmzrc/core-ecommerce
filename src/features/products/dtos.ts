@@ -1,13 +1,39 @@
 import { Prisma } from "../../../prisma/generated/prisma/client"
 
+export type ImageDTO = {
+  url: string
+  publicId: string
+}
+
+export type ProductOptionValueDTO = {
+  name: string
+  extraPrice: number
+}
+
+export type ProductOptionDTO = {
+  name: string
+  values: ProductOptionValueDTO[]
+}
+
+export type ProductVariantDTO = {
+  sku?: string
+  price: number
+  stockQuantity: number
+  images: ImageDTO[]
+  selectedOptions: Record<string, string>
+}
+
 export type ProductDTO = {
   id: string
   name: string
-  price: number
+  slug: string
+  basePrice: number
   description: string
-  imagePath: string
-  imagePublicId: string
+  images: ImageDTO[]
   isAvailableForSale: boolean
+  variants: ProductVariantDTO[]
+  options: ProductOptionDTO[]
+
   createdAt: Date
   updatedAt: Date
 }

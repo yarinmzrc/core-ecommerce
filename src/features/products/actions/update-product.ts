@@ -16,9 +16,19 @@ export async function updateProductAction(
   _: unknown,
   formData: FormData,
 ) {
-  const result = updateProductSchema.safeParse(
-    Object.fromEntries(formData.entries()),
+  const rawData = Object.fromEntries(formData.entries())
+  const images = (formData.getAll("images") as File[]).filter(
+    (file) => file.size > 0,
   )
+
+  const keptImages = formData.getAll("keptImages") as string[]
+
+  const result = updateProductSchema.safeParse({
+    ...rawData,
+    images: images.length > 0 ? images : undefined,
+    keptImages,
+  })
+
   if (result.success === false) {
     return z.flattenError(result.error).fieldErrors
   }
@@ -26,7 +36,13 @@ export async function updateProductAction(
   const data = result.data
 
   try {
-    await updateProduct(id, data)
+    await updateProduct(id, {
+      ...data,
+      keptImages:
+        typeof data.keptImages === "string"
+          ? [data.keptImages]
+          : data.keptImages,
+    })
   } catch (error) {
     console.error(error)
     return notFound()
@@ -51,8 +67,6 @@ export async function toggleProductAvailability(
 export async function deleteProduct(productId: string) {
   const product = await db.product.delete({ where: { id: productId } })
   if (product == null) return notFound()
-
-  await fs.unlink(`public${product.imagePath}`)
 
   revalidatePath("/")
   revalidatePath("/products")

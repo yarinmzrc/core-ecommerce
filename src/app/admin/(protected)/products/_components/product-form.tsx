@@ -35,10 +35,35 @@ export function ProductForm({ product, categories }: ProductFormProps) {
       : updateProductAction.bind(null, product.id),
     {},
   )
-  const [price, setPrice] = useState<number | null>(product?.price ?? null)
+  const [basePrice, setBasePrice] = useState<number | null>(
+    product?.basePrice ?? null,
+  )
+
+  const [existingImages, setExistingImages] = useState(product?.images ?? [])
+  const [newImageInputs, setNewImageInputs] = useState<number[]>([])
+
+  const handleAddImageInput = () => {
+    setNewImageInputs((prev) => [...prev, Date.now()])
+  }
+
+  const handleRemoveNewImageInput = (id: number) => {
+    setNewImageInputs((prev) => prev.filter((inputId) => inputId !== id))
+  }
+
+  const handleRemoveExistingImage = (publicId: string) => {
+    setExistingImages((prev) => prev.filter((img) => img.publicId !== publicId))
+  }
 
   return (
     <form action={action} className="space-y-8">
+      {existingImages.map((img) => (
+        <input
+          key={img.publicId}
+          type="hidden"
+          name="keptImages"
+          value={img.publicId}
+        />
+      ))}
       <div className="space-y-2">
         <Label htmlFor="name">Name</Label>
         <Input
@@ -50,18 +75,20 @@ export function ProductForm({ product, categories }: ProductFormProps) {
         {error?.name && <div className="text-red-500">{error.name}</div>}
       </div>
       <div className="space-y-2">
-        <Label htmlFor="price">Price</Label>
+        <Label htmlFor="basePrice">Price</Label>
         <Input
           type="number"
-          id="price"
-          name="price"
-          value={price ?? ""}
-          onChange={(e) => setPrice(Number(e.target.value))}
+          id="basePrice"
+          name="basePrice"
+          value={basePrice ?? ""}
+          onChange={(e) => setBasePrice(Number(e.target.value))}
           required
         />
-        {error?.price && <div className="text-red-500">{error.price}</div>}
+        {error?.basePrice && (
+          <div className="text-red-500">{error.basePrice}</div>
+        )}
         <div className="text-muted-foreground">
-          {formatCurrency(price ?? 0)}
+          {formatCurrency(basePrice ?? 0)}
         </div>
       </div>
       <div className="space-y-2">
@@ -95,24 +122,51 @@ export function ProductForm({ product, categories }: ProductFormProps) {
         )}
       </div>
       <div className="space-y-2">
-        <Label htmlFor="imagePath">Image</Label>
-        <Input
-          type="file"
-          id="imagePath"
-          name="imagePath"
-          required={product == null}
-        />
-        {product?.imagePath && (
-          <Image
-            src={product.imagePath}
-            alt={product.name}
-            width={200}
-            height={200}
-          />
+        <Label>Images</Label>
+        {existingImages.length > 0 && (
+          <div className="grid grid-cols-2 gap-4 md:grid-cols-4 lg:grid-cols-6">
+            {existingImages.map((image, index) => (
+              <div key={index} className="relative">
+                <Image
+                  src={image.url}
+                  alt={`Produce Image ${index + 1}`}
+                  width={100}
+                  height={100}
+                  className="h-32 w-full rounded-md object-cover"
+                />
+                <Button
+                  type="button"
+                  variant="destructive"
+                  size="sm"
+                  className="absolute top-1 right-1 size-6 p-0"
+                  onClick={() => handleRemoveExistingImage(image.publicId)}
+                >
+                  X
+                </Button>
+              </div>
+            ))}
+          </div>
         )}
-        {error?.imagePath && (
-          <div className="text-red-500">{error.imagePath}</div>
-        )}
+
+        <div className="space-y-2">
+          {newImageInputs.map((id) => (
+            <div key={id} className="flex items-center gap-2">
+              <Input type="file" name="images" />
+              <Button
+                type="button"
+                variant="destructive"
+                onClick={() => handleRemoveNewImageInput(id)}
+              >
+                Remove
+              </Button>
+            </div>
+          ))}
+          <Button type="button" variant="outline" onClick={handleAddImageInput}>
+            Add Image
+          </Button>
+
+          {error?.images && <div className="text-red-500">{error.images}</div>}
+        </div>
       </div>
       <SubmitButton />
     </form>
