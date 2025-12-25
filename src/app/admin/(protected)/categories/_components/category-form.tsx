@@ -37,7 +37,7 @@ export function CategoryForm({ category }: CategoryFormProps) {
     if (data?.error && "_form" in data.error) {
       toast.error(data.error._form)
     }
-  }, [data, router, category, action, toast])
+  }, [data, router, category, action])
 
   return (
     <form action={action} className="space-y-8">

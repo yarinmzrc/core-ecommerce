@@ -1,6 +1,6 @@
 "use server"
 
-import { toggleProductAvailability } from "../dal/queries"
+import { toggleProductAvailability } from "../dal/mutations"
 
 export async function toggleProductAvailabilityAction(
   productId: string,

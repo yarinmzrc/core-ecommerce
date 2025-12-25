@@ -22,7 +22,11 @@ export default async function CategoryPage({
           <div className="text-muted-foreground">No products found</div>
         ) : (
           category.products.map((product) => (
-            <ProductCard key={product.id} {...product} />
+            <ProductCard
+              key={product.id}
+              {...product}
+              image={product.images[0].url}
+            />
           ))
         )}
       </BaseGrid>

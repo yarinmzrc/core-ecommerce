@@ -1,12 +1,10 @@
 "use server"
 
-import fs from "fs/promises"
 import { revalidatePath } from "next/cache"
 import { notFound, redirect } from "next/navigation"
 import { z } from "zod"
 
 import { paths } from "@/config/paths"
-import db from "@/lib/db"
 
 import { updateProduct } from "../dal/mutations"
 import { updateProductSchema } from "../schemas"
@@ -52,22 +50,4 @@ export async function updateProductAction(
   revalidatePath("/products")
 
   redirect(paths.admin.products.root.getHref())
-}
-
-export async function toggleProductAvailability(
-  productId: string,
-  isAvailableForSale: boolean,
-) {
-  await db.product.update({
-    where: { id: productId },
-    data: { isAvailableForSale },
-  })
-}
-
-export async function deleteProduct(productId: string) {
-  const product = await db.product.delete({ where: { id: productId } })
-  if (product == null) return notFound()
-
-  revalidatePath("/")
-  revalidatePath("/products")
 }

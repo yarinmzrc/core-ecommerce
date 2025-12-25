@@ -18,7 +18,6 @@ import {
   CardHeader,
   CardTitle,
 } from "../../../../components/ui/card"
-import { ImageDTO } from "../../dtos"
 
 type ProductCardProps = {
   id: string

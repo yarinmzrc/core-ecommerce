@@ -43,7 +43,7 @@ type ProductsSuspenseProps = {
 }
 async function ProductsSuspense({ fetcher }: ProductsSuspenseProps) {
   return (await fetcher()).map((product) => (
-    <ProductCard key={product.id} {...product} />
+    <ProductCard key={product.id} {...product} image={product.images[0].url} />
   ))
 }
 

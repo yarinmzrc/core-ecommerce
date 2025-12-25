@@ -50,7 +50,9 @@ export function Pagination({
             href={metadata.hasPreviousPage ? `?page=${activePage - 1}` : "#"}
             onClick={(e) => {
               e.preventDefault()
-              metadata.hasPreviousPage ? handlePageChange(activePage - 1) : null
+              if (metadata.hasPreviousPage) {
+                handlePageChange(activePage - 1)
+              }
             }}
           />
         </PaginationItem>
@@ -75,7 +77,9 @@ export function Pagination({
             href={metadata.hasNextPage ? `?page=${activePage + 1}` : "#"}
             onClick={(e) => {
               e.preventDefault()
-              metadata.hasNextPage ? handlePageChange(activePage + 1) : null
+              if (metadata.hasNextPage) {
+                handlePageChange(activePage + 1)
+              }
             }}
           />
         </PaginationItem>

@@ -33,6 +33,6 @@ async function ProductsSuspense() {
   if (products.length === 0) return <p>No products found</p>
 
   return products.map((product) => (
-    <ProductCard key={product.id} {...product} />
+    <ProductCard key={product.id} {...product} image={product.images[0].url} />
   ))
 }

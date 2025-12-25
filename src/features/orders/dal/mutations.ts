@@ -14,10 +14,31 @@ export async function createOrder(input: OrderCreateInput) {
 
   const orderItems = input.orderItems.map((item) => {
     const product = products.find((p) => p.id === item.productId)!
+
+    let price = product.basePrice
+    let variantName: string | null = null
+    let variantId: string | undefined
+
+    if (item.variantId) {
+      const variant = product.variants.find((v) => v.id === item.variantId)
+      if (!variant) {
+        throw new Error("Variant not found")
+      }
+
+      price = variant.price
+      variantId = variant.id
+
+      const options = variant.selectedOptions as Record<string, string>
+      variantName = Object.values(options).join(" / ")
+    }
+
     return {
       productId: product.id,
-      price: product.price,
+      variantId,
+      price,
       quantity: item.quantity,
+      name: product.name,
+      variantName,
     }
   })
 

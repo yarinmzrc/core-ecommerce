@@ -18,28 +18,36 @@ export const getProduct = cache(
 )
 
 export const getProductsByIds = async (ids: string[]) => {
-  return db.product.findMany({ where: { id: { in: ids } } })
+  return db.product.findMany({
+    where: { id: { in: ids } },
+    include: { variants: true },
+  })
 }
 
 export const getMostPopularProducts = cache(
   async () => {
-    return db.product.findMany({
+    const products = await db.product.findMany({
       where: { isAvailableForSale: true },
       orderBy: { orderItems: { _count: "desc" } },
       take: 6,
     })
+
+    return products.map(mapBaseProduct)
   },
+
   ["most-popular-products"],
   { revalidate: CACHE_TTL_IN_SECONDS },
 )
 
 export const getNewestProducts = cache(
   async () => {
-    return db.product.findMany({
+    const products = await db.product.findMany({
       where: { isAvailableForSale: true },
       orderBy: { createdAt: "desc" },
       take: 6,
     })
+
+    return products.map(mapBaseProduct)
   },
   ["newest-products"],
   { revalidate: CACHE_TTL_IN_SECONDS },

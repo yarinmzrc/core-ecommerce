@@ -11,7 +11,9 @@ export type OrderDTO = {
 
 export type OrderItemDTO = {
   id: string
+  name: string
   productId: string
+  variantName: string | null
   price: number
   quantity: number
   createdAt: Date
@@ -30,5 +32,7 @@ export type OrderCreateInput = Pick<
   OrderDTO,
   "guestEmail" | "guestName" | "guestPhone"
 > & {
-  orderItems: Pick<OrderItemDTO, "productId" | "quantity">[]
+  orderItems: (Pick<OrderItemDTO, "productId" | "quantity"> & {
+    variantId?: string
+  })[]
 }
