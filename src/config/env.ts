@@ -1,7 +1,11 @@
 import { z } from "zod"
 
+import { AppType } from "./app"
+
 const createEnv = () => {
   const EnvSchema = z.object({
+    APP_NAME: z.string(),
+    APP_TYPE: z.enum(Object.values(AppType)),
     DATABASE_URL: z.string(),
     ADMIN_USERNAME: z.string(),
     HASHED_ADMIN_PASSWORD: z.string(),
@@ -16,6 +20,8 @@ const createEnv = () => {
   })
 
   const envVars = {
+    APP_NAME: process.env.APP_NAME,
+    APP_TYPE: process.env.APP_TYPE,
     DATABASE_URL: process.env.DATABASE_URL,
     ADMIN_USERNAME: process.env.ADMIN_USERNAME,
     HASHED_ADMIN_PASSWORD: process.env.HASHED_ADMIN_PASSWORD,

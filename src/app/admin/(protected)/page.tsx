@@ -65,13 +65,15 @@ export default async function Admin() {
       />
 
       <DashboardCard
-        title={t("cards.customersTitle")}
+        title={t("cards.customersTitle", { count: userData.count })}
         subtitle={t("cards.customersSubtitle", { count: userData.count })}
         body={formatCurrency(userData.count)}
       />
 
       <DashboardCard
-        title={t("cards.activeProductsTitle")}
+        title={t("cards.activeProductsTitle", {
+          count: productData.activeCount,
+        })}
         subtitle={t("cards.activeProductsSubtitle", {
           count: productData.activeCount,
         })}
