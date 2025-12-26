@@ -26,7 +26,7 @@ export default async function AdminCategoriesPage() {
         <PageHeader>{t("title")}</PageHeader>
         <Button asChild>
           <Link href={paths.admin.categories.new.getHref()}>
-            {t("addButton")}
+            {t("pages.create")}
           </Link>
         </Button>
       </div>
@@ -40,18 +40,21 @@ type CategoriesTableProps = {
 }
 
 async function CategoriesTable({ categories }: CategoriesTableProps) {
-  const t = await getTranslations("admin.categories")
+  const categoryT = await getTranslations("admin.categories")
+  const emptyT = await getTranslations("common")
 
   if (categories.length === 0) {
-    return <p>{t("table.emptyState")}</p>
+    return <p>{emptyT("empty.categories")}</p>
   }
   return (
     <Table>
       <TableHeader>
         <TableRow>
-          <TableHead>{t("table.columns.name")}</TableHead>
+          <TableHead>{categoryT("table.columns.name")}</TableHead>
           <TableHead className="w-0">
-            <span className="sr-only">{t("table.columns.actions")}</span>
+            <span className="sr-only">
+              {categoryT("table.columns.actions")}
+            </span>
           </TableHead>
         </TableRow>
       </TableHeader>
@@ -62,7 +65,7 @@ async function CategoriesTable({ categories }: CategoriesTableProps) {
             <TableCell>
               <Button asChild>
                 <Link href={paths.admin.categories.edit.getHref(category.id)}>
-                  {t("actions.edit")}
+                  {categoryT("actions.edit")}
                 </Link>
               </Button>
             </TableCell>

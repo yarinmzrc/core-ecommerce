@@ -48,7 +48,7 @@ async function getProductData() {
 }
 
 export default async function Admin() {
-  const t = await getTranslations("admin.dashboard.cards")
+  const t = await getTranslations("admin.dashboard")
 
   const [orderData, userData, productData] = await Promise.all([
     getOrderData(),
@@ -59,20 +59,20 @@ export default async function Admin() {
   return (
     <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
       <DashboardCard
-        title={t("sales.title")}
+        title={t("cards.sales")}
         subtitle={formatNumber(orderData.amount)}
         body={formatCurrency(orderData.amount)}
       />
 
       <DashboardCard
-        title={t("customers.title")}
-        subtitle={t("customers.subtitle", { count: userData.count })}
+        title={t("cards.customersTitle")}
+        subtitle={t("cards.customersSubtitle", { count: userData.count })}
         body={formatCurrency(userData.count)}
       />
 
       <DashboardCard
-        title={t("activeProducts.title")}
-        subtitle={t("activeProducts.subtitle", {
+        title={t("cards.activeProductsTitle")}
+        subtitle={t("cards.activeProductsSubtitle", {
           count: productData.activeCount,
         })}
         body={formatNumber(productData.activeCount)}

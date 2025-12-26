@@ -23,7 +23,8 @@ import { getOrders } from "../dal/queries"
 import { OrderDTO, OrderStatus } from "../dtos"
 
 export async function OrdersTable({ page = 1 }: { page: number }) {
-  const t = await getTranslations("admin.orders.table")
+  const ordersT = await getTranslations("admin.orders.table")
+  const commonT = await getTranslations("common")
 
   const { data: orders, metadata }: PaginatedResult<OrderDTO> = await getOrders(
     {
@@ -33,7 +34,7 @@ export async function OrdersTable({ page = 1 }: { page: number }) {
   )
 
   if (orders == null || orders.length === 0) {
-    return <p>{t("emptyState")}</p>
+    return <p>{commonT("empty.orders")}</p>
   }
 
   return (
@@ -41,10 +42,10 @@ export async function OrdersTable({ page = 1 }: { page: number }) {
       <Table>
         <TableHeader>
           <TableRow>
-            <TableHead>{t("columns.email")}</TableHead>
-            <TableHead>{t("columns.createdAt")}</TableHead>
-            <TableHead>{t("columns.price")}</TableHead>
-            <TableHead>{t("columns.status")}</TableHead>
+            <TableHead>{ordersT("columns.email")}</TableHead>
+            <TableHead>{ordersT("columns.createdAt")}</TableHead>
+            <TableHead>{ordersT("columns.price")}</TableHead>
+            <TableHead>{ordersT("columns.status")}</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
@@ -77,16 +78,16 @@ export async function OrdersTable({ page = 1 }: { page: number }) {
 }
 
 export async function OrdersTableSkeleton() {
-  const t = await getTranslations("admin.orders.table")
+  const ordersT = await getTranslations("admin.orders.table")
 
   return (
     <Table>
       <TableHeader>
         <TableRow>
-          <TableHead>{t("columns.email")}</TableHead>
-          <TableHead>{t("columns.createdAt")}</TableHead>
-          <TableHead>{t("columns.price")}</TableHead>
-          <TableHead>{t("columns.status")}</TableHead>
+          <TableHead>{ordersT("columns.email")}</TableHead>
+          <TableHead>{ordersT("columns.createdAt")}</TableHead>
+          <TableHead>{ordersT("columns.price")}</TableHead>
+          <TableHead>{ordersT("columns.status")}</TableHead>
         </TableRow>
       </TableHeader>
       <TableBody>

@@ -61,8 +61,10 @@
       "title": "דשבורד",
       "cards": {
         "sales": "מכירות",
-        "customers": "{count} לקוחות",
-        "activeProducts": "{count} מוצרים פעילים"
+        "customersTitle": "{count} לקוחות",
+        "customersSubtitle": "לקוחות",
+        "activeProductsTitle": "{count} מוצרים פעילים",
+        "activeProductsSubtitle": "מוצרים"
       }
     },
 
@@ -101,13 +103,41 @@
       }
     },
     "categories": {
+      "title": "קטגוריות",
+      "actions": {
+        "add": "הוסף קטגוריה",
+        "edit": "ערוך",
+        "delete": "מחק"
+      },
       "pages": {
         "create": "הוסף קטגוריה",
         "edit": "ערוך קטגוריה"
       },
+      "table": {
+        "columns": {
+          "name": "שם הקטגוריה",
+          "productCount": "מספר מוצרים",
+          "actions": "פעולות"
+        }
+      },
       "form": {
         "name": "שם הקטגוריה",
         "image": "תמונה"
+      }
+    },
+    "orders": {
+      "title": "הזמנות",
+      "table": {
+        "columns": {
+          "customer": "לקוח",
+          "products": "מוצרים",
+          "total": "סך הכל",
+          "status": "סטטוס",
+          "actions": "פעולות",
+          "email": "אימייל",
+          "createdAt": "תאריך קניה",
+          "price": "מחיר"
+        }
       }
     }
   }
