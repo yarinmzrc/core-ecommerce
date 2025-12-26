@@ -9,7 +9,7 @@ import { getCategories } from "../dal/queries"
 import { CategoryCard, CategoryCardSkeleton } from "./category-card"
 
 export async function CategoriesGrid() {
-  const t = await getTranslations("buttons")
+  const t = await getTranslations("pages")
 
   return (
     <div className="space-y-12">
@@ -21,7 +21,7 @@ export async function CategoriesGrid() {
       <div className="text-center">
         <Button asChild>
           <Link href={paths.app.products.root.getHref()}>
-            <span>{t("toAllProductsClickHere")}</span>
+            <span>{t("home.toAllProductsButton")}</span>
           </Link>
         </Button>
       </div>
