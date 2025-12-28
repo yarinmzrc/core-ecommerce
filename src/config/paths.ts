@@ -17,6 +17,17 @@ export const paths = {
         getHref: (id: string) => `/admin/products/${id}/edit`,
       },
     },
+    optionTemplates: {
+      root: {
+        getHref: () => "/admin/option-templates",
+      },
+      new: {
+        getHref: () => "/admin/option-templates/new",
+      },
+      edit: {
+        getHref: (id: string) => `/admin/option-templates/${id}/edit`,
+      },
+    },
     categories: {
       root: {
         getHref: () => "/admin/categories",

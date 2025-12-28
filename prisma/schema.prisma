@@ -115,6 +115,7 @@ model OptionTemplate {
   pricingStrategy OptionPricingStrategy
   values Json    // array of option values { value, label, priceDelta }
   isActive Boolean @default(true)
+  required Boolean @default(true)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 

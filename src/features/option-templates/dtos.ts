@@ -9,6 +9,7 @@ export type OptionTemplateDTO = {
   pricingStrategy: OptionPricingStrategy
   values: OptionValueDTO[]
   isActive: boolean
+  required: boolean
   createdAt: Date
   updatedAt: Date
 }

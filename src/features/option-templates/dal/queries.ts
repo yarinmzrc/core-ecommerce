@@ -1,9 +1,17 @@
 import db from "@/lib/db"
 
-export function getOptionTemplate(id: string) {
-  return db.optionTemplate.findUnique({ where: { id } })
+import { mapOptionTemplate } from "../mappers"
+
+export async function getOptionTemplate(id: string) {
+  const optionTemplate = await db.optionTemplate.findUnique({ where: { id } })
+
+  if (!optionTemplate) return null
+
+  return mapOptionTemplate(optionTemplate)
 }
 
-export function getOptionTemplates() {
-  return db.optionTemplate.findMany()
+export async function getOptionTemplates() {
+  const optionTemplates = await db.optionTemplate.findMany()
+
+  return optionTemplates.map(mapOptionTemplate)
 }

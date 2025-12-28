@@ -55,7 +55,8 @@
       "home": "דשבורד",
       "products": "מוצרים",
       "categories": "קטגוריות",
-      "orders": "הזמנות"
+      "orders": "הזמנות",
+      "optionTemplates": "תבניות בחירה"
     },
 
     "dashboard": {
@@ -101,6 +102,28 @@
           "available": "זמין לרכישה",
           "notAvailable": "לא זמין לרכישה"
         }
+      }
+    },
+    "optionTemplates": {
+      "title": "תבניות בחירה",
+      "actions": {
+        "add": "הוסף תבנית בחירה",
+        "edit": "ערוך",
+        "delete": "מחק"
+      },
+      "pages": {
+        "create": "הוסף תבנית בחירה",
+        "edit": "ערוך תבנית בחירה"
+      },
+      "table": {
+        "columns": {
+          "name": "שם התבנית",
+          "actions": "פעולות"
+        }
+      },
+      "form": {
+        "name": "שם התבנית",
+        "options": "אפשרויות"
       }
     },
     "categories": {

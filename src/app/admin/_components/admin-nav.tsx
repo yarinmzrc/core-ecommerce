@@ -24,6 +24,9 @@ export function AdminNav() {
         <NavLink href={paths.admin.orders.root.getHref()}>
           {t("orders")}
         </NavLink>
+        <NavLink href={paths.admin.optionTemplates.root.getHref()}>
+          {t("optionTemplates")}
+        </NavLink>
       </div>
     </Nav>
   )

@@ -123,6 +123,7 @@ export const OptionTemplateScalarFieldEnum = {
   pricingStrategy: 'pricingStrategy',
   values: 'values',
   isActive: 'isActive',
+  required: 'required',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
