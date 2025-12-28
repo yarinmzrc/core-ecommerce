@@ -123,7 +123,15 @@
       },
       "form": {
         "name": "שם התבנית",
-        "options": "אפשרויות"
+        "namePlaceholder": "הכנס שם",
+        "options": "אפשרויות",
+        "uiType": "סוג UI",
+        "pricingStrategy": "סוג תמחור",
+        "inputType": "סוג קלט",
+        "addOption": "הוסף אפשרות",
+        "required": "חובה",
+        "optionLabel": "אפשרות {number}",
+        "pricingDeltaLabel": "תמחור {number}"
       }
     },
     "categories": {

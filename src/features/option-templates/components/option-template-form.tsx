@@ -1,6 +1,6 @@
 "use client"
 
-import { Switch } from "@radix-ui/react-switch"
+import { useTranslations } from "next-intl"
 import { useState } from "react"
 
 import { Button } from "@/components/ui/button/button"
@@ -13,6 +13,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select"
+import { Switch } from "@/components/ui/switch"
 
 import { OptionInput, OptionPricingStrategy, OptionUI } from "../dtos"
 import { CreateOptionTemplateSchema } from "../schemas"
@@ -40,6 +41,8 @@ const initialState: StateTypeNormalized = {
 }
 
 export function OptionTemplateForm() {
+  const t = useTranslations("admin.optionTemplates")
+
   const [state, setState] = useState(initialState)
 
   const handleChange = (key: string, value: string) => {
@@ -51,10 +54,10 @@ export function OptionTemplateForm() {
   return (
     <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
       <div className="col-span-2 space-y-2">
-        <Label htmlFor="name">Option Name</Label>
+        <Label htmlFor="name">{t("form.name")}</Label>
         <Input
           id="name"
-          placeholder="Option name"
+          placeholder={t("form.namePlaceholder")}
           value={state.name}
           onChange={(e) =>
             setState((prev) => ({ ...prev, name: e.target.value }))
@@ -63,7 +66,7 @@ export function OptionTemplateForm() {
       </div>
 
       <div className="space-y-2">
-        <Label htmlFor="uiType">Option UI Type</Label>
+        <Label htmlFor="uiType">{t("form.uiType")}</Label>
         <Select
           value={state.uiType}
           onValueChange={(v) => handleChange("uiType", v)}
@@ -82,7 +85,7 @@ export function OptionTemplateForm() {
       </div>
 
       <div className="space-y-2">
-        <Label htmlFor="pricingStrategy">Pricing Strategy</Label>
+        <Label htmlFor="pricingStrategy">{t("form.pricingStrategy")}</Label>
         <Select
           value={state.pricingStrategy}
           onValueChange={(v) => handleChange("pricingStrategy", v)}
@@ -102,7 +105,7 @@ export function OptionTemplateForm() {
 
       {state.uiType !== "BOOLEAN" && (
         <div className="space-y-2">
-          <Label htmlFor="inputType">Input Type</Label>
+          <Label htmlFor="inputType">{t("form.inputType")}</Label>
           <Select
             value={state.inputType}
             onValueChange={(v) => handleChange("inputType", v)}
@@ -124,9 +127,9 @@ export function OptionTemplateForm() {
       {state.inputs.map((input, index) => (
         <div key={input.id} className="col-span-2 flex items-end gap-2">
           <div className="space-y-1">
-            <Label
-              htmlFor={`option-${index + 1}`}
-            >{`Option ${index + 1}`}</Label>
+            <Label htmlFor={`option-${index + 1}`}>
+              {t("form.optionLabel", { number: index + 1 })}
+            </Label>
             <Input
               id={`option-${index + 1}`}
               type={state.inputType}
@@ -144,9 +147,9 @@ export function OptionTemplateForm() {
           </div>
           {state.pricingStrategy === OptionPricingStrategy.ADDON && (
             <div className="space-y-1">
-              <Label
-                htmlFor={`price-delta-${index + 1}`}
-              >{`Price Delta ${index + 1}`}</Label>
+              <Label htmlFor={`price-delta-${index + 1}`}>
+                {t("form.pricingDeltaLabel", { number: index + 1 })}
+              </Label>
               <Input
                 id={`price-delta-${index + 1}`}
                 placeholder="Price Delta"
@@ -177,7 +180,7 @@ export function OptionTemplateForm() {
               }))
             }
           >
-            Remove
+            {t("actions.delete")}
           </Button>
         </div>
       ))}
@@ -201,7 +204,7 @@ export function OptionTemplateForm() {
           })
         }
       >
-        Add Input
+        {t("form.addOption")}
       </Button>
       <div className="space-y-2">
         <Switch
@@ -211,7 +214,7 @@ export function OptionTemplateForm() {
             setState((prev) => ({ ...prev, required }))
           }
         />
-        <Label htmlFor="required">Required</Label>
+        <Label htmlFor="required">{t("form.required")}</Label>
       </div>
     </div>
   )
