@@ -130,7 +130,8 @@
         "inputType": "סוג קלט",
         "addOption": "הוסף אפשרות",
         "required": "דרוש בחירה בתבנית זו",
-        "optionLabel": "אפשרות {number}",
+        "optionValueLabel": "אפשרות {number} ערך",
+        "optionlabelLabel": "אפשרות {number} שם",
         "pricingDeltaLabel": "תמחור {number}"
       }
     },

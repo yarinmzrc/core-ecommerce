@@ -1,7 +1,7 @@
 "use client"
 
 import { useTranslations } from "next-intl"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
 import { Button } from "@/components/ui/button/button"
 import { Input } from "@/components/ui/input"
@@ -15,10 +15,15 @@ import {
 } from "@/components/ui/select"
 import { Switch } from "@/components/ui/switch"
 
-import { OptionInput, OptionPricingStrategy, OptionUI } from "../dtos"
+import {
+  OptionInput,
+  OptionPricingStrategy,
+  OptionTemplateDTO,
+  OptionUI,
+} from "../dtos"
 import { CreateOptionTemplateSchema } from "../schemas"
 
-type StateTypeNormalized = Omit<
+export type FormStateNormalized = Omit<
   CreateOptionTemplateSchema,
   "values" | "appType"
 > & {
@@ -30,7 +35,7 @@ type StateTypeNormalized = Omit<
   }[]
 }
 
-const initialState: StateTypeNormalized = {
+const initialState: FormStateNormalized = {
   name: "",
   uiType: OptionUI.SELECT,
   inputType: OptionInput.TEXT,
@@ -40,10 +45,59 @@ const initialState: StateTypeNormalized = {
   isActive: true,
 }
 
-export function OptionTemplateForm() {
+export function normalizeToFormState(
+  data?: CreateOptionTemplateSchema,
+): FormStateNormalized {
+  if (!data) return initialState
+
+  return {
+    name: data.name,
+    uiType: data.uiType,
+    inputType: data.inputType,
+    pricingStrategy: data.pricingStrategy,
+    required: data.required,
+    isActive: data.isActive,
+    inputs: data.values.map((v) => ({
+      id: crypto.randomUUID(),
+      value: String(v.value),
+      label: v.label,
+      priceDelta: v.priceDelta,
+    })),
+  }
+}
+
+export function normalizeToOptionTemplate(
+  data: FormStateNormalized,
+): CreateOptionTemplateSchema {
+  return {
+    name: data.name,
+    isActive: data.isActive,
+    required: data.required,
+    inputType: data.inputType,
+    uiType: data.uiType,
+    pricingStrategy: data.pricingStrategy,
+    values: data.inputs.map((v) => ({
+      value: v.value,
+      label: v.label,
+      priceDelta: v.priceDelta,
+    })),
+  }
+}
+
+type OptionTemplateFormProps = {
+  optionTemplate?: OptionTemplateDTO
+  onSave: (data: CreateOptionTemplateSchema) => void
+}
+
+export function OptionTemplateForm({
+  optionTemplate,
+  onSave,
+}: OptionTemplateFormProps) {
   const t = useTranslations("admin.optionTemplates")
 
-  const [state, setState] = useState(initialState)
+  const [state, setState] = useState<FormStateNormalized>(() =>
+    optionTemplate ? normalizeToFormState(optionTemplate) : initialState,
+  )
 
   const handleChange = (key: string, value: string) => {
     setState((prev) => {
@@ -130,17 +184,36 @@ export function OptionTemplateForm() {
           className="flex flex-col items-end gap-2 md:col-span-2 md:flex-row"
         >
           <div className="space-y-1">
-            <Label htmlFor={`option-${index + 1}`}>
-              {t("form.optionLabel", { number: index + 1 })}
+            <Label htmlFor={`option-value-${index + 1}`}>
+              {t("form.optionValueLabel", { number: index + 1 })}
             </Label>
             <Input
-              id={`option-${index + 1}`}
+              id={`option-value-${index + 1}`}
               type={state.inputType}
               value={input.value}
               onChange={(e) => {
                 const newInputs = state.inputs.map((i) => {
                   if (i.id === input.id) {
                     return { ...i, value: e.target.value }
+                  }
+                  return i
+                })
+                setState((prev) => ({ ...prev, inputs: newInputs }))
+              }}
+            />
+          </div>
+          <div className="space-y-1">
+            <Label htmlFor={`option-label-${index + 1}`}>
+              {t("form.optionlabelLabel", { number: index + 1 })}
+            </Label>
+            <Input
+              id={`option-label-${index + 1}`}
+              type={state.inputType}
+              value={input.label}
+              onChange={(e) => {
+                const newInputs = state.inputs.map((i) => {
+                  if (i.id === input.id) {
+                    return { ...i, label: e.target.value }
                   }
                   return i
                 })
@@ -220,6 +293,13 @@ export function OptionTemplateForm() {
         />
         <Label htmlFor="required">{t("form.required")}</Label>
       </div>
+      <Button
+        className="col-span-1 w-full max-w-min md:col-span-2"
+        type="button"
+        onClick={() => onSave(normalizeToOptionTemplate(state))}
+      >
+        Save
+      </Button>
     </div>
   )
 }

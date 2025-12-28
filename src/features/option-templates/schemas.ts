@@ -1,8 +1,5 @@
 import { z } from "zod"
 
-import { appConfig } from "@/config/app/app.config"
-import { AppType } from "@/config/app/app-type.config"
-
 import { OptionInput, OptionPricingStrategy, OptionUI } from "./dtos"
 
 export const optionValueSchema = z.object({
@@ -13,7 +10,6 @@ export const optionValueSchema = z.object({
 
 export const createOptionTemplateSchema = z.object({
   name: z.string().min(1),
-  appType: z.enum(AppType).default(appConfig.type),
   inputType: z.enum(OptionInput),
   uiType: z.enum(OptionUI),
   pricingStrategy: z.enum(OptionPricingStrategy),
