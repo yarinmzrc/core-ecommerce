@@ -7,21 +7,15 @@ export type OptionTemplateDTO = {
   inputType: OptionInputType
   uiType: OptionUIType
   pricingStrategy: OptionPricingStrategy
-  values: Record<string, unknown>[]
+  values: OptionValueDTO[]
   isActive: boolean
   createdAt: Date
   updatedAt: Date
 }
 
-export type OptionTemplateCreateDTO = Pick<
+export type OptionTemplateCreateDTO = Omit<
   OptionTemplateDTO,
-  | "name"
-  | "appType"
-  | "inputType"
-  | "uiType"
-  | "pricingStrategy"
-  | "values"
-  | "isActive"
+  "id" | "createdAt" | "updatedAt"
 >
 
 export type OptionTemplateUpdateDTO = Partial<OptionTemplateCreateDTO>
