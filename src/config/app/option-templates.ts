@@ -1,4 +1,9 @@
-import { AppType, StockMode, StockModeType } from "./app-type.config"
+import {
+  AppType,
+  AppTypeType,
+  StockMode,
+  StockModeType,
+} from "./app-type.config"
 
 export type OptionValue<V extends OptionValueType> = {
   value: OptionValueTypeMap[V]
@@ -78,7 +83,7 @@ export type AppTypeConfig = {
   optionTemplates: OptionTemplate[]
 }
 
-export const appTypeConfigMap: Record<AppType, AppTypeConfig> = {
+export const appTypeConfigMap: Record<AppTypeType, AppTypeConfig> = {
   [AppType.FASHION]: {
     usesVariants: true,
     stockMode: StockMode.PER_VARIANT,

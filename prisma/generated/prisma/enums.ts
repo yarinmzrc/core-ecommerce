@@ -19,7 +19,8 @@ export type Role = (typeof Role)[keyof typeof Role]
 
 export const AppType = {
   FASHION: 'FASHION',
-  FOOD: 'FOOD'
+  FOOD: 'FOOD',
+  CATERING: 'CATERING'
 } as const
 
 export type AppType = (typeof AppType)[keyof typeof AppType]
@@ -37,8 +38,7 @@ export type OptionInputType = (typeof OptionInputType)[keyof typeof OptionInputT
 export const OptionUIType = {
   SELECT: 'SELECT',
   MULTI_SELECT: 'MULTI_SELECT',
-  RADIO: 'RADIO',
-  CHECKBOX: 'CHECKBOX'
+  BOOLEAN: 'BOOLEAN'
 } as const
 
 export type OptionUIType = (typeof OptionUIType)[keyof typeof OptionUIType]
@@ -46,8 +46,8 @@ export type OptionUIType = (typeof OptionUIType)[keyof typeof OptionUIType]
 
 export const OptionPricingStrategy = {
   NONE: 'NONE',
-  EXTRA_CHARGE: 'EXTRA_CHARGE',
-  DISCOUNT: 'DISCOUNT'
+  ADDON: 'ADDON',
+  PER_UNIT: 'PER_UNIT'
 } as const
 
 export type OptionPricingStrategy = (typeof OptionPricingStrategy)[keyof typeof OptionPricingStrategy]

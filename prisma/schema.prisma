@@ -85,6 +85,7 @@ model ProductVariant {
 enum AppType {
   FASHION
   FOOD
+  CATERING
 }
 
 enum OptionInputType {
@@ -96,19 +97,15 @@ enum OptionInputType {
 enum OptionUIType {
   SELECT
   MULTI_SELECT
-  RADIO
-  CHECKBOX
+  BOOLEAN
 }
 
 enum OptionPricingStrategy {
   NONE
-  EXTRA_CHARGE
-  DISCOUNT
+  ADDON
+  PER_UNIT
 }
 
-/// ====================
-/// OptionTemplate model
-/// ====================
 model OptionTemplate {
   id String @id @default(auto()) @map("_id") @db.ObjectId
   name String
@@ -116,7 +113,7 @@ model OptionTemplate {
   inputType OptionInputType  
   uiType OptionUIType       
   pricingStrategy OptionPricingStrategy
-  values Json           // array of option values { value, label, priceDelta }
+  values Json    // array of option values { value, label, priceDelta }
   isActive Boolean @default(true)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt

@@ -14,9 +14,7 @@ import type * as Prisma from "../internal/prismaNamespace"
 
 /**
  * Model OptionTemplate
- * ====================
- * OptionTemplate model
- * ====================
+ * 
  */
 export type OptionTemplateModel = runtime.Types.Result.DefaultSelection<Prisma.$OptionTemplatePayload>
 

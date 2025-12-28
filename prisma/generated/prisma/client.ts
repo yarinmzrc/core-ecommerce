@@ -71,9 +71,7 @@ export type ProductOption = Prisma.ProductOptionModel
 export type ProductVariant = Prisma.ProductVariantModel
 /**
  * Model OptionTemplate
- * ====================
- * OptionTemplate model
- * ====================
+ * 
  */
 export type OptionTemplate = Prisma.OptionTemplateModel
 /**

@@ -10,5 +10,5 @@ export const StockMode = {
   NONE: "NONE",
 } as const
 
-export type AppType = (typeof AppType)[keyof typeof AppType]
+export type AppTypeType = (typeof AppType)[keyof typeof AppType]
 export type StockModeType = (typeof StockMode)[keyof typeof StockMode]
