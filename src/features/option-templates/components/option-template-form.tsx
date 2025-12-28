@@ -53,7 +53,7 @@ export function OptionTemplateForm() {
 
   return (
     <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-      <div className="col-span-2 space-y-2">
+      <div className="space-y-2 md:col-span-2">
         <Label htmlFor="name">{t("form.name")}</Label>
         <Input
           id="name"
@@ -125,7 +125,10 @@ export function OptionTemplateForm() {
       )}
 
       {state.inputs.map((input, index) => (
-        <div key={input.id} className="col-span-2 flex items-end gap-2">
+        <div
+          key={input.id}
+          className="flex flex-col items-end gap-2 md:col-span-2 md:flex-row"
+        >
           <div className="space-y-1">
             <Label htmlFor={`option-${index + 1}`}>
               {t("form.optionLabel", { number: index + 1 })}
@@ -186,7 +189,8 @@ export function OptionTemplateForm() {
       ))}
       <Button
         type="button"
-        className="col-span-2"
+        variant="link"
+        className="w-20 md:col-span-2"
         onClick={() =>
           setState((prev) => {
             return {
@@ -206,7 +210,7 @@ export function OptionTemplateForm() {
       >
         {t("form.addOption")}
       </Button>
-      <div className="space-y-2">
+      <div className="flex items-center gap-2">
         <Switch
           id="required"
           checked={state.required}

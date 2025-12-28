@@ -129,7 +129,7 @@
         "pricingStrategy": "סוג תמחור",
         "inputType": "סוג קלט",
         "addOption": "הוסף אפשרות",
-        "required": "חובה",
+        "required": "דרוש בחירה בתבנית זו",
         "optionLabel": "אפשרות {number}",
         "pricingDeltaLabel": "תמחור {number}"
       }
