@@ -4,6 +4,12 @@ import { useTranslations } from "next-intl"
 import { useActionState, useState } from "react"
 
 import { Button } from "@/components/ui/button/button"
+import {
+  DropdownMenu,
+  DropdownMenuCheckboxItem,
+  DropdownMenuContent,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
 import { FormError } from "@/components/ui/form/form-error"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
@@ -15,6 +21,7 @@ import {
   SelectValue,
 } from "@/components/ui/select"
 import { Textarea } from "@/components/ui/textarea"
+import { useAppContext } from "@/context/app-context"
 import { CategoryDTO } from "@/features/categories/dtos"
 import { formatCurrency } from "@/lib/format"
 
@@ -23,6 +30,8 @@ import { updateProductAction } from "../../actions/update-product"
 import { ProductDTO } from "../../dtos"
 import { useProductImages } from "../../hooks/use-product-images"
 import { ProductImages } from "./product-images"
+// import { OptionField } from "../product-options/option-field"
+// import { OptionDialog } from "../product-options/option-dialog"
 
 type ProductFormProps = {
   product?: ProductDTO
@@ -32,6 +41,10 @@ type ProductFormProps = {
 export function ProductForm({ product, categories }: ProductFormProps) {
   const t = useTranslations("admin.products.form")
   const buttonsT = useTranslations("buttons")
+
+  const { optionTemplates } = useAppContext()
+
+  const [selectedOptions, setSelectedOptions] = useState<string[]>([])
 
   const [error, action, pending] = useActionState(
     product == null
@@ -63,7 +76,6 @@ export function ProductForm({ product, categories }: ProductFormProps) {
           value={img.publicId}
         />
       ))}
-
       {/* Name Field */}
       <div className="space-y-2">
         <Label htmlFor="name">{t("name")}</Label>
@@ -75,7 +87,6 @@ export function ProductForm({ product, categories }: ProductFormProps) {
         />
         {error?.name && <FormError error={error.name[0]} />}
       </div>
-
       {/* Price Field */}
       <div className="space-y-2">
         <Label htmlFor="basePrice">{t("price")}</Label>
@@ -94,12 +105,11 @@ export function ProductForm({ product, categories }: ProductFormProps) {
           {formatCurrency(basePrice ?? 0)}
         </div>
       </div>
-
       {/* Category Field */}
       <div className="space-y-2">
         <Label htmlFor="categoryId">{t("category")}</Label>
         <Select name="categoryId" defaultValue={product?.categoryId} required>
-          <SelectTrigger id="categoryId" className="w-[180px]">
+          <SelectTrigger id="categoryId" className="w-45">
             <SelectValue />
           </SelectTrigger>
           <SelectContent>
@@ -114,7 +124,6 @@ export function ProductForm({ product, categories }: ProductFormProps) {
           <div className="text-red-500">{error.categoryId}</div>
         )}
       </div>
-
       {/* Description Field */}
       <div className="space-y-2">
         <Label htmlFor="description">{t("description")}</Label>
@@ -128,6 +137,48 @@ export function ProductForm({ product, categories }: ProductFormProps) {
           <div className="text-red-500">{error.description}</div>
         )}
       </div>
+      {/* Options */}
+      <h3 className="text-xl font-semibold">הוסף אפשרויות</h3>
+      <DropdownMenu>
+        <DropdownMenuTrigger asChild>
+          <Button variant="outline">הוסף אפשרויות</Button>
+        </DropdownMenuTrigger>
+        <DropdownMenuContent>
+          {optionTemplates.map((option) => (
+            <DropdownMenuCheckboxItem
+              key={option.key}
+              checked={selectedOptions.includes(option.key)}
+              onCheckedChange={(checked) => {
+                if (checked) {
+                  setSelectedOptions((prev) => [...prev, option.key])
+                } else {
+                  setSelectedOptions((prev) =>
+                    prev.filter((key) => key !== option.key),
+                  )
+                }
+              }}
+            >
+              {option.label}
+            </DropdownMenuCheckboxItem>
+          ))}
+        </DropdownMenuContent>
+      </DropdownMenu>
+
+      {/* Option Fields
+      {selectedOptions.map((optionKey) => {
+        const option = optionTemplates.find((o) => o.key === optionKey)
+        if (!option) {
+          return null
+        }
+        return (
+          <OptionField
+            key={option.key}
+            option={option}
+            onChange={setSelectedOptions}
+          />
+        )
+      })}
+      <OptionDialog /> */}
 
       {/* Images Field */}
       <ProductImages
@@ -138,7 +189,6 @@ export function ProductForm({ product, categories }: ProductFormProps) {
         onRemoveNew={removeNewImageInput}
         error={error?.images?.[0]}
       />
-
       {/* Submit Button */}
       <Button type="submit" disabled={pending}>
         {pending ? buttonsT("saving") : buttonsT("save")}

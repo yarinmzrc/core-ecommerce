@@ -1,6 +1,6 @@
 import { z } from "zod"
 
-import { AppType } from "./app"
+import { AppType } from "./app/app-type.config"
 
 const createEnv = () => {
   const EnvSchema = z.object({
@@ -20,8 +20,8 @@ const createEnv = () => {
   })
 
   const envVars = {
-    APP_NAME: process.env.APP_NAME,
-    APP_TYPE: process.env.APP_TYPE,
+    APP_NAME: process.env.NEXT_PUBLIC_APP_NAME,
+    APP_TYPE: process.env.NEXT_PUBLIC_APP_TYPE,
     DATABASE_URL: process.env.DATABASE_URL,
     ADMIN_USERNAME: process.env.ADMIN_USERNAME,
     HASHED_ADMIN_PASSWORD: process.env.HASHED_ADMIN_PASSWORD,

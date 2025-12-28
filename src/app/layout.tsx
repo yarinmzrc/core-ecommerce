@@ -6,6 +6,8 @@ import { NextIntlClientProvider } from "next-intl"
 import { getMessages } from "next-intl/server"
 
 import { Toaster } from "@/components/ui/sonner"
+import { getAppData } from "@/config/app/app.config"
+import { AppProvider } from "@/context/app-context"
 import { cn } from "@/lib/utils"
 
 const notoSansHebrew = Noto_Sans_Hebrew({
@@ -25,6 +27,7 @@ export default async function RootLayout({
   children: React.ReactNode
 }>) {
   const messages = await getMessages()
+  const appData = getAppData()
 
   return (
     <html dir="rtl">
@@ -34,10 +37,12 @@ export default async function RootLayout({
           notoSansHebrew.className,
         )}
       >
-        <NextIntlClientProvider messages={messages}>
-          {children}
-          <Toaster />
-        </NextIntlClientProvider>
+        <AppProvider value={appData}>
+          <NextIntlClientProvider messages={messages}>
+            {children}
+            <Toaster />
+          </NextIntlClientProvider>
+        </AppProvider>
       </body>
     </html>
   )

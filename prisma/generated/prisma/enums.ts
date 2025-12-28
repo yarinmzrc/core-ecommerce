@@ -17,6 +17,34 @@ export const Role = {
 export type Role = (typeof Role)[keyof typeof Role]
 
 
+export const OptionInputType = {
+  TEXT: 'TEXT',
+  NUMBER: 'NUMBER',
+  BOOLEAN: 'BOOLEAN'
+} as const
+
+export type OptionInputType = (typeof OptionInputType)[keyof typeof OptionInputType]
+
+
+export const OptionUIType = {
+  SELECT: 'SELECT',
+  MULTI_SELECT: 'MULTI_SELECT',
+  RADIO: 'RADIO',
+  CHECKBOX: 'CHECKBOX'
+} as const
+
+export type OptionUIType = (typeof OptionUIType)[keyof typeof OptionUIType]
+
+
+export const OptionPricingStrategy = {
+  NONE: 'NONE',
+  EXTRA_CHARGE: 'EXTRA_CHARGE',
+  DISCOUNT: 'DISCOUNT'
+} as const
+
+export type OptionPricingStrategy = (typeof OptionPricingStrategy)[keyof typeof OptionPricingStrategy]
+
+
 export const OrderStatus = {
   PENDING: 'PENDING',
   PAID: 'PAID',

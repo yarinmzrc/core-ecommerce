@@ -53,6 +53,7 @@ export const ModelName = {
   Product: 'Product',
   ProductOption: 'ProductOption',
   ProductVariant: 'ProductVariant',
+  OptionTemplate: 'OptionTemplate',
   Category: 'Category',
   Order: 'Order',
   OrderItem: 'OrderItem'
@@ -85,8 +86,7 @@ export const ProductScalarFieldEnum = {
   isAvailableForSale: 'isAvailableForSale',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
-  categoryId: 'categoryId',
-  attributes: 'attributes'
+  categoryId: 'categoryId'
 } as const
 
 export type ProductScalarFieldEnum = (typeof ProductScalarFieldEnum)[keyof typeof ProductScalarFieldEnum]
@@ -94,7 +94,8 @@ export type ProductScalarFieldEnum = (typeof ProductScalarFieldEnum)[keyof typeo
 
 export const ProductOptionScalarFieldEnum = {
   id: 'id',
-  name: 'name',
+  templateId: 'templateId',
+  overrides: 'overrides',
   productId: 'productId'
 } as const
 
@@ -111,6 +112,21 @@ export const ProductVariantScalarFieldEnum = {
 } as const
 
 export type ProductVariantScalarFieldEnum = (typeof ProductVariantScalarFieldEnum)[keyof typeof ProductVariantScalarFieldEnum]
+
+
+export const OptionTemplateScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  inputType: 'inputType',
+  uiType: 'uiType',
+  pricingStrategy: 'pricingStrategy',
+  values: 'values',
+  isActive: 'isActive',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type OptionTemplateScalarFieldEnum = (typeof OptionTemplateScalarFieldEnum)[keyof typeof OptionTemplateScalarFieldEnum]
 
 
 export const CategoryScalarFieldEnum = {

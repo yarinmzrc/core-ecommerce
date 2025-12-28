@@ -443,11 +443,6 @@ export type ProductVariantUncheckedUpdateManyWithoutProductNestedInput = {
   deleteMany?: Prisma.ProductVariantScalarWhereInput | Prisma.ProductVariantScalarWhereInput[]
 }
 
-export type NullableStringFieldUpdateOperationsInput = {
-  set?: string | null
-  unset?: boolean
-}
-
 export type ProductVariantCreateNestedOneWithoutOrderItemsInput = {
   create?: Prisma.XOR<Prisma.ProductVariantCreateWithoutOrderItemsInput, Prisma.ProductVariantUncheckedCreateWithoutOrderItemsInput>
   connectOrCreate?: Prisma.ProductVariantCreateOrConnectWithoutOrderItemsInput

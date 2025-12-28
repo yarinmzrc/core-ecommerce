@@ -61,12 +61,14 @@ async function main() {
       options: {
         create: [
           {
-            name: "מידת עשייה",
-            values: [
-              { name: "M", extraPrice: 0 },
-              { name: "MW", extraPrice: 0 },
-              { name: "WD", extraPrice: 0 },
-            ],
+            overrides: {
+              name: "מידת עשייה",
+              values: [
+                { name: "m", label: "M", extraPrice: 0 },
+                { name: "mw", label: "MW", extraPrice: 0 },
+                { name: "wd", label: "WD", extraPrice: 0 },
+              ],
+            },
           },
         ],
       },

@@ -31,7 +31,6 @@ export type ProductDTO = {
   images: ImageDTO[]
   isAvailableForSale: boolean
   categoryId: string
-  attributes: Record<string, string> | null
 
   createdAt: Date
   updatedAt: Date

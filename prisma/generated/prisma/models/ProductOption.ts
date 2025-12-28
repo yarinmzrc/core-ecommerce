@@ -14,7 +14,9 @@ import type * as Prisma from "../internal/prismaNamespace"
 
 /**
  * Model ProductOption
- * 
+ * ====================
+ * ProductOption model
+ * ====================
  */
 export type ProductOptionModel = runtime.Types.Result.DefaultSelection<Prisma.$ProductOptionPayload>
 
@@ -26,19 +28,20 @@ export type AggregateProductOption = {
 
 export type ProductOptionMinAggregateOutputType = {
   id: string | null
-  name: string | null
+  templateId: string | null
   productId: string | null
 }
 
 export type ProductOptionMaxAggregateOutputType = {
   id: string | null
-  name: string | null
+  templateId: string | null
   productId: string | null
 }
 
 export type ProductOptionCountAggregateOutputType = {
   id: number
-  name: number
+  templateId: number
+  overrides: number
   productId: number
   _all: number
 }
@@ -46,19 +49,20 @@ export type ProductOptionCountAggregateOutputType = {
 
 export type ProductOptionMinAggregateInputType = {
   id?: true
-  name?: true
+  templateId?: true
   productId?: true
 }
 
 export type ProductOptionMaxAggregateInputType = {
   id?: true
-  name?: true
+  templateId?: true
   productId?: true
 }
 
 export type ProductOptionCountAggregateInputType = {
   id?: true
-  name?: true
+  templateId?: true
+  overrides?: true
   productId?: true
   _all?: true
 }
@@ -137,7 +141,8 @@ export type ProductOptionGroupByArgs<ExtArgs extends runtime.Types.Extensions.In
 
 export type ProductOptionGroupByOutputType = {
   id: string
-  name: string
+  templateId: string | null
+  overrides: runtime.JsonValue | null
   productId: string
   _count: ProductOptionCountAggregateOutputType | null
   _min: ProductOptionMinAggregateOutputType | null
@@ -164,17 +169,19 @@ export type ProductOptionWhereInput = {
   OR?: Prisma.ProductOptionWhereInput[]
   NOT?: Prisma.ProductOptionWhereInput | Prisma.ProductOptionWhereInput[]
   id?: Prisma.StringFilter<"ProductOption"> | string
-  name?: Prisma.StringFilter<"ProductOption"> | string
-  values?: Prisma.ProductOptionValueCompositeListFilter | Prisma.ProductOptionValueObjectEqualityInput[]
+  templateId?: Prisma.StringNullableFilter<"ProductOption"> | string | null
+  overrides?: Prisma.JsonNullableFilter<"ProductOption">
   productId?: Prisma.StringFilter<"ProductOption"> | string
+  template?: Prisma.XOR<Prisma.OptionTemplateNullableScalarRelationFilter, Prisma.OptionTemplateWhereInput> | null
   product?: Prisma.XOR<Prisma.ProductScalarRelationFilter, Prisma.ProductWhereInput>
 }
 
 export type ProductOptionOrderByWithRelationInput = {
   id?: Prisma.SortOrder
-  name?: Prisma.SortOrder
-  values?: Prisma.ProductOptionValueOrderByCompositeAggregateInput
+  templateId?: Prisma.SortOrder
+  overrides?: Prisma.SortOrder
   productId?: Prisma.SortOrder
+  template?: Prisma.OptionTemplateOrderByWithRelationInput
   product?: Prisma.ProductOrderByWithRelationInput
 }
 
@@ -183,15 +190,17 @@ export type ProductOptionWhereUniqueInput = Prisma.AtLeast<{
   AND?: Prisma.ProductOptionWhereInput | Prisma.ProductOptionWhereInput[]
   OR?: Prisma.ProductOptionWhereInput[]
   NOT?: Prisma.ProductOptionWhereInput | Prisma.ProductOptionWhereInput[]
-  name?: Prisma.StringFilter<"ProductOption"> | string
-  values?: Prisma.ProductOptionValueCompositeListFilter | Prisma.ProductOptionValueObjectEqualityInput[]
+  templateId?: Prisma.StringNullableFilter<"ProductOption"> | string | null
+  overrides?: Prisma.JsonNullableFilter<"ProductOption">
   productId?: Prisma.StringFilter<"ProductOption"> | string
+  template?: Prisma.XOR<Prisma.OptionTemplateNullableScalarRelationFilter, Prisma.OptionTemplateWhereInput> | null
   product?: Prisma.XOR<Prisma.ProductScalarRelationFilter, Prisma.ProductWhereInput>
 }, "id">
 
 export type ProductOptionOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
-  name?: Prisma.SortOrder
+  templateId?: Prisma.SortOrder
+  overrides?: Prisma.SortOrder
   productId?: Prisma.SortOrder
   _count?: Prisma.ProductOptionCountOrderByAggregateInput
   _max?: Prisma.ProductOptionMaxOrderByAggregateInput
@@ -203,51 +212,51 @@ export type ProductOptionScalarWhereWithAggregatesInput = {
   OR?: Prisma.ProductOptionScalarWhereWithAggregatesInput[]
   NOT?: Prisma.ProductOptionScalarWhereWithAggregatesInput | Prisma.ProductOptionScalarWhereWithAggregatesInput[]
   id?: Prisma.StringWithAggregatesFilter<"ProductOption"> | string
-  name?: Prisma.StringWithAggregatesFilter<"ProductOption"> | string
+  templateId?: Prisma.StringNullableWithAggregatesFilter<"ProductOption"> | string | null
+  overrides?: Prisma.JsonNullableWithAggregatesFilter<"ProductOption">
   productId?: Prisma.StringWithAggregatesFilter<"ProductOption"> | string
 }
 
 export type ProductOptionCreateInput = {
   id?: string
-  name: string
-  values?: Prisma.XOR<Prisma.ProductOptionValueListCreateEnvelopeInput, Prisma.ProductOptionValueCreateInput> | Prisma.ProductOptionValueCreateInput[]
+  overrides?: runtime.InputJsonValue | null
+  template?: Prisma.OptionTemplateCreateNestedOneWithoutProductOptionsInput
   product: Prisma.ProductCreateNestedOneWithoutOptionsInput
 }
 
 export type ProductOptionUncheckedCreateInput = {
   id?: string
-  name: string
-  values?: Prisma.XOR<Prisma.ProductOptionValueListCreateEnvelopeInput, Prisma.ProductOptionValueCreateInput> | Prisma.ProductOptionValueCreateInput[]
+  templateId?: string | null
+  overrides?: runtime.InputJsonValue | null
   productId: string
 }
 
 export type ProductOptionUpdateInput = {
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  values?: Prisma.XOR<Prisma.ProductOptionValueListUpdateEnvelopeInput, Prisma.ProductOptionValueCreateInput> | Prisma.ProductOptionValueCreateInput[]
+  overrides?: runtime.InputJsonValue | runtime.InputJsonValue | null
+  template?: Prisma.OptionTemplateUpdateOneWithoutProductOptionsNestedInput
   product?: Prisma.ProductUpdateOneRequiredWithoutOptionsNestedInput
 }
 
 export type ProductOptionUncheckedUpdateInput = {
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  values?: Prisma.XOR<Prisma.ProductOptionValueListUpdateEnvelopeInput, Prisma.ProductOptionValueCreateInput> | Prisma.ProductOptionValueCreateInput[]
+  templateId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  overrides?: runtime.InputJsonValue | runtime.InputJsonValue | null
   productId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type ProductOptionCreateManyInput = {
   id?: string
-  name: string
-  values?: Prisma.XOR<Prisma.ProductOptionValueListCreateEnvelopeInput, Prisma.ProductOptionValueCreateInput> | Prisma.ProductOptionValueCreateInput[]
+  templateId?: string | null
+  overrides?: runtime.InputJsonValue | null
   productId: string
 }
 
 export type ProductOptionUpdateManyMutationInput = {
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  values?: Prisma.XOR<Prisma.ProductOptionValueListUpdateEnvelopeInput, Prisma.ProductOptionValueCreateInput> | Prisma.ProductOptionValueCreateInput[]
+  overrides?: runtime.InputJsonValue | runtime.InputJsonValue | null
 }
 
 export type ProductOptionUncheckedUpdateManyInput = {
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  values?: Prisma.XOR<Prisma.ProductOptionValueListUpdateEnvelopeInput, Prisma.ProductOptionValueCreateInput> | Prisma.ProductOptionValueCreateInput[]
+  templateId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  overrides?: runtime.InputJsonValue | runtime.InputJsonValue | null
   productId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
@@ -261,26 +270,22 @@ export type ProductOptionOrderByRelationAggregateInput = {
   _count?: Prisma.SortOrder
 }
 
-export type ProductOptionValueObjectEqualityInput = {
-  name: string
-  extraPrice: number
-}
-
 export type ProductOptionCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  name?: Prisma.SortOrder
+  templateId?: Prisma.SortOrder
+  overrides?: Prisma.SortOrder
   productId?: Prisma.SortOrder
 }
 
 export type ProductOptionMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  name?: Prisma.SortOrder
+  templateId?: Prisma.SortOrder
   productId?: Prisma.SortOrder
 }
 
 export type ProductOptionMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  name?: Prisma.SortOrder
+  templateId?: Prisma.SortOrder
   productId?: Prisma.SortOrder
 }
 
@@ -326,21 +331,63 @@ export type ProductOptionUncheckedUpdateManyWithoutProductNestedInput = {
   deleteMany?: Prisma.ProductOptionScalarWhereInput | Prisma.ProductOptionScalarWhereInput[]
 }
 
-export type ProductOptionValueCreateInput = {
-  name: string
-  extraPrice: number
+export type NullableStringFieldUpdateOperationsInput = {
+  set?: string | null
+  unset?: boolean
+}
+
+export type ProductOptionCreateNestedManyWithoutTemplateInput = {
+  create?: Prisma.XOR<Prisma.ProductOptionCreateWithoutTemplateInput, Prisma.ProductOptionUncheckedCreateWithoutTemplateInput> | Prisma.ProductOptionCreateWithoutTemplateInput[] | Prisma.ProductOptionUncheckedCreateWithoutTemplateInput[]
+  connectOrCreate?: Prisma.ProductOptionCreateOrConnectWithoutTemplateInput | Prisma.ProductOptionCreateOrConnectWithoutTemplateInput[]
+  createMany?: Prisma.ProductOptionCreateManyTemplateInputEnvelope
+  connect?: Prisma.ProductOptionWhereUniqueInput | Prisma.ProductOptionWhereUniqueInput[]
+}
+
+export type ProductOptionUncheckedCreateNestedManyWithoutTemplateInput = {
+  create?: Prisma.XOR<Prisma.ProductOptionCreateWithoutTemplateInput, Prisma.ProductOptionUncheckedCreateWithoutTemplateInput> | Prisma.ProductOptionCreateWithoutTemplateInput[] | Prisma.ProductOptionUncheckedCreateWithoutTemplateInput[]
+  connectOrCreate?: Prisma.ProductOptionCreateOrConnectWithoutTemplateInput | Prisma.ProductOptionCreateOrConnectWithoutTemplateInput[]
+  createMany?: Prisma.ProductOptionCreateManyTemplateInputEnvelope
+  connect?: Prisma.ProductOptionWhereUniqueInput | Prisma.ProductOptionWhereUniqueInput[]
+}
+
+export type ProductOptionUpdateManyWithoutTemplateNestedInput = {
+  create?: Prisma.XOR<Prisma.ProductOptionCreateWithoutTemplateInput, Prisma.ProductOptionUncheckedCreateWithoutTemplateInput> | Prisma.ProductOptionCreateWithoutTemplateInput[] | Prisma.ProductOptionUncheckedCreateWithoutTemplateInput[]
+  connectOrCreate?: Prisma.ProductOptionCreateOrConnectWithoutTemplateInput | Prisma.ProductOptionCreateOrConnectWithoutTemplateInput[]
+  upsert?: Prisma.ProductOptionUpsertWithWhereUniqueWithoutTemplateInput | Prisma.ProductOptionUpsertWithWhereUniqueWithoutTemplateInput[]
+  createMany?: Prisma.ProductOptionCreateManyTemplateInputEnvelope
+  set?: Prisma.ProductOptionWhereUniqueInput | Prisma.ProductOptionWhereUniqueInput[]
+  disconnect?: Prisma.ProductOptionWhereUniqueInput | Prisma.ProductOptionWhereUniqueInput[]
+  delete?: Prisma.ProductOptionWhereUniqueInput | Prisma.ProductOptionWhereUniqueInput[]
+  connect?: Prisma.ProductOptionWhereUniqueInput | Prisma.ProductOptionWhereUniqueInput[]
+  update?: Prisma.ProductOptionUpdateWithWhereUniqueWithoutTemplateInput | Prisma.ProductOptionUpdateWithWhereUniqueWithoutTemplateInput[]
+  updateMany?: Prisma.ProductOptionUpdateManyWithWhereWithoutTemplateInput | Prisma.ProductOptionUpdateManyWithWhereWithoutTemplateInput[]
+  deleteMany?: Prisma.ProductOptionScalarWhereInput | Prisma.ProductOptionScalarWhereInput[]
+}
+
+export type ProductOptionUncheckedUpdateManyWithoutTemplateNestedInput = {
+  create?: Prisma.XOR<Prisma.ProductOptionCreateWithoutTemplateInput, Prisma.ProductOptionUncheckedCreateWithoutTemplateInput> | Prisma.ProductOptionCreateWithoutTemplateInput[] | Prisma.ProductOptionUncheckedCreateWithoutTemplateInput[]
+  connectOrCreate?: Prisma.ProductOptionCreateOrConnectWithoutTemplateInput | Prisma.ProductOptionCreateOrConnectWithoutTemplateInput[]
+  upsert?: Prisma.ProductOptionUpsertWithWhereUniqueWithoutTemplateInput | Prisma.ProductOptionUpsertWithWhereUniqueWithoutTemplateInput[]
+  createMany?: Prisma.ProductOptionCreateManyTemplateInputEnvelope
+  set?: Prisma.ProductOptionWhereUniqueInput | Prisma.ProductOptionWhereUniqueInput[]
+  disconnect?: Prisma.ProductOptionWhereUniqueInput | Prisma.ProductOptionWhereUniqueInput[]
+  delete?: Prisma.ProductOptionWhereUniqueInput | Prisma.ProductOptionWhereUniqueInput[]
+  connect?: Prisma.ProductOptionWhereUniqueInput | Prisma.ProductOptionWhereUniqueInput[]
+  update?: Prisma.ProductOptionUpdateWithWhereUniqueWithoutTemplateInput | Prisma.ProductOptionUpdateWithWhereUniqueWithoutTemplateInput[]
+  updateMany?: Prisma.ProductOptionUpdateManyWithWhereWithoutTemplateInput | Prisma.ProductOptionUpdateManyWithWhereWithoutTemplateInput[]
+  deleteMany?: Prisma.ProductOptionScalarWhereInput | Prisma.ProductOptionScalarWhereInput[]
 }
 
 export type ProductOptionCreateWithoutProductInput = {
   id?: string
-  name: string
-  values?: Prisma.XOR<Prisma.ProductOptionValueListCreateEnvelopeInput, Prisma.ProductOptionValueCreateInput> | Prisma.ProductOptionValueCreateInput[]
+  overrides?: runtime.InputJsonValue | null
+  template?: Prisma.OptionTemplateCreateNestedOneWithoutProductOptionsInput
 }
 
 export type ProductOptionUncheckedCreateWithoutProductInput = {
   id?: string
-  name: string
-  values?: Prisma.XOR<Prisma.ProductOptionValueListCreateEnvelopeInput, Prisma.ProductOptionValueCreateInput> | Prisma.ProductOptionValueCreateInput[]
+  templateId?: string | null
+  overrides?: runtime.InputJsonValue | null
 }
 
 export type ProductOptionCreateOrConnectWithoutProductInput = {
@@ -373,38 +420,98 @@ export type ProductOptionScalarWhereInput = {
   OR?: Prisma.ProductOptionScalarWhereInput[]
   NOT?: Prisma.ProductOptionScalarWhereInput | Prisma.ProductOptionScalarWhereInput[]
   id?: Prisma.StringFilter<"ProductOption"> | string
-  name?: Prisma.StringFilter<"ProductOption"> | string
+  templateId?: Prisma.StringNullableFilter<"ProductOption"> | string | null
+  overrides?: Prisma.JsonNullableFilter<"ProductOption">
   productId?: Prisma.StringFilter<"ProductOption"> | string
+}
+
+export type ProductOptionCreateWithoutTemplateInput = {
+  id?: string
+  overrides?: runtime.InputJsonValue | null
+  product: Prisma.ProductCreateNestedOneWithoutOptionsInput
+}
+
+export type ProductOptionUncheckedCreateWithoutTemplateInput = {
+  id?: string
+  overrides?: runtime.InputJsonValue | null
+  productId: string
+}
+
+export type ProductOptionCreateOrConnectWithoutTemplateInput = {
+  where: Prisma.ProductOptionWhereUniqueInput
+  create: Prisma.XOR<Prisma.ProductOptionCreateWithoutTemplateInput, Prisma.ProductOptionUncheckedCreateWithoutTemplateInput>
+}
+
+export type ProductOptionCreateManyTemplateInputEnvelope = {
+  data: Prisma.ProductOptionCreateManyTemplateInput | Prisma.ProductOptionCreateManyTemplateInput[]
+}
+
+export type ProductOptionUpsertWithWhereUniqueWithoutTemplateInput = {
+  where: Prisma.ProductOptionWhereUniqueInput
+  update: Prisma.XOR<Prisma.ProductOptionUpdateWithoutTemplateInput, Prisma.ProductOptionUncheckedUpdateWithoutTemplateInput>
+  create: Prisma.XOR<Prisma.ProductOptionCreateWithoutTemplateInput, Prisma.ProductOptionUncheckedCreateWithoutTemplateInput>
+}
+
+export type ProductOptionUpdateWithWhereUniqueWithoutTemplateInput = {
+  where: Prisma.ProductOptionWhereUniqueInput
+  data: Prisma.XOR<Prisma.ProductOptionUpdateWithoutTemplateInput, Prisma.ProductOptionUncheckedUpdateWithoutTemplateInput>
+}
+
+export type ProductOptionUpdateManyWithWhereWithoutTemplateInput = {
+  where: Prisma.ProductOptionScalarWhereInput
+  data: Prisma.XOR<Prisma.ProductOptionUpdateManyMutationInput, Prisma.ProductOptionUncheckedUpdateManyWithoutTemplateInput>
 }
 
 export type ProductOptionCreateManyProductInput = {
   id?: string
-  name: string
-  values?: Prisma.XOR<Prisma.ProductOptionValueListCreateEnvelopeInput, Prisma.ProductOptionValueCreateInput> | Prisma.ProductOptionValueCreateInput[]
+  templateId?: string | null
+  overrides?: runtime.InputJsonValue | null
 }
 
 export type ProductOptionUpdateWithoutProductInput = {
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  values?: Prisma.XOR<Prisma.ProductOptionValueListUpdateEnvelopeInput, Prisma.ProductOptionValueCreateInput> | Prisma.ProductOptionValueCreateInput[]
+  overrides?: runtime.InputJsonValue | runtime.InputJsonValue | null
+  template?: Prisma.OptionTemplateUpdateOneWithoutProductOptionsNestedInput
 }
 
 export type ProductOptionUncheckedUpdateWithoutProductInput = {
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  values?: Prisma.XOR<Prisma.ProductOptionValueListUpdateEnvelopeInput, Prisma.ProductOptionValueCreateInput> | Prisma.ProductOptionValueCreateInput[]
+  templateId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  overrides?: runtime.InputJsonValue | runtime.InputJsonValue | null
 }
 
 export type ProductOptionUncheckedUpdateManyWithoutProductInput = {
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  values?: Prisma.XOR<Prisma.ProductOptionValueListUpdateEnvelopeInput, Prisma.ProductOptionValueCreateInput> | Prisma.ProductOptionValueCreateInput[]
+  templateId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  overrides?: runtime.InputJsonValue | runtime.InputJsonValue | null
+}
+
+export type ProductOptionCreateManyTemplateInput = {
+  id?: string
+  overrides?: runtime.InputJsonValue | null
+  productId: string
+}
+
+export type ProductOptionUpdateWithoutTemplateInput = {
+  overrides?: runtime.InputJsonValue | runtime.InputJsonValue | null
+  product?: Prisma.ProductUpdateOneRequiredWithoutOptionsNestedInput
+}
+
+export type ProductOptionUncheckedUpdateWithoutTemplateInput = {
+  overrides?: runtime.InputJsonValue | runtime.InputJsonValue | null
+  productId?: Prisma.StringFieldUpdateOperationsInput | string
+}
+
+export type ProductOptionUncheckedUpdateManyWithoutTemplateInput = {
+  overrides?: runtime.InputJsonValue | runtime.InputJsonValue | null
+  productId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 
 
 export type ProductOptionSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  name?: boolean
-  values?: boolean | Prisma.ProductOptionValueDefaultArgs<ExtArgs>
+  templateId?: boolean
+  overrides?: boolean
   productId?: boolean
+  template?: boolean | Prisma.ProductOption$templateArgs<ExtArgs>
   product?: boolean | Prisma.ProductDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["productOption"]>
 
@@ -412,28 +519,30 @@ export type ProductOptionSelect<ExtArgs extends runtime.Types.Extensions.Interna
 
 export type ProductOptionSelectScalar = {
   id?: boolean
-  name?: boolean
+  templateId?: boolean
+  overrides?: boolean
   productId?: boolean
 }
 
-export type ProductOptionOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "values" | "productId", ExtArgs["result"]["productOption"]>
+export type ProductOptionOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "templateId" | "overrides" | "productId", ExtArgs["result"]["productOption"]>
 export type ProductOptionInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  template?: boolean | Prisma.ProductOption$templateArgs<ExtArgs>
   product?: boolean | Prisma.ProductDefaultArgs<ExtArgs>
 }
 
 export type $ProductOptionPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "ProductOption"
   objects: {
+    template: Prisma.$OptionTemplatePayload<ExtArgs> | null
     product: Prisma.$ProductPayload<ExtArgs>
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
-    name: string
+    templateId: string | null
+    overrides: runtime.JsonValue | null
     productId: string
   }, ExtArgs["result"]["productOption"]>
-  composites: {
-    values: Prisma.$ProductOptionValuePayload[]
-  }
+  composites: {}
 }
 
 export type ProductOptionGetPayload<S extends boolean | null | undefined | ProductOptionDefaultArgs> = runtime.Types.Result.GetResult<Prisma.$ProductOptionPayload, S>
@@ -795,6 +904,7 @@ readonly fields: ProductOptionFieldRefs;
  */
 export interface Prisma__ProductOptionClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
+  template<T extends Prisma.ProductOption$templateArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ProductOption$templateArgs<ExtArgs>>): Prisma.Prisma__OptionTemplateClient<runtime.Types.Result.GetResult<Prisma.$OptionTemplatePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   product<T extends Prisma.ProductDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ProductDefaultArgs<ExtArgs>>): Prisma.Prisma__ProductClient<runtime.Types.Result.GetResult<Prisma.$ProductPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -826,7 +936,8 @@ export interface Prisma__ProductOptionClient<T, Null = never, ExtArgs extends ru
  */
 export interface ProductOptionFieldRefs {
   readonly id: Prisma.FieldRef<"ProductOption", 'String'>
-  readonly name: Prisma.FieldRef<"ProductOption", 'String'>
+  readonly templateId: Prisma.FieldRef<"ProductOption", 'String'>
+  readonly overrides: Prisma.FieldRef<"ProductOption", 'Json'>
   readonly productId: Prisma.FieldRef<"ProductOption", 'String'>
 }
     
@@ -1195,6 +1306,25 @@ export type ProductOptionAggregateRawArgs<ExtArgs extends runtime.Types.Extensio
    * Additional options to pass to the `aggregate` command ${@link https://docs.mongodb.com/manual/reference/command/aggregate/#command-fields MongoDB Docs}.
    */
   options?: runtime.InputJsonValue
+}
+
+/**
+ * ProductOption.template
+ */
+export type ProductOption$templateArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the OptionTemplate
+   */
+  select?: Prisma.OptionTemplateSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the OptionTemplate
+   */
+  omit?: Prisma.OptionTemplateOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.OptionTemplateInclude<ExtArgs> | null
+  where?: Prisma.OptionTemplateWhereInput
 }
 
 /**

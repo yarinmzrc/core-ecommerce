@@ -50,11 +50,6 @@ path.join(process.cwd(), "prisma/generated/prisma/libquery_engine-darwin.dylib.n
  */
 export type Image = Prisma.ImageModel
 /**
- * Model ProductOptionValue
- * 
- */
-export type ProductOptionValue = Prisma.ProductOptionValueModel
-/**
  * Model User
  * 
  */
@@ -66,7 +61,9 @@ export type User = Prisma.UserModel
 export type Product = Prisma.ProductModel
 /**
  * Model ProductOption
- * 
+ * ====================
+ * ProductOption model
+ * ====================
  */
 export type ProductOption = Prisma.ProductOptionModel
 /**
@@ -74,6 +71,13 @@ export type ProductOption = Prisma.ProductOptionModel
  * 
  */
 export type ProductVariant = Prisma.ProductVariantModel
+/**
+ * Model OptionTemplate
+ * ====================
+ * OptionTemplate model
+ * ====================
+ */
+export type OptionTemplate = Prisma.OptionTemplateModel
 /**
  * Model Category
  * 

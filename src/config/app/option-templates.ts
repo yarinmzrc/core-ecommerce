@@ -1,9 +1,29 @@
 import { AppType, StockMode, StockModeType } from "./app-type.config"
 
-export const OptionInputType = {
+export type OptionValue<V extends OptionValueType> = {
+  value: OptionValueTypeMap[V]
+  label: string
+  priceDelta?: number
+}
+
+export const OptionValueType = {
+  STRING: "STRING",
+  NUMBER: "NUMBER",
+  BOOLEAN: "BOOLEAN",
+} as const
+
+export type OptionValueType =
+  (typeof OptionValueType)[keyof typeof OptionValueType]
+
+export type OptionValueTypeMap = {
+  STRING: string
+  NUMBER: number
+  BOOLEAN: boolean
+}
+
+export const OptionUIType = {
   SELECT: "SELECT",
   MULTI_SELECT: "MULTI_SELECT",
-  NUMBER: "NUMBER",
   BOOLEAN: "BOOLEAN",
 } as const
 
@@ -13,8 +33,7 @@ export const OptionPricingStrategy = {
   PER_UNIT: "PER_UNIT",
 } as const
 
-export type OptionInputType =
-  (typeof OptionInputType)[keyof typeof OptionInputType]
+export type OptionUIType = (typeof OptionUIType)[keyof typeof OptionUIType]
 export type OptionPricingStrategyType =
   (typeof OptionPricingStrategy)[keyof typeof OptionPricingStrategy]
 
@@ -23,25 +42,35 @@ export type BaseOptionTemplate = {
   label: string
   required?: boolean
   defaultValue?: unknown
+  uiType: OptionUIType
+  valueType: OptionValueType
+  pricingStrategy: OptionPricingStrategyType
 }
 
-export type AddonOption = BaseOptionTemplate & {
-  pricingStrategy: typeof OptionPricingStrategy.ADDON
-  inputType: typeof OptionInputType.MULTI_SELECT
+export type SelectOptionTemplate<V extends OptionValueType> =
+  BaseOptionTemplate & {
+    uiType: "SELECT"
+    valueType: V
+    unitPrice?: number
+  }
+
+export type MultiSelectOptionTemplate<V extends OptionValueType> =
+  BaseOptionTemplate & {
+    uiType: "MULTI_SELECT"
+    valueType: V
+    min?: number
+    max?: number
+  }
+
+export type BooleanOptionTemplate = BaseOptionTemplate & {
+  uiType: "BOOLEAN"
+  valueType: "BOOLEAN"
 }
 
-export type PerUnitOption = BaseOptionTemplate & {
-  pricingStrategy: typeof OptionPricingStrategy.PER_UNIT
-  inputType: typeof OptionInputType.NUMBER
-  unitPrice: number
-}
-
-export type NonPricedOption = BaseOptionTemplate & {
-  pricingStrategy: typeof OptionPricingStrategy.NONE
-  inputType: typeof OptionInputType.SELECT | typeof OptionInputType.BOOLEAN
-}
-
-export type OptionTemplate = AddonOption | PerUnitOption | NonPricedOption
+export type OptionTemplate =
+  | SelectOptionTemplate<OptionValueType>
+  | MultiSelectOptionTemplate<OptionValueType>
+  | BooleanOptionTemplate
 
 export type AppTypeConfig = {
   usesVariants: boolean
@@ -57,14 +86,16 @@ export const appTypeConfigMap: Record<AppType, AppTypeConfig> = {
       {
         key: "color",
         label: "Color",
-        inputType: OptionInputType.SELECT,
+        uiType: OptionUIType.SELECT,
+        valueType: OptionValueType.STRING,
         pricingStrategy: OptionPricingStrategy.NONE,
         required: true,
       },
       {
         key: "size",
         label: "Size",
-        inputType: OptionInputType.SELECT,
+        uiType: OptionUIType.SELECT,
+        valueType: OptionValueType.STRING,
         pricingStrategy: OptionPricingStrategy.NONE,
         required: true,
       },
@@ -77,15 +108,17 @@ export const appTypeConfigMap: Record<AppType, AppTypeConfig> = {
     optionTemplates: [
       {
         key: "cookingLevel",
-        label: "Cooking Level",
-        inputType: OptionInputType.SELECT,
+        label: "מידת עשייה",
+        uiType: OptionUIType.SELECT,
+        valueType: OptionValueType.STRING,
         pricingStrategy: OptionPricingStrategy.NONE,
         required: true,
       },
       {
         key: "addons",
-        label: "Add-ons",
-        inputType: OptionInputType.MULTI_SELECT,
+        label: "תוספות",
+        valueType: OptionValueType.STRING,
+        uiType: OptionUIType.MULTI_SELECT,
         pricingStrategy: OptionPricingStrategy.ADDON,
         required: false,
       },
@@ -99,7 +132,8 @@ export const appTypeConfigMap: Record<AppType, AppTypeConfig> = {
       {
         key: "guests",
         label: "Guests",
-        inputType: OptionInputType.NUMBER,
+        uiType: OptionUIType.SELECT,
+        valueType: OptionValueType.NUMBER,
         pricingStrategy: OptionPricingStrategy.PER_UNIT,
         unitPrice: 10,
         required: true,
@@ -108,7 +142,8 @@ export const appTypeConfigMap: Record<AppType, AppTypeConfig> = {
       {
         key: "delivery",
         label: "Delivery",
-        inputType: OptionInputType.BOOLEAN,
+        uiType: OptionUIType.BOOLEAN,
+        valueType: OptionValueType.BOOLEAN,
         pricingStrategy: OptionPricingStrategy.NONE,
         required: true,
         defaultValue: false,

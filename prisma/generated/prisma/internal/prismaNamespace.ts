@@ -394,6 +394,7 @@ export const ModelName = {
   Product: 'Product',
   ProductOption: 'ProductOption',
   ProductVariant: 'ProductVariant',
+  OptionTemplate: 'OptionTemplate',
   Category: 'Category',
   Order: 'Order',
   OrderItem: 'OrderItem'
@@ -412,7 +413,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "user" | "product" | "productOption" | "productVariant" | "category" | "order" | "orderItem"
+    modelProps: "user" | "product" | "productOption" | "productVariant" | "optionTemplate" | "category" | "order" | "orderItem"
     txIsolationLevel: never
   }
   model: {
@@ -712,6 +713,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    OptionTemplate: {
+      payload: Prisma.$OptionTemplatePayload<ExtArgs>
+      fields: Prisma.OptionTemplateFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.OptionTemplateFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$OptionTemplatePayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.OptionTemplateFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$OptionTemplatePayload>
+        }
+        findFirst: {
+          args: Prisma.OptionTemplateFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$OptionTemplatePayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.OptionTemplateFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$OptionTemplatePayload>
+        }
+        findMany: {
+          args: Prisma.OptionTemplateFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$OptionTemplatePayload>[]
+        }
+        create: {
+          args: Prisma.OptionTemplateCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$OptionTemplatePayload>
+        }
+        createMany: {
+          args: Prisma.OptionTemplateCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        delete: {
+          args: Prisma.OptionTemplateDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$OptionTemplatePayload>
+        }
+        update: {
+          args: Prisma.OptionTemplateUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$OptionTemplatePayload>
+        }
+        deleteMany: {
+          args: Prisma.OptionTemplateDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.OptionTemplateUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        upsert: {
+          args: Prisma.OptionTemplateUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$OptionTemplatePayload>
+        }
+        aggregate: {
+          args: Prisma.OptionTemplateAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateOptionTemplate>
+        }
+        groupBy: {
+          args: Prisma.OptionTemplateGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.OptionTemplateGroupByOutputType>[]
+        }
+        findRaw: {
+          args: Prisma.OptionTemplateFindRawArgs<ExtArgs>
+          result: Prisma.JsonObject
+        }
+        aggregateRaw: {
+          args: Prisma.OptionTemplateAggregateRawArgs<ExtArgs>
+          result: Prisma.JsonObject
+        }
+        count: {
+          args: Prisma.OptionTemplateCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.OptionTemplateCountAggregateOutputType> | number
+        }
+      }
+    }
     Category: {
       payload: Prisma.$CategoryPayload<ExtArgs>
       fields: Prisma.CategoryFieldRefs
@@ -972,8 +1047,7 @@ export const ProductScalarFieldEnum = {
   isAvailableForSale: 'isAvailableForSale',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
-  categoryId: 'categoryId',
-  attributes: 'attributes'
+  categoryId: 'categoryId'
 } as const
 
 export type ProductScalarFieldEnum = (typeof ProductScalarFieldEnum)[keyof typeof ProductScalarFieldEnum]
@@ -981,7 +1055,8 @@ export type ProductScalarFieldEnum = (typeof ProductScalarFieldEnum)[keyof typeo
 
 export const ProductOptionScalarFieldEnum = {
   id: 'id',
-  name: 'name',
+  templateId: 'templateId',
+  overrides: 'overrides',
   productId: 'productId'
 } as const
 
@@ -998,6 +1073,21 @@ export const ProductVariantScalarFieldEnum = {
 } as const
 
 export type ProductVariantScalarFieldEnum = (typeof ProductVariantScalarFieldEnum)[keyof typeof ProductVariantScalarFieldEnum]
+
+
+export const OptionTemplateScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  inputType: 'inputType',
+  uiType: 'uiType',
+  pricingStrategy: 'pricingStrategy',
+  values: 'values',
+  isActive: 'isActive',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type OptionTemplateScalarFieldEnum = (typeof OptionTemplateScalarFieldEnum)[keyof typeof OptionTemplateScalarFieldEnum]
 
 
 export const CategoryScalarFieldEnum = {
@@ -1134,6 +1224,48 @@ export type JsonFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'J
 
 
 /**
+ * Reference to a field of type 'OptionInputType'
+ */
+export type EnumOptionInputTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'OptionInputType'>
+    
+
+
+/**
+ * Reference to a field of type 'OptionInputType[]'
+ */
+export type ListEnumOptionInputTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'OptionInputType[]'>
+    
+
+
+/**
+ * Reference to a field of type 'OptionUIType'
+ */
+export type EnumOptionUITypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'OptionUIType'>
+    
+
+
+/**
+ * Reference to a field of type 'OptionUIType[]'
+ */
+export type ListEnumOptionUITypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'OptionUIType[]'>
+    
+
+
+/**
+ * Reference to a field of type 'OptionPricingStrategy'
+ */
+export type EnumOptionPricingStrategyFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'OptionPricingStrategy'>
+    
+
+
+/**
+ * Reference to a field of type 'OptionPricingStrategy[]'
+ */
+export type ListEnumOptionPricingStrategyFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'OptionPricingStrategy[]'>
+    
+
+
+/**
  * Reference to a field of type 'OrderStatus'
  */
 export type EnumOrderStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'OrderStatus'>
@@ -1250,6 +1382,7 @@ export type GlobalOmitConfig = {
   product?: Prisma.ProductOmit
   productOption?: Prisma.ProductOptionOmit
   productVariant?: Prisma.ProductVariantOmit
+  optionTemplate?: Prisma.OptionTemplateOmit
   category?: Prisma.CategoryOmit
   order?: Prisma.OrderOmit
   orderItem?: Prisma.OrderItemOmit
