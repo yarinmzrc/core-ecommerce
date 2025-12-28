@@ -17,6 +17,14 @@ export const Role = {
 export type Role = (typeof Role)[keyof typeof Role]
 
 
+export const AppType = {
+  FASHION: 'FASHION',
+  FOOD: 'FOOD'
+} as const
+
+export type AppType = (typeof AppType)[keyof typeof AppType]
+
+
 export const OptionInputType = {
   TEXT: 'TEXT',
   NUMBER: 'NUMBER',

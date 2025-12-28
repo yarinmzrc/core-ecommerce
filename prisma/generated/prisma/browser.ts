@@ -34,9 +34,7 @@ export type User = Prisma.UserModel
 export type Product = Prisma.ProductModel
 /**
  * Model ProductOption
- * ====================
- * ProductOption model
- * ====================
+ * 
  */
 export type ProductOption = Prisma.ProductOptionModel
 /**

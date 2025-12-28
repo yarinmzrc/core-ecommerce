@@ -220,6 +220,13 @@ export type JsonWithAggregatesFilterBase<$PrismaModel = never> = {
   _max?: Prisma.NestedJsonFilter<$PrismaModel>
 }
 
+export type EnumAppTypeFilter<$PrismaModel = never> = {
+  equals?: $Enums.AppType | Prisma.EnumAppTypeFieldRefInput<$PrismaModel>
+  in?: $Enums.AppType[] | Prisma.ListEnumAppTypeFieldRefInput<$PrismaModel>
+  notIn?: $Enums.AppType[] | Prisma.ListEnumAppTypeFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumAppTypeFilter<$PrismaModel> | $Enums.AppType
+}
+
 export type EnumOptionInputTypeFilter<$PrismaModel = never> = {
   equals?: $Enums.OptionInputType | Prisma.EnumOptionInputTypeFieldRefInput<$PrismaModel>
   in?: $Enums.OptionInputType[] | Prisma.ListEnumOptionInputTypeFieldRefInput<$PrismaModel>
@@ -239,6 +246,16 @@ export type EnumOptionPricingStrategyFilter<$PrismaModel = never> = {
   in?: $Enums.OptionPricingStrategy[] | Prisma.ListEnumOptionPricingStrategyFieldRefInput<$PrismaModel>
   notIn?: $Enums.OptionPricingStrategy[] | Prisma.ListEnumOptionPricingStrategyFieldRefInput<$PrismaModel>
   not?: Prisma.NestedEnumOptionPricingStrategyFilter<$PrismaModel> | $Enums.OptionPricingStrategy
+}
+
+export type EnumAppTypeWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.AppType | Prisma.EnumAppTypeFieldRefInput<$PrismaModel>
+  in?: $Enums.AppType[] | Prisma.ListEnumAppTypeFieldRefInput<$PrismaModel>
+  notIn?: $Enums.AppType[] | Prisma.ListEnumAppTypeFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumAppTypeWithAggregatesFilter<$PrismaModel> | $Enums.AppType
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumAppTypeFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumAppTypeFilter<$PrismaModel>
 }
 
 export type EnumOptionInputTypeWithAggregatesFilter<$PrismaModel = never> = {
@@ -482,6 +499,13 @@ export type NestedJsonFilterBase<$PrismaModel = never> = {
   not?: runtime.InputJsonValue | Prisma.JsonFieldRefInput<$PrismaModel>
 }
 
+export type NestedEnumAppTypeFilter<$PrismaModel = never> = {
+  equals?: $Enums.AppType | Prisma.EnumAppTypeFieldRefInput<$PrismaModel>
+  in?: $Enums.AppType[] | Prisma.ListEnumAppTypeFieldRefInput<$PrismaModel>
+  notIn?: $Enums.AppType[] | Prisma.ListEnumAppTypeFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumAppTypeFilter<$PrismaModel> | $Enums.AppType
+}
+
 export type NestedEnumOptionInputTypeFilter<$PrismaModel = never> = {
   equals?: $Enums.OptionInputType | Prisma.EnumOptionInputTypeFieldRefInput<$PrismaModel>
   in?: $Enums.OptionInputType[] | Prisma.ListEnumOptionInputTypeFieldRefInput<$PrismaModel>
@@ -501,6 +525,16 @@ export type NestedEnumOptionPricingStrategyFilter<$PrismaModel = never> = {
   in?: $Enums.OptionPricingStrategy[] | Prisma.ListEnumOptionPricingStrategyFieldRefInput<$PrismaModel>
   notIn?: $Enums.OptionPricingStrategy[] | Prisma.ListEnumOptionPricingStrategyFieldRefInput<$PrismaModel>
   not?: Prisma.NestedEnumOptionPricingStrategyFilter<$PrismaModel> | $Enums.OptionPricingStrategy
+}
+
+export type NestedEnumAppTypeWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.AppType | Prisma.EnumAppTypeFieldRefInput<$PrismaModel>
+  in?: $Enums.AppType[] | Prisma.ListEnumAppTypeFieldRefInput<$PrismaModel>
+  notIn?: $Enums.AppType[] | Prisma.ListEnumAppTypeFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumAppTypeWithAggregatesFilter<$PrismaModel> | $Enums.AppType
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumAppTypeFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumAppTypeFilter<$PrismaModel>
 }
 
 export type NestedEnumOptionInputTypeWithAggregatesFilter<$PrismaModel = never> = {

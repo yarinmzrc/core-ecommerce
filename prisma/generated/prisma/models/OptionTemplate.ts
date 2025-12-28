@@ -29,6 +29,7 @@ export type AggregateOptionTemplate = {
 export type OptionTemplateMinAggregateOutputType = {
   id: string | null
   name: string | null
+  appType: $Enums.AppType | null
   inputType: $Enums.OptionInputType | null
   uiType: $Enums.OptionUIType | null
   pricingStrategy: $Enums.OptionPricingStrategy | null
@@ -40,6 +41,7 @@ export type OptionTemplateMinAggregateOutputType = {
 export type OptionTemplateMaxAggregateOutputType = {
   id: string | null
   name: string | null
+  appType: $Enums.AppType | null
   inputType: $Enums.OptionInputType | null
   uiType: $Enums.OptionUIType | null
   pricingStrategy: $Enums.OptionPricingStrategy | null
@@ -51,6 +53,7 @@ export type OptionTemplateMaxAggregateOutputType = {
 export type OptionTemplateCountAggregateOutputType = {
   id: number
   name: number
+  appType: number
   inputType: number
   uiType: number
   pricingStrategy: number
@@ -65,6 +68,7 @@ export type OptionTemplateCountAggregateOutputType = {
 export type OptionTemplateMinAggregateInputType = {
   id?: true
   name?: true
+  appType?: true
   inputType?: true
   uiType?: true
   pricingStrategy?: true
@@ -76,6 +80,7 @@ export type OptionTemplateMinAggregateInputType = {
 export type OptionTemplateMaxAggregateInputType = {
   id?: true
   name?: true
+  appType?: true
   inputType?: true
   uiType?: true
   pricingStrategy?: true
@@ -87,6 +92,7 @@ export type OptionTemplateMaxAggregateInputType = {
 export type OptionTemplateCountAggregateInputType = {
   id?: true
   name?: true
+  appType?: true
   inputType?: true
   uiType?: true
   pricingStrategy?: true
@@ -172,6 +178,7 @@ export type OptionTemplateGroupByArgs<ExtArgs extends runtime.Types.Extensions.I
 export type OptionTemplateGroupByOutputType = {
   id: string
   name: string
+  appType: $Enums.AppType
   inputType: $Enums.OptionInputType
   uiType: $Enums.OptionUIType
   pricingStrategy: $Enums.OptionPricingStrategy
@@ -205,6 +212,7 @@ export type OptionTemplateWhereInput = {
   NOT?: Prisma.OptionTemplateWhereInput | Prisma.OptionTemplateWhereInput[]
   id?: Prisma.StringFilter<"OptionTemplate"> | string
   name?: Prisma.StringFilter<"OptionTemplate"> | string
+  appType?: Prisma.EnumAppTypeFilter<"OptionTemplate"> | $Enums.AppType
   inputType?: Prisma.EnumOptionInputTypeFilter<"OptionTemplate"> | $Enums.OptionInputType
   uiType?: Prisma.EnumOptionUITypeFilter<"OptionTemplate"> | $Enums.OptionUIType
   pricingStrategy?: Prisma.EnumOptionPricingStrategyFilter<"OptionTemplate"> | $Enums.OptionPricingStrategy
@@ -218,6 +226,7 @@ export type OptionTemplateWhereInput = {
 export type OptionTemplateOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
+  appType?: Prisma.SortOrder
   inputType?: Prisma.SortOrder
   uiType?: Prisma.SortOrder
   pricingStrategy?: Prisma.SortOrder
@@ -234,6 +243,7 @@ export type OptionTemplateWhereUniqueInput = Prisma.AtLeast<{
   OR?: Prisma.OptionTemplateWhereInput[]
   NOT?: Prisma.OptionTemplateWhereInput | Prisma.OptionTemplateWhereInput[]
   name?: Prisma.StringFilter<"OptionTemplate"> | string
+  appType?: Prisma.EnumAppTypeFilter<"OptionTemplate"> | $Enums.AppType
   inputType?: Prisma.EnumOptionInputTypeFilter<"OptionTemplate"> | $Enums.OptionInputType
   uiType?: Prisma.EnumOptionUITypeFilter<"OptionTemplate"> | $Enums.OptionUIType
   pricingStrategy?: Prisma.EnumOptionPricingStrategyFilter<"OptionTemplate"> | $Enums.OptionPricingStrategy
@@ -247,6 +257,7 @@ export type OptionTemplateWhereUniqueInput = Prisma.AtLeast<{
 export type OptionTemplateOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
+  appType?: Prisma.SortOrder
   inputType?: Prisma.SortOrder
   uiType?: Prisma.SortOrder
   pricingStrategy?: Prisma.SortOrder
@@ -265,6 +276,7 @@ export type OptionTemplateScalarWhereWithAggregatesInput = {
   NOT?: Prisma.OptionTemplateScalarWhereWithAggregatesInput | Prisma.OptionTemplateScalarWhereWithAggregatesInput[]
   id?: Prisma.StringWithAggregatesFilter<"OptionTemplate"> | string
   name?: Prisma.StringWithAggregatesFilter<"OptionTemplate"> | string
+  appType?: Prisma.EnumAppTypeWithAggregatesFilter<"OptionTemplate"> | $Enums.AppType
   inputType?: Prisma.EnumOptionInputTypeWithAggregatesFilter<"OptionTemplate"> | $Enums.OptionInputType
   uiType?: Prisma.EnumOptionUITypeWithAggregatesFilter<"OptionTemplate"> | $Enums.OptionUIType
   pricingStrategy?: Prisma.EnumOptionPricingStrategyWithAggregatesFilter<"OptionTemplate"> | $Enums.OptionPricingStrategy
@@ -277,6 +289,7 @@ export type OptionTemplateScalarWhereWithAggregatesInput = {
 export type OptionTemplateCreateInput = {
   id?: string
   name: string
+  appType: $Enums.AppType
   inputType: $Enums.OptionInputType
   uiType: $Enums.OptionUIType
   pricingStrategy: $Enums.OptionPricingStrategy
@@ -290,6 +303,7 @@ export type OptionTemplateCreateInput = {
 export type OptionTemplateUncheckedCreateInput = {
   id?: string
   name: string
+  appType: $Enums.AppType
   inputType: $Enums.OptionInputType
   uiType: $Enums.OptionUIType
   pricingStrategy: $Enums.OptionPricingStrategy
@@ -302,6 +316,7 @@ export type OptionTemplateUncheckedCreateInput = {
 
 export type OptionTemplateUpdateInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  appType?: Prisma.EnumAppTypeFieldUpdateOperationsInput | $Enums.AppType
   inputType?: Prisma.EnumOptionInputTypeFieldUpdateOperationsInput | $Enums.OptionInputType
   uiType?: Prisma.EnumOptionUITypeFieldUpdateOperationsInput | $Enums.OptionUIType
   pricingStrategy?: Prisma.EnumOptionPricingStrategyFieldUpdateOperationsInput | $Enums.OptionPricingStrategy
@@ -314,6 +329,7 @@ export type OptionTemplateUpdateInput = {
 
 export type OptionTemplateUncheckedUpdateInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  appType?: Prisma.EnumAppTypeFieldUpdateOperationsInput | $Enums.AppType
   inputType?: Prisma.EnumOptionInputTypeFieldUpdateOperationsInput | $Enums.OptionInputType
   uiType?: Prisma.EnumOptionUITypeFieldUpdateOperationsInput | $Enums.OptionUIType
   pricingStrategy?: Prisma.EnumOptionPricingStrategyFieldUpdateOperationsInput | $Enums.OptionPricingStrategy
@@ -327,6 +343,7 @@ export type OptionTemplateUncheckedUpdateInput = {
 export type OptionTemplateCreateManyInput = {
   id?: string
   name: string
+  appType: $Enums.AppType
   inputType: $Enums.OptionInputType
   uiType: $Enums.OptionUIType
   pricingStrategy: $Enums.OptionPricingStrategy
@@ -338,6 +355,7 @@ export type OptionTemplateCreateManyInput = {
 
 export type OptionTemplateUpdateManyMutationInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  appType?: Prisma.EnumAppTypeFieldUpdateOperationsInput | $Enums.AppType
   inputType?: Prisma.EnumOptionInputTypeFieldUpdateOperationsInput | $Enums.OptionInputType
   uiType?: Prisma.EnumOptionUITypeFieldUpdateOperationsInput | $Enums.OptionUIType
   pricingStrategy?: Prisma.EnumOptionPricingStrategyFieldUpdateOperationsInput | $Enums.OptionPricingStrategy
@@ -349,6 +367,7 @@ export type OptionTemplateUpdateManyMutationInput = {
 
 export type OptionTemplateUncheckedUpdateManyInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  appType?: Prisma.EnumAppTypeFieldUpdateOperationsInput | $Enums.AppType
   inputType?: Prisma.EnumOptionInputTypeFieldUpdateOperationsInput | $Enums.OptionInputType
   uiType?: Prisma.EnumOptionUITypeFieldUpdateOperationsInput | $Enums.OptionUIType
   pricingStrategy?: Prisma.EnumOptionPricingStrategyFieldUpdateOperationsInput | $Enums.OptionPricingStrategy
@@ -366,6 +385,7 @@ export type OptionTemplateNullableScalarRelationFilter = {
 export type OptionTemplateCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
+  appType?: Prisma.SortOrder
   inputType?: Prisma.SortOrder
   uiType?: Prisma.SortOrder
   pricingStrategy?: Prisma.SortOrder
@@ -378,6 +398,7 @@ export type OptionTemplateCountOrderByAggregateInput = {
 export type OptionTemplateMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
+  appType?: Prisma.SortOrder
   inputType?: Prisma.SortOrder
   uiType?: Prisma.SortOrder
   pricingStrategy?: Prisma.SortOrder
@@ -389,6 +410,7 @@ export type OptionTemplateMaxOrderByAggregateInput = {
 export type OptionTemplateMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
+  appType?: Prisma.SortOrder
   inputType?: Prisma.SortOrder
   uiType?: Prisma.SortOrder
   pricingStrategy?: Prisma.SortOrder
@@ -413,6 +435,10 @@ export type OptionTemplateUpdateOneWithoutProductOptionsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.OptionTemplateUpdateToOneWithWhereWithoutProductOptionsInput, Prisma.OptionTemplateUpdateWithoutProductOptionsInput>, Prisma.OptionTemplateUncheckedUpdateWithoutProductOptionsInput>
 }
 
+export type EnumAppTypeFieldUpdateOperationsInput = {
+  set?: $Enums.AppType
+}
+
 export type EnumOptionInputTypeFieldUpdateOperationsInput = {
   set?: $Enums.OptionInputType
 }
@@ -428,6 +454,7 @@ export type EnumOptionPricingStrategyFieldUpdateOperationsInput = {
 export type OptionTemplateCreateWithoutProductOptionsInput = {
   id?: string
   name: string
+  appType: $Enums.AppType
   inputType: $Enums.OptionInputType
   uiType: $Enums.OptionUIType
   pricingStrategy: $Enums.OptionPricingStrategy
@@ -440,6 +467,7 @@ export type OptionTemplateCreateWithoutProductOptionsInput = {
 export type OptionTemplateUncheckedCreateWithoutProductOptionsInput = {
   id?: string
   name: string
+  appType: $Enums.AppType
   inputType: $Enums.OptionInputType
   uiType: $Enums.OptionUIType
   pricingStrategy: $Enums.OptionPricingStrategy
@@ -467,6 +495,7 @@ export type OptionTemplateUpdateToOneWithWhereWithoutProductOptionsInput = {
 
 export type OptionTemplateUpdateWithoutProductOptionsInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  appType?: Prisma.EnumAppTypeFieldUpdateOperationsInput | $Enums.AppType
   inputType?: Prisma.EnumOptionInputTypeFieldUpdateOperationsInput | $Enums.OptionInputType
   uiType?: Prisma.EnumOptionUITypeFieldUpdateOperationsInput | $Enums.OptionUIType
   pricingStrategy?: Prisma.EnumOptionPricingStrategyFieldUpdateOperationsInput | $Enums.OptionPricingStrategy
@@ -478,6 +507,7 @@ export type OptionTemplateUpdateWithoutProductOptionsInput = {
 
 export type OptionTemplateUncheckedUpdateWithoutProductOptionsInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  appType?: Prisma.EnumAppTypeFieldUpdateOperationsInput | $Enums.AppType
   inputType?: Prisma.EnumOptionInputTypeFieldUpdateOperationsInput | $Enums.OptionInputType
   uiType?: Prisma.EnumOptionUITypeFieldUpdateOperationsInput | $Enums.OptionUIType
   pricingStrategy?: Prisma.EnumOptionPricingStrategyFieldUpdateOperationsInput | $Enums.OptionPricingStrategy
@@ -521,6 +551,7 @@ export type OptionTemplateCountOutputTypeCountProductOptionsArgs<ExtArgs extends
 export type OptionTemplateSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   name?: boolean
+  appType?: boolean
   inputType?: boolean
   uiType?: boolean
   pricingStrategy?: boolean
@@ -537,6 +568,7 @@ export type OptionTemplateSelect<ExtArgs extends runtime.Types.Extensions.Intern
 export type OptionTemplateSelectScalar = {
   id?: boolean
   name?: boolean
+  appType?: boolean
   inputType?: boolean
   uiType?: boolean
   pricingStrategy?: boolean
@@ -546,7 +578,7 @@ export type OptionTemplateSelectScalar = {
   updatedAt?: boolean
 }
 
-export type OptionTemplateOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "inputType" | "uiType" | "pricingStrategy" | "values" | "isActive" | "createdAt" | "updatedAt", ExtArgs["result"]["optionTemplate"]>
+export type OptionTemplateOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "appType" | "inputType" | "uiType" | "pricingStrategy" | "values" | "isActive" | "createdAt" | "updatedAt", ExtArgs["result"]["optionTemplate"]>
 export type OptionTemplateInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   productOptions?: boolean | Prisma.OptionTemplate$productOptionsArgs<ExtArgs>
   _count?: boolean | Prisma.OptionTemplateCountOutputTypeDefaultArgs<ExtArgs>
@@ -560,6 +592,7 @@ export type $OptionTemplatePayload<ExtArgs extends runtime.Types.Extensions.Inte
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
     name: string
+    appType: $Enums.AppType
     inputType: $Enums.OptionInputType
     uiType: $Enums.OptionUIType
     pricingStrategy: $Enums.OptionPricingStrategy
@@ -962,6 +995,7 @@ export interface Prisma__OptionTemplateClient<T, Null = never, ExtArgs extends r
 export interface OptionTemplateFieldRefs {
   readonly id: Prisma.FieldRef<"OptionTemplate", 'String'>
   readonly name: Prisma.FieldRef<"OptionTemplate", 'String'>
+  readonly appType: Prisma.FieldRef<"OptionTemplate", 'AppType'>
   readonly inputType: Prisma.FieldRef<"OptionTemplate", 'OptionInputType'>
   readonly uiType: Prisma.FieldRef<"OptionTemplate", 'OptionUIType'>
   readonly pricingStrategy: Prisma.FieldRef<"OptionTemplate", 'OptionPricingStrategy'>

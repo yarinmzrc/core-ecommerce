@@ -1078,6 +1078,7 @@ export type ProductVariantScalarFieldEnum = (typeof ProductVariantScalarFieldEnu
 export const OptionTemplateScalarFieldEnum = {
   id: 'id',
   name: 'name',
+  appType: 'appType',
   inputType: 'inputType',
   uiType: 'uiType',
   pricingStrategy: 'pricingStrategy',
@@ -1220,6 +1221,20 @@ export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel,
  * Reference to a field of type 'Json'
  */
 export type JsonFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Json'>
+    
+
+
+/**
+ * Reference to a field of type 'AppType'
+ */
+export type EnumAppTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'AppType'>
+    
+
+
+/**
+ * Reference to a field of type 'AppType[]'
+ */
+export type ListEnumAppTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'AppType[]'>
     
 
 

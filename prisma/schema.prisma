@@ -82,6 +82,11 @@ model ProductVariant {
   orderItems OrderItem[]
 }
 
+enum AppType {
+  FASHION
+  FOOD
+}
+
 enum OptionInputType {
   TEXT
   NUMBER
@@ -107,6 +112,7 @@ enum OptionPricingStrategy {
 model OptionTemplate {
   id String @id @default(auto()) @map("_id") @db.ObjectId
   name String
+  appType AppType
   inputType OptionInputType  
   uiType OptionUIType       
   pricingStrategy OptionPricingStrategy

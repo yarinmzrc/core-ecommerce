@@ -117,6 +117,7 @@ export type ProductVariantScalarFieldEnum = (typeof ProductVariantScalarFieldEnu
 export const OptionTemplateScalarFieldEnum = {
   id: 'id',
   name: 'name',
+  appType: 'appType',
   inputType: 'inputType',
   uiType: 'uiType',
   pricingStrategy: 'pricingStrategy',
