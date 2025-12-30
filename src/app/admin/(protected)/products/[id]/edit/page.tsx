@@ -3,7 +3,7 @@ import { getTranslations } from "next-intl/server"
 
 import { getCategories } from "@/features/categories/dal/queries"
 import { ProductForm } from "@/features/products/components/product-form/product-form"
-import { getProduct } from "@/features/products/dal/queries"
+import { getFullProduct } from "@/features/products/dal/queries"
 
 import { PageHeader } from "../../../../_components/page-header"
 
@@ -15,7 +15,7 @@ export default async function EditProductPage({
   const t = await getTranslations("admin.products.pages")
 
   const { id } = await params
-  const product = await getProduct(id)
+  const product = await getFullProduct(id)
   const categories = await getCategories()
 
   if (product == null) return notFound()

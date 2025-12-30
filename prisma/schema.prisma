@@ -47,13 +47,6 @@ model Product {
   orderItems OrderItem[]
 }
 
-type ProductOptionValue {
-  name String
-  label String
-  extraPrice Int
-}
-
-
 model ProductOption {
   id String @id @default(auto()) @map("_id") @db.ObjectId
 

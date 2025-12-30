@@ -1,5 +1,6 @@
 import {
   Product as PrismaProduct,
+  ProductOption as PrismaProductOption,
   ProductVariant as PrismaProductVariant,
 } from "../../../prisma/generated/prisma/client"
 import {
@@ -7,8 +8,19 @@ import {
   PrismaProductWithOrderCount,
   ProductDTO,
   ProductListItemDTO,
+  ProductOptionDTO,
   ProductVariantDTO,
 } from "./dtos"
+
+export function mapProductOption(
+  prisma: PrismaProductOption,
+): ProductOptionDTO {
+  return {
+    id: prisma.id,
+    templateId: prisma.templateId,
+    overrides: (prisma.overrides as Record<string, string>) ?? {},
+  }
+}
 
 export function mapProductVariant(
   prisma: PrismaProductVariant,

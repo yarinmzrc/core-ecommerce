@@ -7,13 +7,17 @@ export type ImageDTO = {
 
 export type ProductOptionValueDTO = {
   name: string
+  label: string
   extraPrice: number
 }
 
 export type ProductOptionDTO = {
-  name: string
-  values: ProductOptionValueDTO[]
+  id: string
+  templateId: string | null
+  overrides: Record<string, string> | null
 }
+
+export type ProductOptionCreateDTO = Omit<ProductOptionDTO, "id">
 
 export type ProductVariantDTO = {
   sku: string | null
@@ -22,6 +26,7 @@ export type ProductVariantDTO = {
   images: ImageDTO[]
   selectedOptions: Record<string, string> | null
 }
+
 export type ProductDTO = {
   id: string
   name: string
@@ -39,6 +44,11 @@ export type ProductDTO = {
 export type ProductListItemDTO = ProductDTO & {
   categoryName: string
   orderCount: number
+}
+
+export type ProductFullDTO = ProductDTO & {
+  variants: ProductVariantDTO[]
+  options: ProductOptionDTO[]
 }
 
 export type PrismaProductWithCategory = Prisma.ProductGetPayload<{
@@ -62,4 +72,5 @@ export type CreateProductInput = Omit<
   "id" | "createdAt" | "updatedAt" | "isAvailableForSale"
 > & {
   categoryId: string
+  options: ProductOptionCreateDTO[]
 }

@@ -3,7 +3,12 @@ import { unstable_cache as cache } from "next/cache"
 import { CACHE_TTL_IN_SECONDS } from "@/constants"
 import db from "@/lib/db"
 
-import { mapBaseProduct, mapProductListItem } from "../mappers"
+import {
+  mapBaseProduct,
+  mapProductListItem,
+  mapProductOption,
+  mapProductVariant,
+} from "../mappers"
 
 export const getProduct = cache(
   async (id: string) => {
@@ -14,6 +19,24 @@ export const getProduct = cache(
   },
 
   ["product"],
+  { revalidate: CACHE_TTL_IN_SECONDS },
+)
+
+export const getFullProduct = cache(
+  async (id: string) => {
+    const product = await db.product.findUnique({
+      where: { id },
+      include: { variants: true, options: true },
+    })
+    if (!product) return null
+
+    return {
+      ...mapBaseProduct(product),
+      variants: product.variants.map(mapProductVariant),
+      options: product.options.map(mapProductOption),
+    }
+  },
+  ["full-product"],
   { revalidate: CACHE_TTL_IN_SECONDS },
 )
 

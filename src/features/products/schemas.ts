@@ -11,7 +11,10 @@ export const createProductSchema = z.object({
   description: z.string().min(1),
   images: createProductImageSchema.array().min(1),
   categoryId: z.string(),
+  options: z.array(z.string()).min(1),
 })
+
+export type CreateProductSchemaType = z.infer<typeof createProductSchema>
 
 const updateProductImageSchema = z
   .instanceof(File)

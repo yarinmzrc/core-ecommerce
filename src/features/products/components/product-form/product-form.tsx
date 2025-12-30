@@ -27,14 +27,12 @@ import { formatCurrency } from "@/lib/format"
 
 import { createProductAction } from "../../actions/create-product"
 import { updateProductAction } from "../../actions/update-product"
-import { ProductDTO } from "../../dtos"
+import { ProductFullDTO } from "../../dtos"
 import { useProductImages } from "../../hooks/use-product-images"
 import { ProductImages } from "./product-images"
-// import { OptionField } from "../product-options/option-field"
-// import { OptionDialog } from "../product-options/option-dialog"
 
 type ProductFormProps = {
-  product?: ProductDTO
+  product?: ProductFullDTO
   categories: CategoryDTO[]
 }
 

@@ -2,7 +2,14 @@ import "dotenv/config"
 
 import { hash } from "bcryptjs"
 
+import { AppType } from "@/config/app/app-type.config"
+import { OptionPricingStrategy } from "@/config/app/option-templates"
 import { env } from "@/config/env"
+import {
+  OptionInput,
+  OptionTemplateCreateDTO,
+  OptionUI,
+} from "@/features/option-templates/dtos"
 import db from "@/lib/db"
 
 import { Role } from "./generated/prisma/enums"
@@ -13,6 +20,7 @@ async function main() {
   await db.order.deleteMany()
   await db.product.deleteMany()
   await db.category.deleteMany()
+  await db.optionTemplate.deleteMany()
 
   // Create Admin user for testing
   const password = await hash(env.ADMIN_PASSWORD ?? "password", 12)
@@ -25,6 +33,37 @@ async function main() {
       role: Role.ADMIN,
     },
   })
+
+  // Create Option Templates
+  const optionTemplates: OptionTemplateCreateDTO[] = [
+    {
+      name: "מידת עשייה",
+      appType: AppType.FOOD,
+      inputType: OptionInput.TEXT,
+      uiType: OptionUI.SELECT,
+      pricingStrategy: OptionPricingStrategy.NONE,
+      values: [
+        {
+          label: "M",
+          value: "M",
+        },
+        {
+          label: "MW",
+          value: "MW",
+        },
+        {
+          label: "WD",
+          value: "WD",
+        },
+      ],
+      isActive: true,
+      required: true,
+    },
+  ]
+
+  for (const optionTemplate of optionTemplates) {
+    await db.optionTemplate.create({ data: optionTemplate })
+  }
 
   // Create categories
   const categoriesData = [
