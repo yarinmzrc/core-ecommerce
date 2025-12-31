@@ -2,6 +2,7 @@ import { notFound } from "next/navigation"
 import { getTranslations } from "next-intl/server"
 
 import { getCategories } from "@/features/categories/dal/queries"
+import { getOptionTemplates } from "@/features/option-templates/dal/queries"
 import { ProductForm } from "@/features/products/components/product-form/product-form"
 import { getFullProduct } from "@/features/products/dal/queries"
 
@@ -15,15 +16,23 @@ export default async function EditProductPage({
   const t = await getTranslations("admin.products.pages")
 
   const { id } = await params
-  const product = await getFullProduct(id)
-  const categories = await getCategories()
+
+  const [product, categories, optionTemplates] = await Promise.all([
+    getFullProduct(id),
+    getCategories(),
+    getOptionTemplates(),
+  ])
 
   if (product == null) return notFound()
 
   return (
     <div className="flex flex-col gap-4">
       <PageHeader>{t("edit")}</PageHeader>
-      <ProductForm product={product} categories={categories} />
+      <ProductForm
+        optionTemplates={optionTemplates}
+        product={product}
+        categories={categories}
+      />
     </div>
   )
 }

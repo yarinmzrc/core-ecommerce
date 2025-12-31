@@ -1,196 +1,226 @@
 "use client"
+import { XCircleIcon } from "lucide-react"
+import React, { useMemo } from "react"
+import { useFieldArray, useFormContext } from "react-hook-form"
 
-import { useTranslations } from "next-intl"
-import { useActionState, useState } from "react"
-
+import { Image } from "@/components/image"
 import { Button } from "@/components/ui/button/button"
-import {
-  DropdownMenu,
-  DropdownMenuCheckboxItem,
-  DropdownMenuContent,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
-import { FormError } from "@/components/ui/form/form-error"
+import { Form } from "@/components/ui/form/form"
+import { FormFieldWrapper } from "@/components/ui/form/form-field-wrapper"
+import { FormInput } from "@/components/ui/form/form-input"
+import { FormMultiSelect } from "@/components/ui/form/form-multi-select"
+import { FormSelect } from "@/components/ui/form/form-select"
+import { FormTextArea } from "@/components/ui/form/form-text-area"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select"
-import { Textarea } from "@/components/ui/textarea"
-import { useAppContext } from "@/context/app-context"
 import { CategoryDTO } from "@/features/categories/dtos"
-import { formatCurrency } from "@/lib/format"
+import { OptionTemplateDTO } from "@/features/option-templates/dtos"
 
-import { createProductAction } from "../../actions/create-product"
-import { updateProductAction } from "../../actions/update-product"
 import { ProductFullDTO } from "../../dtos"
-import { useProductImages } from "../../hooks/use-product-images"
-import { ProductImages } from "./product-images"
+import {
+  createProductSchema,
+  CreateProductSchemaType,
+  updateProductSchema,
+  UpdateProductSchemaType,
+} from "../../schemas"
 
 type ProductFormProps = {
   product?: ProductFullDTO
   categories: CategoryDTO[]
+  optionTemplates: OptionTemplateDTO[]
 }
 
-export function ProductForm({ product, categories }: ProductFormProps) {
-  const t = useTranslations("admin.products.form")
-  const buttonsT = useTranslations("buttons")
+export function ProductForm({
+  product,
+  categories,
+  optionTemplates,
+}: ProductFormProps) {
+  const defaultValues: UpdateProductSchemaType | CreateProductSchemaType =
+    useMemo(
+      () =>
+        product
+          ? {
+              name: product.name,
+              basePrice: product.basePrice,
+              description: product.description,
+              categoryId: product.categoryId,
+              newImages: [],
+              existingImages: product.images,
+              options: product.options.map((option) => ({
+                label: option.name,
+                value: option.templateId,
+              })),
+            }
+          : {
+              name: "",
+              basePrice: 0,
+              description: "",
+              categoryId: "",
+              images: [],
+              options: [],
+            },
+      [product],
+    )
 
-  const { optionTemplates } = useAppContext()
-
-  const [selectedOptions, setSelectedOptions] = useState<string[]>([])
-
-  const [error, action, pending] = useActionState(
-    product == null
-      ? createProductAction
-      : updateProductAction.bind(null, product.id),
-    {},
-  )
-
-  const [basePrice, setBasePrice] = useState<number | null>(
-    product?.basePrice ?? null,
-  )
-
-  const {
-    existingImages,
-    newImageInputs,
-    addImageInput,
-    removeNewImageInput,
-    removeExistingImage,
-  } = useProductImages(product?.images ?? [])
+  const schema = product ? updateProductSchema : createProductSchema
 
   return (
-    <form action={action} className="space-y-8">
-      {/* Hidden kept images for backend */}
-      {existingImages.map((img) => (
-        <input
-          key={img.publicId}
-          type="hidden"
-          name="keptImages"
-          value={img.publicId}
-        />
-      ))}
-      {/* Name Field */}
-      <div className="space-y-2">
-        <Label htmlFor="name">{t("name")}</Label>
-        <Input
-          id="name"
-          name="name"
-          required
-          defaultValue={product?.name ?? ""}
-        />
-        {error?.name && <FormError error={error.name[0]} />}
-      </div>
-      {/* Price Field */}
-      <div className="space-y-2">
-        <Label htmlFor="basePrice">{t("price")}</Label>
-        <Input
-          type="number"
-          id="basePrice"
-          name="basePrice"
-          value={basePrice ?? ""}
-          onChange={(e) => setBasePrice(Number(e.target.value))}
-          required
-        />
-        {error?.basePrice && (
-          <div className="text-red-500">{error.basePrice}</div>
-        )}
-        <div className="text-muted-foreground">
-          {formatCurrency(basePrice ?? 0)}
-        </div>
-      </div>
-      {/* Category Field */}
-      <div className="space-y-2">
-        <Label htmlFor="categoryId">{t("category")}</Label>
-        <Select name="categoryId" defaultValue={product?.categoryId} required>
-          <SelectTrigger id="categoryId" className="w-45">
-            <SelectValue />
-          </SelectTrigger>
-          <SelectContent>
-            {categories.map((category) => (
-              <SelectItem key={category.id} value={category.id}>
-                {category.name}
-              </SelectItem>
-            ))}
-          </SelectContent>
-        </Select>
-        {error?.categoryId && (
-          <div className="text-red-500">{error.categoryId}</div>
-        )}
-      </div>
-      {/* Description Field */}
-      <div className="space-y-2">
-        <Label htmlFor="description">{t("description")}</Label>
-        <Textarea
-          id="description"
-          name="description"
-          required
-          defaultValue={product?.description ?? ""}
-        />
-        {error?.description && (
-          <div className="text-red-500">{error.description}</div>
-        )}
-      </div>
-      {/* Options */}
-      <h3 className="text-xl font-semibold">הוסף אפשרויות</h3>
-      <DropdownMenu>
-        <DropdownMenuTrigger asChild>
-          <Button variant="outline">הוסף אפשרויות</Button>
-        </DropdownMenuTrigger>
-        <DropdownMenuContent>
-          {optionTemplates.map((option) => (
-            <DropdownMenuCheckboxItem
-              key={option.key}
-              checked={selectedOptions.includes(option.key)}
-              onCheckedChange={(checked) => {
-                if (checked) {
-                  setSelectedOptions((prev) => [...prev, option.key])
-                } else {
-                  setSelectedOptions((prev) =>
-                    prev.filter((key) => key !== option.key),
-                  )
-                }
-              }}
-            >
-              {option.label}
-            </DropdownMenuCheckboxItem>
-          ))}
-        </DropdownMenuContent>
-      </DropdownMenu>
-
-      {/* Option Fields
-      {selectedOptions.map((optionKey) => {
-        const option = optionTemplates.find((o) => o.key === optionKey)
-        if (!option) {
-          return null
-        }
-        return (
-          <OptionField
-            key={option.key}
-            option={option}
-            onChange={setSelectedOptions}
+    <Form
+      id="product-form"
+      schema={schema}
+      options={{ defaultValues }}
+      onSubmit={(formValues) => {
+        console.log({ formValues })
+      }}
+    >
+      {({ register, formState }) => (
+        <>
+          <FormInput
+            type="text"
+            label="Name"
+            error={formState.errors["name"]}
+            registration={register("name")}
           />
-        )
-      })}
-      <OptionDialog /> */}
 
-      {/* Images Field */}
-      <ProductImages
-        existingImages={existingImages}
-        onRemoveExisting={removeExistingImage}
-        newImageInputs={newImageInputs}
-        onAddNew={addImageInput}
-        onRemoveNew={removeNewImageInput}
-        error={error?.images?.[0]}
-      />
-      {/* Submit Button */}
-      <Button type="submit" disabled={pending}>
-        {pending ? buttonsT("saving") : buttonsT("save")}
-      </Button>
-    </form>
+          <FormInput
+            type="number"
+            label="Price"
+            error={formState.errors["basePrice"]}
+            registration={register("basePrice")}
+          />
+
+          <FormSelect
+            label="Category"
+            error={formState.errors["categoryId"]}
+            defaultValue={defaultValues.categoryId}
+            registration={register("categoryId")}
+            options={categories.map((category) => ({
+              label: category.name,
+              value: category.id,
+            }))}
+          />
+
+          <FormTextArea
+            label="Description"
+            error={formState.errors["description"]}
+            registration={register("description")}
+          />
+
+          <FormMultiSelect
+            name="options"
+            label="Options"
+            options={optionTemplates.map((option) => ({
+              label: option.name,
+              value: option.id,
+            }))}
+            placeholder="Select options"
+          />
+
+          {product && <ExistingImagesField />}
+
+          <NewImagesField name={product ? "newImages" : "images"} />
+
+          <div>
+            <Button>Save Product</Button>
+          </div>
+        </>
+      )}
+    </Form>
+  )
+}
+
+function ExistingImagesField() {
+  const { control } = useFormContext<UpdateProductSchemaType>()
+  const { fields, remove } = useFieldArray({
+    control,
+    name: "existingImages",
+  })
+
+  return (
+    <FormFieldWrapper label="Existing images">
+      {fields.map((field, index) => (
+        <div key={field.id} className="relative">
+          <Image
+            src={field.url}
+            alt={`Product image ${index + 1}`}
+            width={100}
+            height={100}
+            className="rounded-md object-cover"
+          />
+          <Button
+            type="button"
+            variant="destructive"
+            size="sm"
+            className="absolute top-1 right-1 size-6 p-0"
+            onClick={() => remove(index)}
+          >
+            <XCircleIcon />
+          </Button>
+        </div>
+      ))}
+    </FormFieldWrapper>
+  )
+}
+
+function NewImagesField({ name }: { name: "newImages" | "images" }) {
+  const { control } = useFormContext<
+    UpdateProductSchemaType | CreateProductSchemaType
+  >()
+
+  const { append, remove, fields } = useFieldArray({
+    control,
+    name,
+  })
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const files = e.target.files
+    if (!files || files.length === 0) return
+
+    Array.from(files).forEach((file) => {
+      append({
+        file,
+      })
+    })
+
+    e.target.value = ""
+  }
+
+  return (
+    <FormFieldWrapper label="Images">
+      <div className="flex items-center gap-2">
+        <Button type="button" variant="outline" asChild>
+          <Label>
+            Add Images
+            <Input
+              type="file"
+              accept="image/*"
+              multiple
+              className="hidden"
+              onChange={handleFileChange}
+            />
+          </Label>
+        </Button>
+        <p className="text-muted-foreground text-sm">
+          Supported formats: png, jpg, jpeg
+        </p>
+      </div>
+      <div>
+        {fields.map((field, index) => (
+          <div key={field.id} className="flex items-center">
+            <span className="text-muted-foreground text-sm">
+              {field.file.name}
+            </span>
+            <Button
+              type="button"
+              size="sm"
+              variant="link"
+              onClick={() => remove(index)}
+            >
+              <XCircleIcon />
+            </Button>
+          </div>
+        ))}
+      </div>
+    </FormFieldWrapper>
   )
 }

@@ -65,6 +65,10 @@ async function main() {
     await db.optionTemplate.create({ data: optionTemplate })
   }
 
+  const optionTemplate = await db.optionTemplate.findFirst({
+    where: { name: "מידת עשייה" },
+  })
+
   // Create categories
   const categoriesData = [
     { name: "ראשונות", imageUrl: "", imagePublicId: "" },
@@ -98,18 +102,10 @@ async function main() {
         },
       ],
       options: {
-        create: [
-          {
-            overrides: {
-              name: "מידת עשייה",
-              values: [
-                { name: "m", label: "M", extraPrice: 0 },
-                { name: "mw", label: "MW", extraPrice: 0 },
-                { name: "wd", label: "WD", extraPrice: 0 },
-              ],
-            },
-          },
-        ],
+        create: {
+          name: optionTemplate!.name,
+          templateId: optionTemplate!.id,
+        },
       },
     },
     {

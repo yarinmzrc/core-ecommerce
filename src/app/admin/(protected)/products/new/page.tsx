@@ -2,7 +2,7 @@ import { getTranslations } from "next-intl/server"
 
 import { getCategories } from "@/features/categories/dal/queries"
 import { getOptionTemplates } from "@/features/option-templates/dal/queries"
-import { ProductForm } from "@/features/products/components/product-form/product-form-new"
+import { ProductForm } from "@/features/products/components/product-form/product-form"
 
 import { PageHeader } from "../../../_components/page-header"
 
