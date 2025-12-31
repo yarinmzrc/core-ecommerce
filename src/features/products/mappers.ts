@@ -17,6 +17,7 @@ export function mapProductOption(
 ): ProductOptionDTO {
   return {
     id: prisma.id,
+    name: prisma.name,
     templateId: prisma.templateId,
     overrides: (prisma.overrides as Record<string, string>) ?? {},
   }

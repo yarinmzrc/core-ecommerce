@@ -13,6 +13,7 @@ export type ProductOptionValueDTO = {
 
 export type ProductOptionDTO = {
   id: string
+  name: string
   templateId: string | null
   overrides: Record<string, string> | null
 }

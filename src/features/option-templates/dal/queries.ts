@@ -12,6 +12,5 @@ export async function getOptionTemplate(id: string) {
 
 export async function getOptionTemplates() {
   const optionTemplates = await db.optionTemplate.findMany()
-  console.log({ optionTemplates })
   return optionTemplates.map(mapOptionTemplate)
 }

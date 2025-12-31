@@ -94,6 +94,7 @@ export type ProductScalarFieldEnum = (typeof ProductScalarFieldEnum)[keyof typeo
 
 export const ProductOptionScalarFieldEnum = {
   id: 'id',
+  name: 'name',
   templateId: 'templateId',
   overrides: 'overrides',
   productId: 'productId'

@@ -49,7 +49,7 @@ model Product {
 
 model ProductOption {
   id String @id @default(auto()) @map("_id") @db.ObjectId
-
+  name String
   // Option can be linked to a template OR fully custom
   templateId String? @db.ObjectId
   template OptionTemplate? @relation(fields: [templateId], references: [id], onDelete: SetNull)

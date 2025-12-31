@@ -26,18 +26,21 @@ export type AggregateProductOption = {
 
 export type ProductOptionMinAggregateOutputType = {
   id: string | null
+  name: string | null
   templateId: string | null
   productId: string | null
 }
 
 export type ProductOptionMaxAggregateOutputType = {
   id: string | null
+  name: string | null
   templateId: string | null
   productId: string | null
 }
 
 export type ProductOptionCountAggregateOutputType = {
   id: number
+  name: number
   templateId: number
   overrides: number
   productId: number
@@ -47,18 +50,21 @@ export type ProductOptionCountAggregateOutputType = {
 
 export type ProductOptionMinAggregateInputType = {
   id?: true
+  name?: true
   templateId?: true
   productId?: true
 }
 
 export type ProductOptionMaxAggregateInputType = {
   id?: true
+  name?: true
   templateId?: true
   productId?: true
 }
 
 export type ProductOptionCountAggregateInputType = {
   id?: true
+  name?: true
   templateId?: true
   overrides?: true
   productId?: true
@@ -139,6 +145,7 @@ export type ProductOptionGroupByArgs<ExtArgs extends runtime.Types.Extensions.In
 
 export type ProductOptionGroupByOutputType = {
   id: string
+  name: string
   templateId: string | null
   overrides: runtime.JsonValue | null
   productId: string
@@ -167,6 +174,7 @@ export type ProductOptionWhereInput = {
   OR?: Prisma.ProductOptionWhereInput[]
   NOT?: Prisma.ProductOptionWhereInput | Prisma.ProductOptionWhereInput[]
   id?: Prisma.StringFilter<"ProductOption"> | string
+  name?: Prisma.StringFilter<"ProductOption"> | string
   templateId?: Prisma.StringNullableFilter<"ProductOption"> | string | null
   overrides?: Prisma.JsonNullableFilter<"ProductOption">
   productId?: Prisma.StringFilter<"ProductOption"> | string
@@ -176,6 +184,7 @@ export type ProductOptionWhereInput = {
 
 export type ProductOptionOrderByWithRelationInput = {
   id?: Prisma.SortOrder
+  name?: Prisma.SortOrder
   templateId?: Prisma.SortOrder
   overrides?: Prisma.SortOrder
   productId?: Prisma.SortOrder
@@ -188,6 +197,7 @@ export type ProductOptionWhereUniqueInput = Prisma.AtLeast<{
   AND?: Prisma.ProductOptionWhereInput | Prisma.ProductOptionWhereInput[]
   OR?: Prisma.ProductOptionWhereInput[]
   NOT?: Prisma.ProductOptionWhereInput | Prisma.ProductOptionWhereInput[]
+  name?: Prisma.StringFilter<"ProductOption"> | string
   templateId?: Prisma.StringNullableFilter<"ProductOption"> | string | null
   overrides?: Prisma.JsonNullableFilter<"ProductOption">
   productId?: Prisma.StringFilter<"ProductOption"> | string
@@ -197,6 +207,7 @@ export type ProductOptionWhereUniqueInput = Prisma.AtLeast<{
 
 export type ProductOptionOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
+  name?: Prisma.SortOrder
   templateId?: Prisma.SortOrder
   overrides?: Prisma.SortOrder
   productId?: Prisma.SortOrder
@@ -210,6 +221,7 @@ export type ProductOptionScalarWhereWithAggregatesInput = {
   OR?: Prisma.ProductOptionScalarWhereWithAggregatesInput[]
   NOT?: Prisma.ProductOptionScalarWhereWithAggregatesInput | Prisma.ProductOptionScalarWhereWithAggregatesInput[]
   id?: Prisma.StringWithAggregatesFilter<"ProductOption"> | string
+  name?: Prisma.StringWithAggregatesFilter<"ProductOption"> | string
   templateId?: Prisma.StringNullableWithAggregatesFilter<"ProductOption"> | string | null
   overrides?: Prisma.JsonNullableWithAggregatesFilter<"ProductOption">
   productId?: Prisma.StringWithAggregatesFilter<"ProductOption"> | string
@@ -217,6 +229,7 @@ export type ProductOptionScalarWhereWithAggregatesInput = {
 
 export type ProductOptionCreateInput = {
   id?: string
+  name: string
   overrides?: runtime.InputJsonValue | null
   template?: Prisma.OptionTemplateCreateNestedOneWithoutProductOptionsInput
   product: Prisma.ProductCreateNestedOneWithoutOptionsInput
@@ -224,18 +237,21 @@ export type ProductOptionCreateInput = {
 
 export type ProductOptionUncheckedCreateInput = {
   id?: string
+  name: string
   templateId?: string | null
   overrides?: runtime.InputJsonValue | null
   productId: string
 }
 
 export type ProductOptionUpdateInput = {
+  name?: Prisma.StringFieldUpdateOperationsInput | string
   overrides?: runtime.InputJsonValue | runtime.InputJsonValue | null
   template?: Prisma.OptionTemplateUpdateOneWithoutProductOptionsNestedInput
   product?: Prisma.ProductUpdateOneRequiredWithoutOptionsNestedInput
 }
 
 export type ProductOptionUncheckedUpdateInput = {
+  name?: Prisma.StringFieldUpdateOperationsInput | string
   templateId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   overrides?: runtime.InputJsonValue | runtime.InputJsonValue | null
   productId?: Prisma.StringFieldUpdateOperationsInput | string
@@ -243,16 +259,19 @@ export type ProductOptionUncheckedUpdateInput = {
 
 export type ProductOptionCreateManyInput = {
   id?: string
+  name: string
   templateId?: string | null
   overrides?: runtime.InputJsonValue | null
   productId: string
 }
 
 export type ProductOptionUpdateManyMutationInput = {
+  name?: Prisma.StringFieldUpdateOperationsInput | string
   overrides?: runtime.InputJsonValue | runtime.InputJsonValue | null
 }
 
 export type ProductOptionUncheckedUpdateManyInput = {
+  name?: Prisma.StringFieldUpdateOperationsInput | string
   templateId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   overrides?: runtime.InputJsonValue | runtime.InputJsonValue | null
   productId?: Prisma.StringFieldUpdateOperationsInput | string
@@ -270,6 +289,7 @@ export type ProductOptionOrderByRelationAggregateInput = {
 
 export type ProductOptionCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  name?: Prisma.SortOrder
   templateId?: Prisma.SortOrder
   overrides?: Prisma.SortOrder
   productId?: Prisma.SortOrder
@@ -277,12 +297,14 @@ export type ProductOptionCountOrderByAggregateInput = {
 
 export type ProductOptionMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  name?: Prisma.SortOrder
   templateId?: Prisma.SortOrder
   productId?: Prisma.SortOrder
 }
 
 export type ProductOptionMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  name?: Prisma.SortOrder
   templateId?: Prisma.SortOrder
   productId?: Prisma.SortOrder
 }
@@ -378,12 +400,14 @@ export type ProductOptionUncheckedUpdateManyWithoutTemplateNestedInput = {
 
 export type ProductOptionCreateWithoutProductInput = {
   id?: string
+  name: string
   overrides?: runtime.InputJsonValue | null
   template?: Prisma.OptionTemplateCreateNestedOneWithoutProductOptionsInput
 }
 
 export type ProductOptionUncheckedCreateWithoutProductInput = {
   id?: string
+  name: string
   templateId?: string | null
   overrides?: runtime.InputJsonValue | null
 }
@@ -418,6 +442,7 @@ export type ProductOptionScalarWhereInput = {
   OR?: Prisma.ProductOptionScalarWhereInput[]
   NOT?: Prisma.ProductOptionScalarWhereInput | Prisma.ProductOptionScalarWhereInput[]
   id?: Prisma.StringFilter<"ProductOption"> | string
+  name?: Prisma.StringFilter<"ProductOption"> | string
   templateId?: Prisma.StringNullableFilter<"ProductOption"> | string | null
   overrides?: Prisma.JsonNullableFilter<"ProductOption">
   productId?: Prisma.StringFilter<"ProductOption"> | string
@@ -425,12 +450,14 @@ export type ProductOptionScalarWhereInput = {
 
 export type ProductOptionCreateWithoutTemplateInput = {
   id?: string
+  name: string
   overrides?: runtime.InputJsonValue | null
   product: Prisma.ProductCreateNestedOneWithoutOptionsInput
 }
 
 export type ProductOptionUncheckedCreateWithoutTemplateInput = {
   id?: string
+  name: string
   overrides?: runtime.InputJsonValue | null
   productId: string
 }
@@ -462,42 +489,50 @@ export type ProductOptionUpdateManyWithWhereWithoutTemplateInput = {
 
 export type ProductOptionCreateManyProductInput = {
   id?: string
+  name: string
   templateId?: string | null
   overrides?: runtime.InputJsonValue | null
 }
 
 export type ProductOptionUpdateWithoutProductInput = {
+  name?: Prisma.StringFieldUpdateOperationsInput | string
   overrides?: runtime.InputJsonValue | runtime.InputJsonValue | null
   template?: Prisma.OptionTemplateUpdateOneWithoutProductOptionsNestedInput
 }
 
 export type ProductOptionUncheckedUpdateWithoutProductInput = {
+  name?: Prisma.StringFieldUpdateOperationsInput | string
   templateId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   overrides?: runtime.InputJsonValue | runtime.InputJsonValue | null
 }
 
 export type ProductOptionUncheckedUpdateManyWithoutProductInput = {
+  name?: Prisma.StringFieldUpdateOperationsInput | string
   templateId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   overrides?: runtime.InputJsonValue | runtime.InputJsonValue | null
 }
 
 export type ProductOptionCreateManyTemplateInput = {
   id?: string
+  name: string
   overrides?: runtime.InputJsonValue | null
   productId: string
 }
 
 export type ProductOptionUpdateWithoutTemplateInput = {
+  name?: Prisma.StringFieldUpdateOperationsInput | string
   overrides?: runtime.InputJsonValue | runtime.InputJsonValue | null
   product?: Prisma.ProductUpdateOneRequiredWithoutOptionsNestedInput
 }
 
 export type ProductOptionUncheckedUpdateWithoutTemplateInput = {
+  name?: Prisma.StringFieldUpdateOperationsInput | string
   overrides?: runtime.InputJsonValue | runtime.InputJsonValue | null
   productId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type ProductOptionUncheckedUpdateManyWithoutTemplateInput = {
+  name?: Prisma.StringFieldUpdateOperationsInput | string
   overrides?: runtime.InputJsonValue | runtime.InputJsonValue | null
   productId?: Prisma.StringFieldUpdateOperationsInput | string
 }
@@ -506,6 +541,7 @@ export type ProductOptionUncheckedUpdateManyWithoutTemplateInput = {
 
 export type ProductOptionSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
+  name?: boolean
   templateId?: boolean
   overrides?: boolean
   productId?: boolean
@@ -517,12 +553,13 @@ export type ProductOptionSelect<ExtArgs extends runtime.Types.Extensions.Interna
 
 export type ProductOptionSelectScalar = {
   id?: boolean
+  name?: boolean
   templateId?: boolean
   overrides?: boolean
   productId?: boolean
 }
 
-export type ProductOptionOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "templateId" | "overrides" | "productId", ExtArgs["result"]["productOption"]>
+export type ProductOptionOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "templateId" | "overrides" | "productId", ExtArgs["result"]["productOption"]>
 export type ProductOptionInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   template?: boolean | Prisma.ProductOption$templateArgs<ExtArgs>
   product?: boolean | Prisma.ProductDefaultArgs<ExtArgs>
@@ -536,6 +573,7 @@ export type $ProductOptionPayload<ExtArgs extends runtime.Types.Extensions.Inter
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
+    name: string
     templateId: string | null
     overrides: runtime.JsonValue | null
     productId: string
@@ -934,6 +972,7 @@ export interface Prisma__ProductOptionClient<T, Null = never, ExtArgs extends ru
  */
 export interface ProductOptionFieldRefs {
   readonly id: Prisma.FieldRef<"ProductOption", 'String'>
+  readonly name: Prisma.FieldRef<"ProductOption", 'String'>
   readonly templateId: Prisma.FieldRef<"ProductOption", 'String'>
   readonly overrides: Prisma.FieldRef<"ProductOption", 'Json'>
   readonly productId: Prisma.FieldRef<"ProductOption", 'String'>
