@@ -3,7 +3,7 @@
 import { useTranslations } from "next-intl"
 
 import { PageHeader } from "@/app/admin/_components/page-header"
-import { OptionTemplatesForm } from "@/features/option-templates/components/form"
+import { OptionTemplatesForm } from "@/features/option-templates/components/option-template-form"
 
 export default function AdminNewOptionTemplatePage() {
   const t = useTranslations("admin.optionTemplates")
