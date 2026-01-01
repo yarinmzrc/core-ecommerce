@@ -38,10 +38,10 @@ export function FormSelect<TFormValues extends FieldValues>(
         control={control}
         render={({ field }) => (
           <Select value={field.value} onValueChange={field.onChange}>
-            <SelectTrigger className="w-45">
+            <SelectTrigger className="w-full">
               <SelectValue />
             </SelectTrigger>
-            <SelectContent className={className}>
+            <SelectContent>
               {options.map((option) => (
                 <SelectItem
                   key={option.label?.toString()}

@@ -1,9 +1,11 @@
 import { useMemo } from "react"
-import { FieldValues, Path, useFormContext } from "react-hook-form"
+import { useFieldArray, useFormContext, useWatch } from "react-hook-form"
 
+import { Button } from "@/components/ui/button/button"
 import { Form } from "@/components/ui/form/form"
 import { FormInput } from "@/components/ui/form/form-input"
 import { FormSelect } from "@/components/ui/form/form-select"
+import { FormSwitch } from "@/components/ui/form/form-switch"
 
 import {
   OptionInput,
@@ -21,30 +23,24 @@ type OptionTemplatesFormProps = {
   optionTemplate?: OptionTemplateDTO
 }
 
+const getDefaultValues = (optionTemplate?: OptionTemplateDTO) => {
+  return {
+    name: optionTemplate?.name ?? "",
+    inputType: optionTemplate?.inputType ?? OptionInput.TEXT,
+    uiType: optionTemplate?.uiType ?? OptionUI.SELECT,
+    pricingStrategy:
+      optionTemplate?.pricingStrategy ?? OptionPricingStrategy.NONE,
+    values: optionTemplate?.values ?? [],
+    isActive: optionTemplate?.isActive ?? true,
+    required: optionTemplate?.required ?? true,
+  }
+}
+
 export function OptionTemplatesForm({
   optionTemplate,
 }: OptionTemplatesFormProps) {
   const defaultValues: CreateOptionTemplateSchema = useMemo(
-    () =>
-      optionTemplate
-        ? {
-            name: optionTemplate.name,
-            inputType: optionTemplate.inputType,
-            uiType: optionTemplate.uiType,
-            pricingStrategy: optionTemplate.pricingStrategy,
-            values: optionTemplate.values,
-            isActive: optionTemplate.isActive,
-            required: optionTemplate.required,
-          }
-        : {
-            name: "",
-            values: [],
-            inputType: OptionInput.TEXT,
-            uiType: OptionUI.SELECT,
-            pricingStrategy: OptionPricingStrategy.NONE,
-            isActive: true,
-            required: false,
-          },
+    () => getDefaultValues(optionTemplate),
     [optionTemplate],
   )
 
@@ -61,47 +57,49 @@ export function OptionTemplatesForm({
         console.log({ formValues })
       }}
     >
-      {() => <OptionTemplatesField baseName="" defaultValues={defaultValues} />}
+      {() => (
+        <>
+          <OptionTemplatesField />
+          <Button>Submit</Button>
+        </>
+      )}
     </Form>
   )
 }
 
-function fieldPath<T extends FieldValues>(base: Path<T>, field: string) {
-  return `${base}.${field}` as Path<T>
+const defaultInputValue = {
+  label: "",
+  value: "",
+  priceDelta: 0,
 }
 
-type OptionTemplatesFieldProps<TFormValues extends FieldValues> = {
-  defaultValues: CreateOptionTemplateSchema
-  baseName: Path<TFormValues>
-}
+export function OptionTemplatesField() {
+  const { control, formState } = useFormContext<CreateOptionTemplateSchema>()
 
-export function OptionTemplatesField<TFormValues extends FieldValues>({
-  defaultValues,
-  baseName,
-}: OptionTemplatesFieldProps<TFormValues>) {
-  const { control } = useFormContext<TFormValues>()
+  const { fields, append, remove } = useFieldArray({
+    control,
+    name: "values",
+  })
+
+  const pricingStrategyWatch = useWatch({
+    control,
+    name: "pricingStrategy",
+  })
 
   return (
-    <>
-      <FormInput
-        label="Name"
-        name={fieldPath(baseName, "name")}
-        control={control}
-      />
-
-      <FormSelect
-        label="Input type"
-        control={control}
-        name={fieldPath(baseName, "inputType")}
-        options={Object.values(OptionInput).map((inputType) => ({
-          label: inputType,
-          value: inputType,
-        }))}
-      />
+    <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+      <div className="md:col-span-2">
+        <FormInput
+          label="Name"
+          name="name"
+          control={control}
+          error={formState.errors["name"]}
+        />
+      </div>
 
       <FormSelect
         label="UI type"
-        name={fieldPath(baseName, "uiType")}
+        name="uiType"
         control={control}
         options={Object.values(OptionUI).map((uiType) => ({
           label: uiType,
@@ -111,7 +109,7 @@ export function OptionTemplatesField<TFormValues extends FieldValues>({
 
       <FormSelect
         label="Pricing strategy"
-        name={fieldPath(baseName, "pricingStrategy")}
+        name="pricingStrategy"
         control={control}
         options={Object.values(OptionPricingStrategy).map(
           (pricingStrategy) => ({
@@ -120,6 +118,60 @@ export function OptionTemplatesField<TFormValues extends FieldValues>({
           }),
         )}
       />
-    </>
+
+      <FormSelect
+        label="Input type"
+        control={control}
+        name="inputType"
+        options={Object.values(OptionInput).map((inputType) => ({
+          label: inputType,
+          value: inputType,
+        }))}
+      />
+
+      <div className="col-span-2 space-y-4">
+        {fields.map((field, index) => (
+          <div key={field.id} className="flex items-end gap-2">
+            <FormInput
+              label={`Option Label ${index + 1}`}
+              name={`values.${index}.label`}
+              control={control}
+              error={formState.errors["values"]?.[index]?.label}
+            />
+
+            <FormInput
+              label={`Option Value ${index + 1}`}
+              name={`values.${index}.value`}
+              control={control}
+              error={formState.errors["values"]?.[index]?.value}
+            />
+
+            {pricingStrategyWatch === OptionPricingStrategy.ADDON && (
+              <FormInput
+                label={`Price Delta ${index + 1}`}
+                type="number"
+                name={`values.${index}.priceDelta`}
+                control={control}
+              />
+            )}
+
+            <Button
+              type="button"
+              variant="destructive"
+              onClick={() => remove(index)}
+            >
+              Remove
+            </Button>
+          </div>
+        ))}
+        <Button type="button" onClick={() => append(defaultInputValue)}>
+          Add Input
+        </Button>
+      </div>
+
+      <div className="col-span-2">
+        <FormSwitch name="required" control={control} label="Required" />
+      </div>
+    </div>
   )
 }

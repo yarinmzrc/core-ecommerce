@@ -22,7 +22,7 @@ import { FormTextArea } from "@/components/ui/form/form-text-area"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { CategoryDTO } from "@/features/categories/dtos"
-import { OptionTemplatesField } from "@/features/option-templates/components/form"
+import { OptionTemplatesForm } from "@/features/option-templates/components/form"
 import { OptionTemplateDTO } from "@/features/option-templates/dtos"
 
 import { ProductFullDTO } from "../../dtos"
@@ -268,11 +268,11 @@ function OptionButtons({ optionTemplates }: OptionButtonProps) {
               <DialogTitle>{option.label}</DialogTitle>
               <DialogDescription>description</DialogDescription>
             </DialogHeader>
-            <OptionTemplatesField
-              defaultValues={
+
+            <OptionTemplatesForm
+              optionTemplate={
                 optionTemplates.find((o) => o.id === option.value)!
               }
-              baseName={`options.${index}.overrides`}
             />
           </DialogContent>
         </Dialog>

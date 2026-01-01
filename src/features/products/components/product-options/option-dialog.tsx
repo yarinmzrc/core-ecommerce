@@ -91,7 +91,7 @@ export function OptionDialog({ title }: OptionDialogProps) {
   }
 
   return (
-    <Dialog>
+    <Dialog modal>
       <DialogTrigger>Open Dialog</DialogTrigger>
       <DialogContent>
         <DialogHeader>
