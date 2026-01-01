@@ -1,35 +1,50 @@
 import React from "react"
-import type { UseFormRegisterReturn } from "react-hook-form"
+import type { Control, FieldValues, Path } from "react-hook-form"
 
 import { cn } from "@/lib/utils"
 
 import { Input } from "../input"
+import { FormField } from "./form"
 import {
   FormFieldWrapper,
   FormFieldWrapperPassThroughProps,
 } from "./form-field-wrapper"
 
-export type FormInputProps = React.InputHTMLAttributes<HTMLInputElement> &
-  FormFieldWrapperPassThroughProps & {
-    className?: string
-    registration: Partial<UseFormRegisterReturn>
-  }
+export type FormInputProps<TFormValues extends FieldValues> =
+  React.InputHTMLAttributes<HTMLInputElement> &
+    FormFieldWrapperPassThroughProps & {
+      name: Path<TFormValues>
+      control: Control<TFormValues>
+      className?: string
+    }
 
-const FormInput = React.forwardRef<HTMLInputElement, FormInputProps>(
-  ({ className, type, label, error, registration, ...props }, ref) => {
-    return (
-      <FormFieldWrapper label={label} error={error}>
-        <Input
-          ref={ref}
-          type={type}
-          className={cn("w-full", className)}
-          {...registration}
-          {...props}
-        />
-      </FormFieldWrapper>
-    )
-  },
-)
+function FormInput<TFormValues extends FieldValues>({
+  className,
+  type,
+  name,
+  control,
+  label,
+  error,
+  ...props
+}: FormInputProps<TFormValues>) {
+  return (
+    <FormFieldWrapper label={label} error={error}>
+      <FormField
+        name={name}
+        control={control}
+        render={({ field }) => (
+          <Input
+            type={type}
+            {...field}
+            {...props}
+            className={cn("w-full", className)}
+          />
+        )}
+      />
+    </FormFieldWrapper>
+  )
+}
+
 FormInput.displayName = "FormInput"
 
 export { FormInput }

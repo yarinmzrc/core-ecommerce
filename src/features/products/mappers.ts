@@ -9,6 +9,7 @@ import {
   ProductDTO,
   ProductListItemDTO,
   ProductOptionDTO,
+  ProductOptionOverridesDTO,
   ProductVariantDTO,
 } from "./dtos"
 
@@ -19,7 +20,7 @@ export function mapProductOption(
     id: prisma.id,
     name: prisma.name,
     templateId: prisma.templateId,
-    overrides: (prisma.overrides as Record<string, string>) ?? {},
+    overrides: (prisma.overrides as ProductOptionOverridesDTO) ?? {},
   }
 }
 

@@ -1,4 +1,4 @@
-import { UseFormRegisterReturn } from "react-hook-form"
+import { Control, FieldValues, Path } from "react-hook-form"
 
 import {
   Select,
@@ -7,6 +7,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "../select"
+import { FormField } from "./form"
 import {
   FormFieldWrapper,
   FormFieldWrapperPassThroughProps,
@@ -17,32 +18,48 @@ type Option = {
   value: string
 }
 
-type FormSelectFieldPtops = FormFieldWrapperPassThroughProps & {
-  options: Option[]
-  className?: string
-  defaultValue?: string
-  registration: Partial<UseFormRegisterReturn>
-}
+type FormSelectFieldProps<TFormValues extends FieldValues> =
+  FormFieldWrapperPassThroughProps & {
+    options: Option[]
+    name: Path<TFormValues>
+    control: Control<TFormValues>
+    className?: string
+    defaultValue?: string
+  }
 
-export const FormSelect = (props: FormSelectFieldPtops) => {
-  const { label, options, className, defaultValue, registration, error } = props
+export function FormSelect<TFormValues extends FieldValues>(
+  props: FormSelectFieldProps<TFormValues>,
+) {
+  const { label, options, className, defaultValue, control, name, error } =
+    props
+
   return (
     <FormFieldWrapper label={label} error={error}>
-      <Select defaultValue={defaultValue} {...registration}>
-        <SelectTrigger className="w-45">
-          <SelectValue />
-        </SelectTrigger>
-        <SelectContent className={className}>
-          {options.map((option) => (
-            <SelectItem
-              key={option.label?.toString()}
-              value={option.value.toString()}
-            >
-              {option.label}
-            </SelectItem>
-          ))}
-        </SelectContent>
-      </Select>
+      <FormField
+        name={name}
+        control={control}
+        render={({ field }) => (
+          <Select
+            defaultValue={defaultValue}
+            value={field.value}
+            onValueChange={field.onChange}
+          >
+            <SelectTrigger className="w-45">
+              <SelectValue />
+            </SelectTrigger>
+            <SelectContent className={className}>
+              {options.map((option) => (
+                <SelectItem
+                  key={option.label?.toString()}
+                  value={option.value.toString()}
+                >
+                  {option.label}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+        )}
+      />
     </FormFieldWrapper>
   )
 }

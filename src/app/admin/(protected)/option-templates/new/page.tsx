@@ -3,7 +3,7 @@
 import { useTranslations } from "next-intl"
 
 import { PageHeader } from "@/app/admin/_components/page-header"
-import { OptionTemplateForm } from "@/features/option-templates/components/option-template-form"
+import { OptionTemplatesForm } from "@/features/option-templates/components/form"
 
 export default function AdminNewOptionTemplatePage() {
   const t = useTranslations("admin.optionTemplates")
@@ -11,7 +11,7 @@ export default function AdminNewOptionTemplatePage() {
   return (
     <div className="flex flex-col gap-4">
       <PageHeader>{t("pages.create")}</PageHeader>
-      <OptionTemplateForm key="new" onSave={(data) => console.log({ data })} />
+      <OptionTemplatesForm key="new" />
     </div>
   )
 }

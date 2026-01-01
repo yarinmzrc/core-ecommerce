@@ -1,10 +1,18 @@
 "use client"
 import { XCircleIcon } from "lucide-react"
 import React, { useMemo } from "react"
-import { useFieldArray, useFormContext } from "react-hook-form"
+import { useFieldArray, useFormContext, useWatch } from "react-hook-form"
 
 import { Image } from "@/components/image"
 import { Button } from "@/components/ui/button/button"
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog"
 import { Form } from "@/components/ui/form/form"
 import { FormFieldWrapper } from "@/components/ui/form/form-field-wrapper"
 import { FormInput } from "@/components/ui/form/form-input"
@@ -14,6 +22,7 @@ import { FormTextArea } from "@/components/ui/form/form-text-area"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { CategoryDTO } from "@/features/categories/dtos"
+import { OptionTemplatesField } from "@/features/option-templates/components/form"
 import { OptionTemplateDTO } from "@/features/option-templates/dtos"
 
 import { ProductFullDTO } from "../../dtos"
@@ -49,6 +58,7 @@ export function ProductForm({
               options: product.options.map((option) => ({
                 label: option.name,
                 value: option.templateId,
+                overrides: option.overrides,
               })),
             }
           : {
@@ -73,27 +83,30 @@ export function ProductForm({
         console.log({ formValues })
       }}
     >
-      {({ register, formState }) => (
+      {({ formState, control }) => (
         <>
           <FormInput
             type="text"
+            name="name"
             label="Name"
+            control={control}
             error={formState.errors["name"]}
-            registration={register("name")}
           />
 
           <FormInput
             type="number"
+            name="basePrice"
+            control={control}
             label="Price"
             error={formState.errors["basePrice"]}
-            registration={register("basePrice")}
           />
 
           <FormSelect
             label="Category"
+            control={control}
+            name="categoryId"
             error={formState.errors["categoryId"]}
             defaultValue={defaultValues.categoryId}
-            registration={register("categoryId")}
             options={categories.map((category) => ({
               label: category.name,
               value: category.id,
@@ -102,8 +115,9 @@ export function ProductForm({
 
           <FormTextArea
             label="Description"
+            name="description"
+            control={control}
             error={formState.errors["description"]}
-            registration={register("description")}
           />
 
           <FormMultiSelect
@@ -115,6 +129,8 @@ export function ProductForm({
             }))}
             placeholder="Select options"
           />
+
+          <OptionButtons optionTemplates={optionTemplates} />
 
           {product && <ExistingImagesField />}
 
@@ -222,5 +238,46 @@ function NewImagesField({ name }: { name: "newImages" | "images" }) {
         ))}
       </div>
     </FormFieldWrapper>
+  )
+}
+
+type OptionButtonProps = {
+  optionTemplates: OptionTemplateDTO[]
+}
+
+function OptionButtons({ optionTemplates }: OptionButtonProps) {
+  const { control } = useFormContext<
+    UpdateProductSchemaType | CreateProductSchemaType
+  >()
+
+  const options = useWatch({
+    control,
+    name: "options",
+  })
+
+  return (
+    <div>
+      {options.map((option, index) => (
+        <Dialog key={option.value}>
+          <DialogTrigger asChild>
+            <Button type="button" key={option.value} variant="outline">
+              {option.label}
+            </Button>
+          </DialogTrigger>
+          <DialogContent>
+            <DialogHeader>
+              <DialogTitle>{option.label}</DialogTitle>
+              <DialogDescription>description</DialogDescription>
+            </DialogHeader>
+            <OptionTemplatesField
+              defaultValues={
+                optionTemplates.find((o) => o.id === option.value)!
+              }
+              baseName={`options.${index}.overrides`}
+            />
+          </DialogContent>
+        </Dialog>
+      ))}
+    </div>
   )
 }

@@ -1,33 +1,41 @@
 import React from "react"
-import type { UseFormRegisterReturn } from "react-hook-form"
+import type { Control, FieldValues, Path } from "react-hook-form"
 
 import { Textarea } from "../textarea"
+import { FormField } from "./form"
 import {
   FormFieldWrapper,
   FormFieldWrapperPassThroughProps,
 } from "./form-field-wrapper"
 
-export type FormTextAreaProps =
+export type FormTextAreaProps<TFormValues extends FieldValues> =
   React.TextareaHTMLAttributes<HTMLTextAreaElement> &
     FormFieldWrapperPassThroughProps & {
       className?: string
-      registration: Partial<UseFormRegisterReturn>
+      name: Path<TFormValues>
+      control: Control<TFormValues>
     }
 
-const FormTextArea = React.forwardRef<HTMLTextAreaElement, FormTextAreaProps>(
-  ({ className, label, error, registration, ...props }, ref) => {
-    return (
-      <FormFieldWrapper label={label} error={error}>
-        <Textarea
-          ref={ref}
-          className={className}
-          {...registration}
-          {...props}
-        />
-      </FormFieldWrapper>
-    )
-  },
-)
+function FormTextArea<TFormValues extends FieldValues>({
+  name,
+  control,
+  className,
+  label,
+  error,
+  ...props
+}: FormTextAreaProps<TFormValues>) {
+  return (
+    <FormFieldWrapper label={label} error={error}>
+      <FormField
+        name={name}
+        control={control}
+        render={({ field }) => (
+          <Textarea {...field} className={className} {...props} />
+        )}
+      />
+    </FormFieldWrapper>
+  )
+}
 FormTextArea.displayName = "FormTextArea"
 
 export { FormTextArea }

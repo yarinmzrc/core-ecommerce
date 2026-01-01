@@ -1,5 +1,7 @@
 import { z } from "zod"
 
+import { createOptionTemplateSchema } from "../option-templates/schemas"
+
 const createProductImageSchema = z
   .instanceof(File)
   .refine((file) => file.type.startsWith("image/"), "Invalid image type")
@@ -15,6 +17,7 @@ export const createProductSchema = z.object({
     z.object({
       label: z.string(),
       value: z.string().nullable(),
+      overrides: createOptionTemplateSchema.nullable(),
     }),
   ),
 })

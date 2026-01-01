@@ -1,4 +1,10 @@
 import { Prisma } from "../../../prisma/generated/prisma/client"
+import {
+  OptionInputType,
+  OptionPricingStrategy,
+  OptionUIType,
+  OptionValueDTO,
+} from "../option-templates/dtos"
 
 export type ImageDTO = {
   url: string
@@ -11,11 +17,21 @@ export type ProductOptionValueDTO = {
   extraPrice: number
 }
 
+export type ProductOptionOverridesDTO = {
+  name: string
+  inputType: OptionInputType
+  uiType: OptionUIType
+  pricingStrategy: OptionPricingStrategy
+  values: OptionValueDTO[]
+  isActive: boolean
+  required: boolean
+}
+
 export type ProductOptionDTO = {
   id: string
   name: string
   templateId: string | null
-  overrides: Record<string, string> | null
+  overrides: ProductOptionOverridesDTO | null
 }
 
 export type ProductOptionCreateDTO = Omit<ProductOptionDTO, "id">
