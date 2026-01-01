@@ -106,7 +106,6 @@ export function ProductForm({
             control={control}
             name="categoryId"
             error={formState.errors["categoryId"]}
-            defaultValue={defaultValues.categoryId}
             options={categories.map((category) => ({
               label: category.name,
               value: category.id,

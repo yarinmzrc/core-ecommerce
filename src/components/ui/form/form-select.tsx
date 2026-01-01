@@ -24,14 +24,12 @@ type FormSelectFieldProps<TFormValues extends FieldValues> =
     name: Path<TFormValues>
     control: Control<TFormValues>
     className?: string
-    defaultValue?: string
   }
 
 export function FormSelect<TFormValues extends FieldValues>(
   props: FormSelectFieldProps<TFormValues>,
 ) {
-  const { label, options, className, defaultValue, control, name, error } =
-    props
+  const { label, options, className, control, name, error } = props
 
   return (
     <FormFieldWrapper label={label} error={error}>
@@ -39,11 +37,7 @@ export function FormSelect<TFormValues extends FieldValues>(
         name={name}
         control={control}
         render={({ field }) => (
-          <Select
-            defaultValue={defaultValue}
-            value={field.value}
-            onValueChange={field.onChange}
-          >
+          <Select value={field.value} onValueChange={field.onChange}>
             <SelectTrigger className="w-45">
               <SelectValue />
             </SelectTrigger>

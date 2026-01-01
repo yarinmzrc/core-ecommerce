@@ -85,14 +85,12 @@ export function OptionTemplatesField<TFormValues extends FieldValues>({
     <>
       <FormInput
         label="Name"
-        defaultValue={defaultValues.name}
         name={fieldPath(baseName, "name")}
         control={control}
       />
 
       <FormSelect
         label="Input type"
-        defaultValue={defaultValues.inputType}
         control={control}
         name={fieldPath(baseName, "inputType")}
         options={Object.values(OptionInput).map((inputType) => ({
@@ -103,7 +101,6 @@ export function OptionTemplatesField<TFormValues extends FieldValues>({
 
       <FormSelect
         label="UI type"
-        defaultValue={defaultValues.uiType}
         name={fieldPath(baseName, "uiType")}
         control={control}
         options={Object.values(OptionUI).map((uiType) => ({
@@ -114,7 +111,6 @@ export function OptionTemplatesField<TFormValues extends FieldValues>({
 
       <FormSelect
         label="Pricing strategy"
-        defaultValue={defaultValues.pricingStrategy}
         name={fieldPath(baseName, "pricingStrategy")}
         control={control}
         options={Object.values(OptionPricingStrategy).map(
