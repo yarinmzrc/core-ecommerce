@@ -1,5 +1,12 @@
 import { useMemo } from "react"
-import { useFieldArray, useFormContext, useWatch } from "react-hook-form"
+import {
+  Control,
+  FieldValues,
+  FormState,
+  useFieldArray,
+  useFormContext,
+  useWatch,
+} from "react-hook-form"
 
 import { Button } from "@/components/ui/button/button"
 import { Form } from "@/components/ui/form/form"
@@ -57,9 +64,9 @@ export function OptionTemplatesForm({
         console.log({ formValues })
       }}
     >
-      {() => (
+      {({ formState, control }) => (
         <>
-          <OptionTemplatesField />
+          <OptionTemplatesField formState={formState} control={control} />
           <Button>Submit</Button>
         </>
       )}
@@ -73,9 +80,15 @@ const defaultInputValue = {
   priceDelta: 0,
 }
 
-export function OptionTemplatesField() {
-  const { control, formState } = useFormContext<CreateOptionTemplateSchema>()
+type OptionTemplatesFieldProps = {
+  formState: FormState<CreateOptionTemplateSchema>
+  control: Control<CreateOptionTemplateSchema>
+}
 
+export function OptionTemplatesField({
+  control,
+  formState,
+}: OptionTemplatesFieldProps) {
   const { fields, append, remove } = useFieldArray({
     control,
     name: "values",
