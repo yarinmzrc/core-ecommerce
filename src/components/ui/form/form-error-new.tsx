@@ -8,7 +8,7 @@ export function FormError({ errorMessage }: FormErrorProps) {
     <div
       role="alert"
       aria-label={errorMessage}
-      className="text-sm font-semibold text-red-600"
+      className="text-xs text-red-600"
     >
       {errorMessage}
     </div>

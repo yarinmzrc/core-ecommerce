@@ -13,11 +13,7 @@ import {
   OptionTemplateDTO,
   OptionUI,
 } from "../dtos"
-import {
-  CreateOptionTemplateSchema,
-  createOptionTemplateSchema,
-  updateOptionTemplateSchema,
-} from "../schemas"
+import { optionTemplateSchema, OptionTemplateSchemaType } from "../schemas"
 
 type OptionTemplateFormProps = {
   optionTemplate?: OptionTemplateDTO
@@ -31,7 +27,6 @@ const getDefaultValues = (optionTemplate?: OptionTemplateDTO) => {
     pricingStrategy:
       optionTemplate?.pricingStrategy ?? OptionPricingStrategy.NONE,
     values: optionTemplate?.values ?? [],
-    isActive: optionTemplate?.isActive ?? true,
     required: optionTemplate?.required ?? true,
   }
 }
@@ -39,19 +34,15 @@ const getDefaultValues = (optionTemplate?: OptionTemplateDTO) => {
 export function OptionTemplateForm({
   optionTemplate,
 }: OptionTemplateFormProps) {
-  const defaultValues: CreateOptionTemplateSchema = useMemo(
+  const defaultValues: OptionTemplateSchemaType = useMemo(
     () => getDefaultValues(optionTemplate),
     [optionTemplate],
   )
 
-  const schema = optionTemplate
-    ? createOptionTemplateSchema
-    : updateOptionTemplateSchema
-
   return (
     <Form
       id="option-template-form"
-      schema={schema}
+      schema={optionTemplateSchema}
       options={{ defaultValues }}
       onSubmit={(formValues) => {
         console.log({ formValues })
@@ -74,8 +65,8 @@ const defaultInputValue = {
 }
 
 type OptionTemplatesFieldProps = {
-  formState: FormState<CreateOptionTemplateSchema>
-  control: Control<CreateOptionTemplateSchema>
+  formState: FormState<OptionTemplateSchemaType>
+  control: Control<OptionTemplateSchemaType>
 }
 
 export function OptionTemplateField({
@@ -86,6 +77,8 @@ export function OptionTemplateField({
     control,
     name: "values",
   })
+
+  console.log({ formState })
 
   const pricingStrategyWatch = useWatch({
     control,
@@ -158,6 +151,7 @@ export function OptionTemplateField({
                 type="number"
                 name={`values.${index}.priceDelta`}
                 control={control}
+                error={formState.errors["values"]?.[index]?.priceDelta}
               />
             )}
 

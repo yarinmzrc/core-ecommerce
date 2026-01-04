@@ -1,6 +1,7 @@
 "use client"
+
 import { XCircleIcon } from "lucide-react"
-import React, { useMemo } from "react"
+import React, { useMemo, useState } from "react"
 import { useFieldArray, useFormContext, useWatch } from "react-hook-form"
 
 import { Image } from "@/components/image"
@@ -11,7 +12,6 @@ import {
   DialogDescription,
   DialogHeader,
   DialogTitle,
-  DialogTrigger,
 } from "@/components/ui/dialog"
 import { Form } from "@/components/ui/form/form"
 import { FormFieldWrapper } from "@/components/ui/form/form-field-wrapper"
@@ -26,12 +26,39 @@ import { OptionTemplateForm } from "@/features/option-templates/components/optio
 import { OptionTemplateDTO } from "@/features/option-templates/dtos"
 
 import { ProductFullDTO } from "../../dtos"
-import {
-  createProductSchema,
-  CreateProductSchemaType,
-  updateProductSchema,
-  UpdateProductSchemaType,
-} from "../../schemas"
+import { productSchema, ProductSchemaType } from "../../schemas"
+
+const getDefaultValues = (product?: ProductFullDTO) => {
+  if (product) {
+    return {
+      name: product.name,
+      basePrice: product.basePrice,
+      description: product.description,
+      categoryId: product.categoryId,
+      images: {
+        new: [],
+        existing: product.images,
+      },
+      options: product.options.map((option) => ({
+        label: option.name,
+        value: option.templateId,
+        overrides: option.overrides,
+      })),
+    }
+  }
+
+  return {
+    name: "",
+    basePrice: 0,
+    description: "",
+    categoryId: "",
+    images: {
+      new: [],
+      existing: [],
+    },
+    options: [],
+  }
+}
 
 type ProductFormProps = {
   product?: ProductFullDTO
@@ -44,40 +71,15 @@ export function ProductForm({
   categories,
   optionTemplates,
 }: ProductFormProps) {
-  const defaultValues: UpdateProductSchemaType | CreateProductSchemaType =
-    useMemo(
-      () =>
-        product
-          ? {
-              name: product.name,
-              basePrice: product.basePrice,
-              description: product.description,
-              categoryId: product.categoryId,
-              newImages: [],
-              existingImages: product.images,
-              options: product.options.map((option) => ({
-                label: option.name,
-                value: option.templateId,
-                overrides: option.overrides,
-              })),
-            }
-          : {
-              name: "",
-              basePrice: 0,
-              description: "",
-              categoryId: "",
-              images: [],
-              options: [],
-            },
-      [product],
-    )
-
-  const schema = product ? updateProductSchema : createProductSchema
+  const defaultValues: ProductSchemaType = useMemo(
+    () => getDefaultValues(product),
+    [product],
+  )
 
   return (
     <Form
       id="product-form"
-      schema={schema}
+      schema={productSchema}
       options={{ defaultValues }}
       onSubmit={(formValues) => {
         console.log({ formValues })
@@ -132,8 +134,7 @@ export function ProductForm({
           <OptionButtons optionTemplates={optionTemplates} />
 
           {product && <ExistingImagesField />}
-
-          <NewImagesField name={product ? "newImages" : "images"} />
+          <AddImagesField />
 
           <div>
             <Button>Save Product</Button>
@@ -145,10 +146,10 @@ export function ProductForm({
 }
 
 function ExistingImagesField() {
-  const { control } = useFormContext<UpdateProductSchemaType>()
+  const { control } = useFormContext<ProductSchemaType>()
   const { fields, remove } = useFieldArray({
     control,
-    name: "existingImages",
+    name: "images.existing",
   })
 
   return (
@@ -177,14 +178,12 @@ function ExistingImagesField() {
   )
 }
 
-function NewImagesField({ name }: { name: "newImages" | "images" }) {
-  const { control } = useFormContext<
-    UpdateProductSchemaType | CreateProductSchemaType
-  >()
+function AddImagesField() {
+  const { control } = useFormContext<ProductSchemaType>()
 
   const { append, remove, fields } = useFieldArray({
     control,
-    name,
+    name: "images.new",
   })
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -245,9 +244,12 @@ type OptionButtonProps = {
 }
 
 function OptionButtons({ optionTemplates }: OptionButtonProps) {
-  const { control } = useFormContext<
-    UpdateProductSchemaType | CreateProductSchemaType
-  >()
+  const { control } = useFormContext<ProductSchemaType>()
+
+  const [activeOptionId, setActiveOptionId] = useState<string | null>(null)
+  const [isModalOpen, setIsModalOpen] = useState(false)
+
+  const activeOption = optionTemplates.find((o) => o.id === activeOptionId)
 
   const options = useWatch({
     control,
@@ -256,27 +258,29 @@ function OptionButtons({ optionTemplates }: OptionButtonProps) {
 
   return (
     <div>
-      {options.map((option, index) => (
-        <Dialog key={option.value}>
-          <DialogTrigger asChild>
-            <Button type="button" key={option.value} variant="outline">
-              {option.label}
-            </Button>
-          </DialogTrigger>
-          <DialogContent>
-            <DialogHeader>
-              <DialogTitle>{option.label}</DialogTitle>
-              <DialogDescription>description</DialogDescription>
-            </DialogHeader>
-
-            <OptionTemplateForm
-              optionTemplate={
-                optionTemplates.find((o) => o.id === option.value)!
-              }
-            />
-          </DialogContent>
-        </Dialog>
+      {options.map((option) => (
+        <Button
+          type="button"
+          key={option.value}
+          variant="outline"
+          onClick={() => {
+            setActiveOptionId(option.value)
+            setIsModalOpen(true)
+          }}
+        >
+          {option.label}
+        </Button>
       ))}
+
+      <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>{activeOption?.name}</DialogTitle>
+            <DialogDescription>description</DialogDescription>
+          </DialogHeader>
+          <OptionTemplateForm optionTemplate={activeOption} />
+        </DialogContent>
+      </Dialog>
     </div>
   )
 }

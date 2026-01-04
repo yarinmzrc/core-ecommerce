@@ -36,6 +36,11 @@ function FormInput<TFormValues extends FieldValues>({
           <Input
             type={type}
             {...field}
+            onChange={(e) => {
+              field.onChange(
+                type === "number" ? Number(e.target.value) : e.target.value,
+              )
+            }}
             {...props}
             className={cn("w-full", className)}
           />
