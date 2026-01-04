@@ -2,6 +2,7 @@ import { getTranslations } from "next-intl/server"
 
 import { getCategories } from "@/features/categories/dal/queries"
 import { getOptionTemplates } from "@/features/option-templates/dal/queries"
+import { createProductAction } from "@/features/products/actions/create-product"
 import { ProductForm } from "@/features/products/components/product-form/product-form"
 
 import { PageHeader } from "../../../_components/page-header"
@@ -15,7 +16,12 @@ export default async function NewProductPage() {
   return (
     <div className="flex flex-col gap-4">
       <PageHeader>{t("create")}</PageHeader>
-      <ProductForm categories={categories} optionTemplates={optionTemplates} />
+      <ProductForm
+        categories={categories}
+        optionTemplates={optionTemplates}
+        onSubmit={createProductAction}
+        mode="create"
+      />
     </div>
   )
 }

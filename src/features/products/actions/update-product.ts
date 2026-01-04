@@ -1,37 +1,27 @@
 "use server"
 
-import { revalidatePath } from "next/cache"
 import { notFound, redirect } from "next/navigation"
 import { z } from "zod"
 
 import { paths } from "@/config/paths"
 
 import { updateProduct } from "../dal/mutations"
-import { updateProductSchema } from "../schemas"
+import { productSchema } from "../schemas"
 
-export async function updateProductAction(
-  id: string,
-  _: unknown,
-  formData: FormData,
-) {
-  const rawData = Object.fromEntries(formData.entries())
-  const images = (formData.getAll("images") as File[]).filter(
-    (file) => file.size > 0,
-  )
-
-  const keptImages = formData.getAll("keptImages") as string[]
-
-  const result = updateProductSchema.safeParse({
-    ...rawData,
-    images: images.length > 0 ? images : undefined,
-    keptImages,
+export async function updateProductAction(id: string, values: unknown) {
+  const result = productSchema.safeParse({
+    values,
   })
 
   if (result.success === false) {
     return z.flattenError(result.error).fieldErrors
   }
 
-  const data = result.data
+  const data = {
+    ...result.data,
+    images: result.data.images.new.map((image) => image.file),
+    keptImages: result.data.images.existing.map((image) => image.publicId),
+  }
 
   try {
     await updateProduct(id, {
@@ -45,9 +35,6 @@ export async function updateProductAction(
     console.error(error)
     return notFound()
   }
-
-  revalidatePath("/")
-  revalidatePath("/products")
 
   redirect(paths.admin.products.root.getHref())
 }

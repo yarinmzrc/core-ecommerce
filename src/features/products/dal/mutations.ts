@@ -32,6 +32,8 @@ export async function createProduct(data: {
 
   const slug = slugify(data.name)
 
+  console.log("hereeee")
+
   return db.product.create({
     data: {
       name: data.name,

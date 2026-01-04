@@ -3,6 +3,7 @@ import { getTranslations } from "next-intl/server"
 
 import { getCategories } from "@/features/categories/dal/queries"
 import { getOptionTemplates } from "@/features/option-templates/dal/queries"
+import { updateProductAction } from "@/features/products/actions/update-product"
 import { ProductForm } from "@/features/products/components/product-form/product-form"
 import { getFullProduct } from "@/features/products/dal/queries"
 
@@ -32,6 +33,8 @@ export default async function EditProductPage({
         optionTemplates={optionTemplates}
         product={product}
         categories={categories}
+        mode="update"
+        onSubmit={updateProductAction}
       />
     </div>
   )

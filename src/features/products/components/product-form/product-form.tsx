@@ -60,16 +60,31 @@ const getDefaultValues = (product?: ProductFullDTO) => {
   }
 }
 
-type ProductFormProps = {
-  product?: ProductFullDTO
+type BaseProductFormProps = {
   categories: CategoryDTO[]
   optionTemplates: OptionTemplateDTO[]
 }
 
+type CreateProductFormProps = BaseProductFormProps & {
+  onSubmit: (data: unknown) => Promise<unknown>
+  product?: undefined
+  mode: "create"
+}
+
+type UpdateProductFormProps = BaseProductFormProps & {
+  mode: "update"
+  product: ProductFullDTO
+  onSubmit: (id: string, data: unknown) => Promise<unknown>
+}
+
+type ProductFormProps = CreateProductFormProps | UpdateProductFormProps
+
 export function ProductForm({
-  product,
   categories,
   optionTemplates,
+  onSubmit,
+  mode,
+  product,
 }: ProductFormProps) {
   const defaultValues: ProductSchemaType = useMemo(
     () => getDefaultValues(product),
@@ -81,8 +96,12 @@ export function ProductForm({
       id="product-form"
       schema={productSchema}
       options={{ defaultValues }}
-      onSubmit={(formValues) => {
-        console.log({ formValues })
+      onSubmit={(values) => {
+        if (mode === "create") {
+          onSubmit(values)
+        } else {
+          onSubmit(product.id, values)
+        }
       }}
     >
       {({ formState, control }) => (
