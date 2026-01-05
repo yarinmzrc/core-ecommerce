@@ -23,7 +23,7 @@ const config: runtime.GetPrismaClientConfig = {
       "value": "prisma-client"
     },
     "output": {
-      "value": "/Users/yarinmizrachi/projects/core-ecommerce/prisma/generated/prisma",
+      "value": "/Users/yarinmizrachi/projects/core-ecommerce/apps/backend/prisma/generated/prisma",
       "fromEnvVar": null
     },
     "config": {
@@ -37,7 +37,7 @@ const config: runtime.GetPrismaClientConfig = {
       }
     ],
     "previewFeatures": [],
-    "sourceFilePath": "/Users/yarinmizrachi/projects/core-ecommerce/prisma/schema.prisma",
+    "sourceFilePath": "/Users/yarinmizrachi/projects/core-ecommerce/apps/backend/prisma/schema.prisma",
     "isCustomOutput": true
   },
   "relativePath": "../..",
@@ -47,7 +47,6 @@ const config: runtime.GetPrismaClientConfig = {
     "db"
   ],
   "activeProvider": "mongodb",
-  "postinstall": true,
   "inlineDatasources": {
     "db": {
       "url": {
