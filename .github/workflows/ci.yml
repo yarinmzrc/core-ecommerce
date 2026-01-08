@@ -1,0 +1,42 @@
+name: Quality Check
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+env:
+  DATABASE_URL: "mongodb://dummy:27017/db"
+  CLOUDINARY_CLOUD_NAME: ""
+  CLOUDINARY_API_KEY: ""
+  CLOUDINARY_API_SECRET: ""
+  NEXT_PUBLIC_SERVER_URL: ""
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 9
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version: "20"
+          cache: "pnpm"
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Run Quality Checks (Lint, Typecheck)
+        run: pnpm turbo lint type:check
+
+      - name: Build
+        run: pnpm turbo build

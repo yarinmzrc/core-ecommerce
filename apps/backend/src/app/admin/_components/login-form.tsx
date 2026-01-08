@@ -1,6 +1,5 @@
 "use client"
 import { useRouter } from "next/navigation"
-import { signIn } from "next-auth/react"
 import { useState } from "react"
 
 import { Button } from "@/components/ui/button/button"
@@ -8,6 +7,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { paths } from "@/config/paths"
+import { api } from "@/lib/api-client"
 
 export function AdminLoginForm() {
   const router = useRouter()
@@ -23,7 +23,7 @@ export function AdminLoginForm() {
     const password = formData.get("password") as string
 
     try {
-      const response = await signIn("credentials", {
+      const response = await api.post("/api/auth/login", {
         email,
         password,
       })
@@ -39,6 +39,7 @@ export function AdminLoginForm() {
       setLoading(false)
     }
   }
+
   return (
     <Card className="w-120">
       <CardHeader>

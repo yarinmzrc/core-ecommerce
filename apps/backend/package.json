@@ -15,11 +15,11 @@
     "seed": "pnpm tsx prisma/seed.ts",
     "db:init": "docker exec -it core-ecommerce-mongodb mongosh --eval 'try { rs.status(); print(\"Replica set already initialized\") } catch (e) { rs.initiate({_id: \"rs0\", members: [{ _id: 0, host: \"localhost:27017\" }]}); }'",
     "db:setup": "pnpm db:init && pnpm prisma generate && pnpm prisma db push && pnpm seed",
-    "prepare": "husky",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"
   },
   "dependencies": {
+    "@ecommerce/config": "workspace:^",
     "@hookform/resolvers": "^5.2.2",
     "@prisma/client": "^6.19.1",
     "@radix-ui/react-dialog": "^1.1.15",
@@ -29,14 +29,18 @@
     "@radix-ui/react-select": "^2.2.6",
     "@radix-ui/react-slot": "^1.2.4",
     "@radix-ui/react-switch": "^1.2.6",
+    "@types/bcrypt": "^6.0.0",
+    "@types/jsonwebtoken": "^9.0.10",
+    "bcrypt": "^6.0.0",
     "bcryptjs": "^3.0.3",
     "class-variance-authority": "^0.7.1",
     "cloudinary": "^2.8.0",
     "clsx": "^2.1.1",
+    "dotenv": "^17.2.3",
     "immer": "^11.0.1",
+    "jsonwebtoken": "^9.0.3",
     "lucide-react": "^0.560.0",
     "next": "16.0.8",
-    "next-auth": "^4.24.13",
     "next-intl": "^4.6.1",
     "next-themes": "^0.4.6",
     "react": "19.2.1",
@@ -64,15 +68,9 @@
     "@vitest/coverage-v8": "^4.0.16",
     "eslint": "^9",
     "eslint-config-next": "16.0.8",
-    "eslint-config-prettier": "^10.1.8",
-    "eslint-plugin-prettier": "^5.5.4",
-    "eslint-plugin-simple-import-sort": "^12.1.1",
     "eslint-plugin-storybook": "^10.1.10",
-    "husky": "^9.1.7",
-    "lint-staged": "^16.2.7",
     "playwright": "^1.57.0",
     "prettier": "^3.7.4",
-    "prettier-plugin-tailwindcss": "^0.7.2",
     "prisma": "^6.19.1",
     "storybook": "^10.1.10",
     "tailwindcss": "^4",
@@ -82,14 +80,5 @@
     "typescript": "^5",
     "vite": "^7.3.0",
     "vitest": "^4.0.16"
-  },
-  "lint-staged": {
-    "*.{js,jsx,ts,tsx}": [
-      "eslint --fix",
-      "prettier --write"
-    ],
-    "*.{json,md,yml}": [
-      "prettier --write"
-    ]
   }
 }

@@ -1,18 +1,33 @@
 {
-	"name": "ecommerce",
-	"private": true,
-	"scripts": {
-		"build": "turbo build",
-		"dev": "turbo dev",
-		"lint": "turbo lint",
-		"format": "prettier --write \"**/*.{ts,tsx,md}\""
-	},
-	"packageManager": "pnpm@10.0.0",
-	"engines": {
-		"node": ">=18"
-	},
-	"devDependencies": {
-		"prettier": "^3.7.4",
-		"turbo": "^2.7.2"
-	}
+  "name": "ecommerce",
+  "private": true,
+  "scripts": {
+    "build": "turbo build",
+    "dev": "turbo dev",
+    "lint": "turbo lint",
+    "format": "prettier --write \"**/*.{ts,tsx,md}\""
+  },
+  "packageManager": "pnpm@10.0.0",
+  "engines": {
+    "node": ">=18"
+  },
+  "devDependencies": {
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-prettier": "^5.5.4",
+    "eslint-plugin-simple-import-sort": "^12.1.1",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.2.7",
+    "prettier": "^3.7.4",
+    "prettier-plugin-tailwindcss": "^0.7.2",
+    "turbo": "^2.7.2"
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": [
+      "pnpm eslint --fix",
+      "pnpm prettier --write"
+    ],
+    "*.{json,md,yml}": [
+      "pnpm prettier --write"
+    ]
+  }
 }

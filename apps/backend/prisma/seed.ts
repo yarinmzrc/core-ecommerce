@@ -4,14 +4,13 @@ import { hash } from "bcryptjs"
 
 import { AppType } from "@/config/app/app-type.config"
 import { OptionPricingStrategy } from "@/config/app/option-templates"
-import { env } from "@/config/env"
 import {
   OptionInput,
   OptionTemplateCreateDTO,
   OptionUI,
 } from "@/features/option-templates/dtos"
 import db from "@/lib/db"
-
+import { env } from "@ecommerce/config"
 import { Role } from "./generated/prisma/enums"
 
 async function main() {
