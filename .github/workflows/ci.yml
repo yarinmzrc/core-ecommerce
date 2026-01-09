@@ -11,6 +11,17 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      DATABASE_URL: "mongodb://localhost:27017/core-ecommerce"
+      ADMIN_PASSWORD: "mock"
+      CLOUDINARY_CLOUD_NAME: "mock"
+      CLOUDINARY_API_KEY: "mock"
+      CLOUDINARY_API_SECRET: "mock"
+      AUTH_JWT_SECRET: "mock"
+      NEXT_PUBLIC_APP_NAME: "mock"
+      NEXT_PUBLIC_APP_URL: "mock"
+      NEXT_PUBLIC_SERVER_URL: "mock"
+      NEXT_PUBLIC_APP_TYPE: "FOOD"
 
     steps:
       - name: Checkout code
