@@ -56,8 +56,7 @@ jobs:
         run: pnpm turbo lint type:check
 
       - name: Generate Prisma Client
-        run: pnpm prisma generate --schema=prisma/schema.prisma
-        working-directory: apps/backend
+        run: pnpm prisma generate --schema=apps/backend/prisma/schema.prisma
 
       - name: Build
         run: |
