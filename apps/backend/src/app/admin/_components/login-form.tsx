@@ -28,11 +28,11 @@ export function AdminLoginForm() {
         password,
       })
 
-      if (response?.error) {
-        console.error("Login error:", response.error)
-      } else {
-        router.push(paths.admin.root.getHref())
-      }
+      // if (response?.error) {
+      //   console.error("Login error:", response.error)
+      // } else {
+      //   router.push(paths.admin.root.getHref())
+      // }
     } catch (error) {
       console.error("An unexpected error occurred:", error)
     } finally {
