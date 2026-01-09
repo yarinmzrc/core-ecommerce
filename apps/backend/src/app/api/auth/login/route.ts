@@ -18,7 +18,13 @@ export async function POST(req: Request) {
     )
   }
 
-  const isValid = bcrypt.compare(password, user.passwordHash)
+  console.log({ email, password })
+
+  console.log("hashhhhhh", user.passwordHash)
+
+  const isValid = await bcrypt.compare(password, user.passwordHash)
+
+  console.log({ isValid })
 
   if (!isValid) {
     return NextResponse.json(

@@ -48,7 +48,7 @@ export async function getServerCookies() {
 async function fetchApi<T>(
   url: string,
   options: RequestOptions = {},
-): Promise<T> {
+): Promise<ReturnType<T>> {
   const {
     method = "GET",
     headers = {},
@@ -92,23 +92,44 @@ async function fetchApi<T>(
     throw new Error(message)
   }
 
-  return response.json()
+  return {
+    success: true,
+    data: (await response.json()) as T,
+  }
+}
+
+type ReturnType<T> = {
+  success: boolean
+  data: T
+  error?: string
 }
 
 export const api = {
-  get<T>(url: string, options?: RequestOptions): Promise<T> {
+  get<T>(url: string, options?: RequestOptions): Promise<ReturnType<T>> {
     return fetchApi<T>(url, { ...options, method: "GET" })
   },
-  post<T>(url: string, body?: any, options?: RequestOptions): Promise<T> {
+  post<T>(
+    url: string,
+    body?: any,
+    options?: RequestOptions,
+  ): Promise<ReturnType<T>> {
     return fetchApi<T>(url, { ...options, method: "POST", body })
   },
-  put<T>(url: string, body?: any, options?: RequestOptions): Promise<T> {
+  put<T>(
+    url: string,
+    body?: any,
+    options?: RequestOptions,
+  ): Promise<ReturnType<T>> {
     return fetchApi<T>(url, { ...options, method: "PUT", body })
   },
-  patch<T>(url: string, body?: any, options?: RequestOptions): Promise<T> {
+  patch<T>(
+    url: string,
+    body?: any,
+    options?: RequestOptions,
+  ): Promise<ReturnType<T>> {
     return fetchApi<T>(url, { ...options, method: "PATCH", body })
   },
-  delete<T>(url: string, options?: RequestOptions): Promise<T> {
+  delete<T>(url: string, options?: RequestOptions): Promise<ReturnType<T>> {
     return fetchApi<T>(url, { ...options, method: "DELETE" })
   },
 }

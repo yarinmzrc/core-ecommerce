@@ -17,6 +17,7 @@ async function main() {
   // Clean up existsing data
   // await db.orderItem.deleteMany()
   await db.order.deleteMany()
+  await db.user.deleteMany()
   await db.product.deleteMany()
   await db.category.deleteMany()
   await db.optionTemplate.deleteMany()
