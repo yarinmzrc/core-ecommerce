@@ -10,7 +10,7 @@ import {
   OptionUI,
 } from "@/features/option-templates/dtos"
 import db from "@/lib/db"
-import { env } from "@ecommerce/config"
+import { env } from "@/config/env"
 import { Role } from "./generated/prisma/enums"
 
 async function main() {

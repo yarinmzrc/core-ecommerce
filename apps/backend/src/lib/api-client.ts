@@ -1,4 +1,4 @@
-import { env } from "@ecommerce/config"
+import { env } from "@/config/env"
 import { toast } from "sonner"
 
 type RequestOptions = {

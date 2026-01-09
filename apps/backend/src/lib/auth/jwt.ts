@@ -1,6 +1,6 @@
 "server only"
 
-import { env } from "@ecommerce/config"
+import { env } from "@/config/env"
 import jwt from "jsonwebtoken"
 
 export type JwtPayload = {

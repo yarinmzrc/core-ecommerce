@@ -1,4 +1,4 @@
-import { env } from "@ecommerce/config"
+import { env } from "@/config/env"
 import { v2 as cloudinary } from "cloudinary"
 
 cloudinary.config({

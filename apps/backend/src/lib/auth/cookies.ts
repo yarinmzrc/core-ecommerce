@@ -1,4 +1,4 @@
-import { env } from "@ecommerce/config"
+import { env } from "@/config/env"
 import { NextRequest, NextResponse } from "next/server"
 
 export const ACCESS_COOKIE_NAME = "access_token"
