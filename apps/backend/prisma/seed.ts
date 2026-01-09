@@ -15,7 +15,6 @@ import { Role } from "./generated/prisma/enums"
 
 async function main() {
   // Clean up existsing data
-  // await db.orderItem.deleteMany()
   await db.order.deleteMany()
   await db.user.deleteMany()
   await db.product.deleteMany()
