@@ -11,17 +11,6 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    env:
-      DATABASE_URL: "mongodb://localhost:27017/core-ecommerce"
-      ADMIN_PASSWORD: "mock"
-      CLOUDINARY_CLOUD_NAME: "mock"
-      CLOUDINARY_API_KEY: "mock"
-      CLOUDINARY_API_SECRET: "mock"
-      AUTH_JWT_SECRET: "mock"
-      NEXT_PUBLIC_APP_NAME: "mock"
-      NEXT_PUBLIC_APP_URL: "mock"
-      NEXT_PUBLIC_SERVER_URL: "mock"
-      NEXT_PUBLIC_APP_TYPE: "FOOD"
 
     steps:
       - name: Checkout code
@@ -45,4 +34,16 @@ jobs:
         run: pnpm turbo lint type:check
 
       - name: Build
-        run: pnpm turbo build
+        run: |
+          export DATABASE_URL="mongodb://localhost:27017/core-ecommerce"
+          export ADMIN_PASSWORD="mock"
+          export CLOUDINARY_CLOUD_NAME="mock"
+          export CLOUDINARY_API_KEY="mock"
+          export CLOUDINARY_API_SECRET="mock"
+          export AUTH_JWT_SECRET="mock"
+          export NEXT_PUBLIC_APP_NAME="mock"
+          export NEXT_PUBLIC_APP_URL="mock"
+          export NEXT_PUBLIC_SERVER_URL="mock"
+          export NEXT_PUBLIC_APP_TYPE="FOOD"
+
+          pnpm turbo build
