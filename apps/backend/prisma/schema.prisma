@@ -13,14 +13,15 @@ model User {
   id String @id @default(auto()) @map("_id") @db.ObjectId
   email String @unique
   passwordHash String
-  role Role @default(ADMIN)
+  role Role @default(STORE_ADMIN)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
 
 enum Role {
   USER
-  ADMIN
+  STORE_ADMIN
+  SUPER_ADMIN
 }
 
 type Image {
