@@ -11,6 +11,28 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    services:
+      mongo:
+        image: mongo:6
+        ports:
+          - 27017:27017
+        options: >-
+          --health-cmd "mongo --eval 'db.runCommand({ ping: 1 })'" 
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    env:
+      DATABASE_URL: "mongodb://localhost:27017/core-ecommerce"
+      ADMIN_PASSWORD: "mock"
+      CLOUDINARY_CLOUD_NAME: "mock"
+      CLOUDINARY_API_KEY: "mock"
+      CLOUDINARY_API_SECRET: "mock"
+      AUTH_JWT_SECRET: "mock"
+      NEXT_PUBLIC_APP_NAME: "mock"
+      NEXT_PUBLIC_APP_URL: "mock"
+      NEXT_PUBLIC_SERVER_URL: "mock"
+      NEXT_PUBLIC_APP_TYPE: "FOOD"
 
     steps:
       - name: Checkout code
