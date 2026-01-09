@@ -8,18 +8,6 @@ on:
     branches:
       - main
 
-env:
-  DATABASE_URL: "mongodb://dummy:27017/db"
-  CLOUDINARY_CLOUD_NAME: "mock"
-  CLOUDINARY_API_KEY: "mock"
-  CLOUDINARY_API_SECRET: "mock"
-  NEXT_PUBLIC_SERVER_URL: "mock"
-  NEXT_PUBLIC_APP_NAME: "FOOD"
-  NEXT_PUBLIC_APP_TYPE: "mock"
-  NEXT_PUBLIC_APP_URL: "mock"
-  ADMIN_PASSWORD: "mock"
-  AUTH_JWT_SECRET: "mock"
-
 jobs:
   build:
     runs-on: ubuntu-latest
