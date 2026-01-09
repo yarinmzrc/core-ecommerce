@@ -27,10 +27,6 @@ jobs:
           node-version: "20"
           cache: "pnpm"
 
-      - name: Copy Prisma
-        # Run this: COPY prisma ./prisma/
-        run: cp -r prisma ./
-
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
