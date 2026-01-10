@@ -18,8 +18,8 @@
         "NEXT_PUBLIC_SERVER_URL"
       ]
     },
-    "lint": {
-      "dependsOn": ["^lint"]
+    "lint:check": {
+      "dependsOn": ["^lint:check"]
     },
     "type:check": {
       "dependsOn": ["^type:check"]
