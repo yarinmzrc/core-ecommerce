@@ -16,6 +16,7 @@ export default defineConfig([
       "public",
       "next.config.js",
       "next-env.d.ts",
+      "**/prisma/generated/**",
     ],
   },
   js.configs.recommended,

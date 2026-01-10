@@ -1,6 +1,6 @@
-node_modules
-.next
-dist
+**/node_modules/**
+**/.next/**
+**/dist/**
 build
 coverage
 .env
@@ -9,4 +9,4 @@ coverage
 /public
 .prettierignore
 .prettierrc
-prisma/generated/
+**/prisma/generated/**
