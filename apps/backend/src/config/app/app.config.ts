@@ -1,4 +1,5 @@
 import { env } from "@/config/env"
+
 import type { AppTypeType } from "./app-type.config"
 import { appTypeConfigMap } from "./option-templates"
 

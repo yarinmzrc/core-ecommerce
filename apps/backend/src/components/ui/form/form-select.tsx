@@ -29,7 +29,7 @@ type FormSelectFieldProps<TFormValues extends FieldValues> =
 export function FormSelect<TFormValues extends FieldValues>(
   props: FormSelectFieldProps<TFormValues>,
 ) {
-  const { label, options, className, control, name, error } = props
+  const { label, options, control, name, error } = props
 
   return (
     <FormFieldWrapper label={label} error={error}>

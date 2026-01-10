@@ -1,5 +1,6 @@
-import { env } from "@/config/env"
 import { toast } from "sonner"
+
+import { env } from "@/config/env"
 
 type RequestOptions = {
   method?: string
@@ -70,66 +71,62 @@ async function fetchApi<T>(
     params,
   )
 
-  const response = await fetch(fullUrl, {
-    method,
-    headers: {
-      "Content-Type": "application/json",
-      Accept: "application/json",
-      ...headers,
-      ...(cookieHeader ? { Cookie: cookieHeader } : {}),
-    },
-    body: body ? JSON.stringify(body) : undefined,
-    credentials: "include",
-    cache,
-    next,
-  })
+  try {
+    const response = await fetch(fullUrl, {
+      method,
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+        ...headers,
+        ...(cookieHeader ? { Cookie: cookieHeader } : {}),
+      },
+      body: body ? JSON.stringify(body) : undefined,
+      credentials: "include",
+      cache,
+      next,
+    })
 
-  if (!response.ok) {
-    const message = (await response.json()).message || response.statusText
-    if (typeof window !== "undefined") {
-      toast.error(message)
+    const json = (await response.json()) as ReturnType<T>
+
+    if (!json.success) {
+      if (typeof window !== "undefined") {
+        toast.error(json.error || "Something went wrong")
+      }
     }
-    throw new Error(message)
-  }
 
-  return {
-    success: true,
-    data: (await response.json()) as T,
+    return json
+  } catch {
+    return {
+      success: false,
+      error: "Network error",
+    }
   }
 }
 
-type ReturnType<T> = {
-  success: boolean
-  data: T
-  error?: string
-}
+type ReturnType<T> =
+  | {
+      success: true
+      data: T
+    }
+  | {
+      success: false
+      error: string
+    }
 
 export const api = {
-  get<T>(url: string, options?: RequestOptions): Promise<ReturnType<T>> {
+  get<T>(url: string, options?: RequestOptions) {
     return fetchApi<T>(url, { ...options, method: "GET" })
   },
-  post<T>(
-    url: string,
-    body?: any,
-    options?: RequestOptions,
-  ): Promise<ReturnType<T>> {
+  post<T>(url: string, body?: any, options?: RequestOptions) {
     return fetchApi<T>(url, { ...options, method: "POST", body })
   },
-  put<T>(
-    url: string,
-    body?: any,
-    options?: RequestOptions,
-  ): Promise<ReturnType<T>> {
+  put<T>(url: string, body?: any, options?: RequestOptions) {
     return fetchApi<T>(url, { ...options, method: "PUT", body })
   },
-  patch<T>(
-    url: string,
-    body?: any,
-    options?: RequestOptions,
-  ): Promise<ReturnType<T>> {
+  patch<T>(url: string, body?: any, options?: RequestOptions) {
     return fetchApi<T>(url, { ...options, method: "PATCH", body })
   },
-  delete<T>(url: string, options?: RequestOptions): Promise<ReturnType<T>> {
+  delete<T>(url: string, options?: RequestOptions) {
     return fetchApi<T>(url, { ...options, method: "DELETE" })
   },
 }

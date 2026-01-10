@@ -1,5 +1,6 @@
-import { env } from "@/config/env"
 import { NextRequest, NextResponse } from "next/server"
+
+import { env } from "@/config/env"
 
 export const ACCESS_COOKIE_NAME = "access_token"
 

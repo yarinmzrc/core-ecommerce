@@ -1,11 +1,14 @@
 "server only"
 
-import { env } from "@/config/env"
 import jwt from "jsonwebtoken"
+
+import { env } from "@/config/env"
+import { RoleDTOType } from "@/features/users/dtos"
 
 export type JwtPayload = {
   sub: string
   email: string
+  role: RoleDTOType
 }
 
 export function signAccessToken(payload: JwtPayload) {

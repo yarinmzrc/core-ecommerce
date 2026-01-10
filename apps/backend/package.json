@@ -2,6 +2,7 @@
   "name": "@ecommerce/backend",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -19,6 +20,7 @@
     "build-storybook": "storybook build"
   },
   "dependencies": {
+    "@ecommerce/eslint-config": "workspace:*",
     "@hookform/resolvers": "^5.2.2",
     "@prisma/client": "^6.19.1",
     "@radix-ui/react-dialog": "^1.1.15",
@@ -68,8 +70,8 @@
     "@vitest/browser-playwright": "^4.0.16",
     "@vitest/coverage-v8": "^4.0.16",
     "eslint": "^9",
-    "eslint-config-next": "16.0.8",
     "eslint-plugin-storybook": "^10.1.10",
+    "npm": "^11.7.0",
     "playwright": "^1.57.0",
     "prettier": "^3.7.4",
     "prisma": "^6.19.1",

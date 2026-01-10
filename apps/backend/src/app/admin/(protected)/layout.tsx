@@ -1,7 +1,9 @@
-import { getCurrentUser } from "@/lib/auth/session"
-import { AdminNav } from "../_components/admin-nav"
 import { redirect } from "next/navigation"
+
 import { paths } from "@/config/paths"
+import { getCurrentUser } from "@/lib/auth/session"
+
+import { AdminNav } from "../_components/admin-nav"
 
 export const dynamic = "force-dynamic"
 
@@ -11,8 +13,6 @@ export default async function AdminLayout({
   children: React.ReactNode
 }>) {
   const user = await getCurrentUser()
-
-  console.log({ user })
 
   if (!user) {
     redirect(paths.admin.login.getHref())

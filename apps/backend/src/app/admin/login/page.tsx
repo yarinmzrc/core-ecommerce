@@ -1,9 +1,9 @@
 import { redirect } from "next/navigation"
 
 import { paths } from "@/config/paths"
+import { getCurrentUser } from "@/lib/auth/session"
 
 import { AdminLoginForm } from "../_components/login-form"
-import { getCurrentUser } from "@/lib/auth/session"
 
 export default async function AdminLoginPage() {
   const user = await getCurrentUser()

@@ -1,11 +1,14 @@
 import { NextRequest, NextResponse } from "next/server"
+
+import { RoleDTO } from "@/features/users/dtos"
+
 import { getAccessTokenCookie } from "./cookies"
 import { verifyAccessToken } from "./jwt"
 
-export function withAuth(
-  handler: (req: NextRequest, user: any) => Promise<Response>,
+export function withRequireAdmin(
+  handler: (req: NextRequest, context: any) => Promise<NextResponse>,
 ) {
-  return async (req: NextRequest) => {
+  return async (req: NextRequest, context: any) => {
     const token = getAccessTokenCookie(req)
 
     if (!token) {
@@ -14,7 +17,18 @@ export function withAuth(
 
     try {
       const user = verifyAccessToken(token)
-      return handler(req, user)
+
+      if (!user) {
+        return NextResponse.json({ message: "Unauthorized" }, { status: 401 })
+      }
+
+      if (
+        [RoleDTO.SUPER_ADMIN, RoleDTO.STORE_ADMIN].includes(user.role) === false
+      ) {
+        return NextResponse.json({ message: "Unauthorized" }, { status: 401 })
+      }
+
+      return handler(req, context)
     } catch {
       return NextResponse.json(
         { message: "Invalid or expired token" },

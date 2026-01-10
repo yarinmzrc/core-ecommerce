@@ -1,8 +1,9 @@
-import { NextResponse } from "next/server"
 import bcrypt from "bcrypt"
-import db from "@/lib/db"
-import { signAccessToken } from "@/lib/auth/jwt"
+import { NextResponse } from "next/server"
+
 import { setAccessTokenCookie } from "@/lib/auth/cookies"
+import { signAccessToken } from "@/lib/auth/jwt"
+import db from "@/lib/db"
 
 export async function POST(req: Request) {
   const { email, password } = await req.json()
@@ -18,13 +19,7 @@ export async function POST(req: Request) {
     )
   }
 
-  console.log({ email, password })
-
-  console.log("hashhhhhh", user.passwordHash)
-
   const isValid = await bcrypt.compare(password, user.passwordHash)
-
-  console.log({ isValid })
 
   if (!isValid) {
     return NextResponse.json(
@@ -36,6 +31,7 @@ export async function POST(req: Request) {
   const token = signAccessToken({
     sub: user.id,
     email: user.email,
+    role: user.role,
   })
 
   const response = NextResponse.json({ success: true })
