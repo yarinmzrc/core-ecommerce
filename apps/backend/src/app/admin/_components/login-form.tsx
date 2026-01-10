@@ -28,7 +28,7 @@ export function AdminLoginForm() {
         password,
       })
 
-      if (response?.error) {
+      if (response.success === false) {
         console.error("Login error:", response.error)
       } else {
         router.push(paths.admin.root.getHref())
