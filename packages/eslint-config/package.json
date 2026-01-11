@@ -1,5 +1,5 @@
 {
-  "name": "@ecommerce/eslint-config",
+  "name": "@repo/eslint-config",
   "private": true,
   "version": "0.0.0",
   "type": "module",

@@ -1,4 +1,4 @@
-import { baseConfig } from "@ecommerce/eslint-config"
+import { baseConfig } from "@repo/eslint-config"
 import { defineConfig } from "eslint/config"
 
 /** @type {import('eslint').Linter.FlatConfig[]} */

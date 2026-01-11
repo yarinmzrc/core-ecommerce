@@ -1,5 +1,5 @@
 {
-  "name": "@ecommerce/backend",
+  "name": "@repo/platform",
   "version": "0.1.0",
   "private": true,
   "type": "module",
@@ -20,7 +20,7 @@
     "build-storybook": "storybook build"
   },
   "dependencies": {
-    "@ecommerce/eslint-config": "workspace:*",
+    "@repo/eslint-config": "workspace:*",
     "@hookform/resolvers": "^5.2.2",
     "@prisma/client": "^6.19.1",
     "@radix-ui/react-dialog": "^1.1.15",
