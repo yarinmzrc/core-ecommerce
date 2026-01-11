@@ -1,5 +1,3 @@
-import { NextResponse } from "next/server"
-
 import { getProductsForStore } from "@/features/products/dal/queries"
 import { ApiResponse } from "@/lib/api-response"
 
