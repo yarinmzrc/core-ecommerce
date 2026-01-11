@@ -14,7 +14,7 @@ export function slugify(text: string) {
     .trim()
     .replace(/\s+/g, "-") // Replace spaces with "-"
     .replace(/[^\w-]+/g, "") // Remove all non-word chars
-    .replace(/\--+/g, "-") // Replace multiple - with single -
+    .replace(/--+/g, "-") // Replace multiple - with single -
 }
 
 export function buildVariantName(variant: ProductVariantDTO): string {

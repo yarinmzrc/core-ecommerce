@@ -11,7 +11,10 @@ export async function GET(
     const id = (await params).id
     const product = await getProduct(id)
     return ApiResponse.success(product)
-  } catch (error) {
-    return ApiResponse.error("Failed to get product")
+  } catch {
+    return ApiResponse.error({
+      message: "Failed to get product",
+      status: 404,
+    })
   }
 }

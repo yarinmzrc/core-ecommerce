@@ -5,7 +5,10 @@ export async function GET() {
   try {
     const categories = await getCategories()
     return ApiResponse.success(categories)
-  } catch (error) {
-    return ApiResponse.error("Failed to get categories")
+  } catch {
+    return ApiResponse.error({
+      message: "Failed to get categories",
+      status: 404,
+    })
   }
 }

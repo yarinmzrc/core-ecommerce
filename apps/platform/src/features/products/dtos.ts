@@ -1,7 +1,7 @@
 import { Prisma } from "../../../prisma/generated/prisma/client"
 import {
   OptionInputType,
-  OptionPricingStrategy,
+  OptionPricingStrategyType,
   OptionUIType,
   OptionValueDTO,
 } from "../option-templates/dtos"
@@ -21,7 +21,7 @@ export type ProductOptionOverridesDTO = {
   name: string
   inputType: OptionInputType
   uiType: OptionUIType
-  pricingStrategy: OptionPricingStrategy
+  pricingStrategy: OptionPricingStrategyType
   values: OptionValueDTO[]
   isActive: boolean
   required: boolean

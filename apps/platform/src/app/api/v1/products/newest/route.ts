@@ -5,7 +5,10 @@ export async function GET() {
   try {
     const products = await getNewestProducts()
     return ApiResponse.success(products)
-  } catch (error) {
-    return ApiResponse.error("Failed to get newest products")
+  } catch {
+    return ApiResponse.error({
+      message: "Failed to get newest products",
+      status: 404,
+    })
   }
 }

@@ -1,6 +1,6 @@
 import bcrypt from "bcrypt"
-import { NextResponse } from "next/server"
 
+import { ApiResponse } from "@/lib/api-response"
 import { setAccessTokenCookie } from "@/lib/auth/cookies"
 import { signAccessToken } from "@/lib/auth/jwt"
 import db from "@/lib/db"
@@ -13,19 +13,13 @@ export async function POST(req: Request) {
   })
 
   if (!user) {
-    return NextResponse.json(
-      { message: "Invalid Credentials" },
-      { status: 401 },
-    )
+    return ApiResponse.error({ message: "Invalid Credentials", status: 401 })
   }
 
   const isValid = await bcrypt.compare(password, user.passwordHash)
 
   if (!isValid) {
-    return NextResponse.json(
-      { message: "Invalid Credentials" },
-      { status: 401 },
-    )
+    return ApiResponse.error({ message: "Invalid Credentials", status: 401 })
   }
 
   const token = signAccessToken({
@@ -34,7 +28,7 @@ export async function POST(req: Request) {
     role: user.role,
   })
 
-  const response = NextResponse.json({ success: true })
+  const response = ApiResponse.success({ success: true })
 
   setAccessTokenCookie(response, token)
 

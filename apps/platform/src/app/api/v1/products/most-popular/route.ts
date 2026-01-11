@@ -5,7 +5,10 @@ export async function GET() {
   try {
     const products = await getMostPopularProducts()
     return ApiResponse.success(products)
-  } catch (error) {
-    return ApiResponse.error("Failed to get most popular products")
+  } catch {
+    return ApiResponse.error({
+      message: "Failed to get most popular products",
+      status: 404,
+    })
   }
 }

@@ -1,7 +1,7 @@
 import { NextRequest } from "next/server"
 
-import { ApiResponse } from "@/lib/api-response"
 import { getCategory } from "@/features/categories/dal/queries"
+import { ApiResponse } from "@/lib/api-response"
 
 export async function GET(
   request: NextRequest,
@@ -11,7 +11,10 @@ export async function GET(
     const id = (await params).id
     const category = await getCategory(id)
     return ApiResponse.success(category)
-  } catch (error) {
-    return ApiResponse.error("Failed to get product")
+  } catch {
+    return ApiResponse.error({
+      message: "Failed to get category",
+      status: 404,
+    })
   }
 }

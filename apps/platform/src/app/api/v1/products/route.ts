@@ -5,7 +5,10 @@ export async function GET() {
   try {
     const products = await getProductsForStore()
     return ApiResponse.success(products)
-  } catch (error) {
-    return ApiResponse.error("Failed to get products")
+  } catch {
+    return ApiResponse.error({
+      message: "Failed to get products",
+      status: 404,
+    })
   }
 }

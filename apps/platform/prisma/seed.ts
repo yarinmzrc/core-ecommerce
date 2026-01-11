@@ -3,10 +3,10 @@ import "dotenv/config"
 import { hash } from "bcryptjs"
 
 import { AppType } from "@/config/app/app-type.config"
-import { OptionPricingStrategy } from "@/config/app/option-templates"
 import { env } from "@/config/env"
 import {
   OptionInput,
+  OptionPricingStrategy,
   OptionTemplateCreateDTO,
   OptionUI,
 } from "@/features/option-templates/dtos"

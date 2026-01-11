@@ -6,7 +6,7 @@ export type OptionTemplateDTO = {
   appType: AppType
   inputType: OptionInputType
   uiType: OptionUIType
-  pricingStrategy: OptionPricingStrategy
+  pricingStrategy: OptionPricingStrategyType
   values: OptionValueDTO[]
   isActive: boolean
   required: boolean
@@ -47,5 +47,5 @@ export const OptionPricingStrategy = {
 
 export type OptionInputType = (typeof OptionInput)[keyof typeof OptionInput]
 export type OptionUIType = (typeof OptionUI)[keyof typeof OptionUI]
-export type OptionPricingStrategy =
+export type OptionPricingStrategyType =
   (typeof OptionPricingStrategy)[keyof typeof OptionPricingStrategy]
