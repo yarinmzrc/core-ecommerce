@@ -31,8 +31,6 @@ export type OptionTemplateMinAggregateOutputType = {
   inputType: $Enums.OptionInputType | null
   uiType: $Enums.OptionUIType | null
   pricingStrategy: $Enums.OptionPricingStrategy | null
-  isActive: boolean | null
-  required: boolean | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -44,8 +42,6 @@ export type OptionTemplateMaxAggregateOutputType = {
   inputType: $Enums.OptionInputType | null
   uiType: $Enums.OptionUIType | null
   pricingStrategy: $Enums.OptionPricingStrategy | null
-  isActive: boolean | null
-  required: boolean | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -58,8 +54,6 @@ export type OptionTemplateCountAggregateOutputType = {
   uiType: number
   pricingStrategy: number
   values: number
-  isActive: number
-  required: number
   createdAt: number
   updatedAt: number
   _all: number
@@ -73,8 +67,6 @@ export type OptionTemplateMinAggregateInputType = {
   inputType?: true
   uiType?: true
   pricingStrategy?: true
-  isActive?: true
-  required?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -86,8 +78,6 @@ export type OptionTemplateMaxAggregateInputType = {
   inputType?: true
   uiType?: true
   pricingStrategy?: true
-  isActive?: true
-  required?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -100,8 +90,6 @@ export type OptionTemplateCountAggregateInputType = {
   uiType?: true
   pricingStrategy?: true
   values?: true
-  isActive?: true
-  required?: true
   createdAt?: true
   updatedAt?: true
   _all?: true
@@ -187,8 +175,6 @@ export type OptionTemplateGroupByOutputType = {
   uiType: $Enums.OptionUIType
   pricingStrategy: $Enums.OptionPricingStrategy
   values: runtime.JsonValue
-  isActive: boolean
-  required: boolean
   createdAt: Date
   updatedAt: Date
   _count: OptionTemplateCountAggregateOutputType | null
@@ -222,11 +208,8 @@ export type OptionTemplateWhereInput = {
   uiType?: Prisma.EnumOptionUITypeFilter<"OptionTemplate"> | $Enums.OptionUIType
   pricingStrategy?: Prisma.EnumOptionPricingStrategyFilter<"OptionTemplate"> | $Enums.OptionPricingStrategy
   values?: Prisma.JsonFilter<"OptionTemplate">
-  isActive?: Prisma.BoolFilter<"OptionTemplate"> | boolean
-  required?: Prisma.BoolFilter<"OptionTemplate"> | boolean
   createdAt?: Prisma.DateTimeFilter<"OptionTemplate"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"OptionTemplate"> | Date | string
-  productOptions?: Prisma.ProductOptionListRelationFilter
 }
 
 export type OptionTemplateOrderByWithRelationInput = {
@@ -237,11 +220,8 @@ export type OptionTemplateOrderByWithRelationInput = {
   uiType?: Prisma.SortOrder
   pricingStrategy?: Prisma.SortOrder
   values?: Prisma.SortOrder
-  isActive?: Prisma.SortOrder
-  required?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
-  productOptions?: Prisma.ProductOptionOrderByRelationAggregateInput
 }
 
 export type OptionTemplateWhereUniqueInput = Prisma.AtLeast<{
@@ -255,11 +235,8 @@ export type OptionTemplateWhereUniqueInput = Prisma.AtLeast<{
   uiType?: Prisma.EnumOptionUITypeFilter<"OptionTemplate"> | $Enums.OptionUIType
   pricingStrategy?: Prisma.EnumOptionPricingStrategyFilter<"OptionTemplate"> | $Enums.OptionPricingStrategy
   values?: Prisma.JsonFilter<"OptionTemplate">
-  isActive?: Prisma.BoolFilter<"OptionTemplate"> | boolean
-  required?: Prisma.BoolFilter<"OptionTemplate"> | boolean
   createdAt?: Prisma.DateTimeFilter<"OptionTemplate"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"OptionTemplate"> | Date | string
-  productOptions?: Prisma.ProductOptionListRelationFilter
 }, "id">
 
 export type OptionTemplateOrderByWithAggregationInput = {
@@ -270,8 +247,6 @@ export type OptionTemplateOrderByWithAggregationInput = {
   uiType?: Prisma.SortOrder
   pricingStrategy?: Prisma.SortOrder
   values?: Prisma.SortOrder
-  isActive?: Prisma.SortOrder
-  required?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   _count?: Prisma.OptionTemplateCountOrderByAggregateInput
@@ -290,8 +265,6 @@ export type OptionTemplateScalarWhereWithAggregatesInput = {
   uiType?: Prisma.EnumOptionUITypeWithAggregatesFilter<"OptionTemplate"> | $Enums.OptionUIType
   pricingStrategy?: Prisma.EnumOptionPricingStrategyWithAggregatesFilter<"OptionTemplate"> | $Enums.OptionPricingStrategy
   values?: Prisma.JsonWithAggregatesFilter<"OptionTemplate">
-  isActive?: Prisma.BoolWithAggregatesFilter<"OptionTemplate"> | boolean
-  required?: Prisma.BoolWithAggregatesFilter<"OptionTemplate"> | boolean
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"OptionTemplate"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"OptionTemplate"> | Date | string
 }
@@ -304,11 +277,8 @@ export type OptionTemplateCreateInput = {
   uiType: $Enums.OptionUIType
   pricingStrategy: $Enums.OptionPricingStrategy
   values: runtime.InputJsonValue
-  isActive?: boolean
-  required?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
-  productOptions?: Prisma.ProductOptionCreateNestedManyWithoutTemplateInput
 }
 
 export type OptionTemplateUncheckedCreateInput = {
@@ -319,11 +289,8 @@ export type OptionTemplateUncheckedCreateInput = {
   uiType: $Enums.OptionUIType
   pricingStrategy: $Enums.OptionPricingStrategy
   values: runtime.InputJsonValue
-  isActive?: boolean
-  required?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
-  productOptions?: Prisma.ProductOptionUncheckedCreateNestedManyWithoutTemplateInput
 }
 
 export type OptionTemplateUpdateInput = {
@@ -333,11 +300,8 @@ export type OptionTemplateUpdateInput = {
   uiType?: Prisma.EnumOptionUITypeFieldUpdateOperationsInput | $Enums.OptionUIType
   pricingStrategy?: Prisma.EnumOptionPricingStrategyFieldUpdateOperationsInput | $Enums.OptionPricingStrategy
   values?: runtime.InputJsonValue | runtime.InputJsonValue
-  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  required?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  productOptions?: Prisma.ProductOptionUpdateManyWithoutTemplateNestedInput
 }
 
 export type OptionTemplateUncheckedUpdateInput = {
@@ -347,11 +311,8 @@ export type OptionTemplateUncheckedUpdateInput = {
   uiType?: Prisma.EnumOptionUITypeFieldUpdateOperationsInput | $Enums.OptionUIType
   pricingStrategy?: Prisma.EnumOptionPricingStrategyFieldUpdateOperationsInput | $Enums.OptionPricingStrategy
   values?: runtime.InputJsonValue | runtime.InputJsonValue
-  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  required?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  productOptions?: Prisma.ProductOptionUncheckedUpdateManyWithoutTemplateNestedInput
 }
 
 export type OptionTemplateCreateManyInput = {
@@ -362,8 +323,6 @@ export type OptionTemplateCreateManyInput = {
   uiType: $Enums.OptionUIType
   pricingStrategy: $Enums.OptionPricingStrategy
   values: runtime.InputJsonValue
-  isActive?: boolean
-  required?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -375,8 +334,6 @@ export type OptionTemplateUpdateManyMutationInput = {
   uiType?: Prisma.EnumOptionUITypeFieldUpdateOperationsInput | $Enums.OptionUIType
   pricingStrategy?: Prisma.EnumOptionPricingStrategyFieldUpdateOperationsInput | $Enums.OptionPricingStrategy
   values?: runtime.InputJsonValue | runtime.InputJsonValue
-  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  required?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -388,15 +345,8 @@ export type OptionTemplateUncheckedUpdateManyInput = {
   uiType?: Prisma.EnumOptionUITypeFieldUpdateOperationsInput | $Enums.OptionUIType
   pricingStrategy?: Prisma.EnumOptionPricingStrategyFieldUpdateOperationsInput | $Enums.OptionPricingStrategy
   values?: runtime.InputJsonValue | runtime.InputJsonValue
-  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  required?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-}
-
-export type OptionTemplateNullableScalarRelationFilter = {
-  is?: Prisma.OptionTemplateWhereInput | null
-  isNot?: Prisma.OptionTemplateWhereInput | null
 }
 
 export type OptionTemplateCountOrderByAggregateInput = {
@@ -407,8 +357,6 @@ export type OptionTemplateCountOrderByAggregateInput = {
   uiType?: Prisma.SortOrder
   pricingStrategy?: Prisma.SortOrder
   values?: Prisma.SortOrder
-  isActive?: Prisma.SortOrder
-  required?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -420,8 +368,6 @@ export type OptionTemplateMaxOrderByAggregateInput = {
   inputType?: Prisma.SortOrder
   uiType?: Prisma.SortOrder
   pricingStrategy?: Prisma.SortOrder
-  isActive?: Prisma.SortOrder
-  required?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -433,143 +379,10 @@ export type OptionTemplateMinOrderByAggregateInput = {
   inputType?: Prisma.SortOrder
   uiType?: Prisma.SortOrder
   pricingStrategy?: Prisma.SortOrder
-  isActive?: Prisma.SortOrder
-  required?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
 
-export type OptionTemplateCreateNestedOneWithoutProductOptionsInput = {
-  create?: Prisma.XOR<Prisma.OptionTemplateCreateWithoutProductOptionsInput, Prisma.OptionTemplateUncheckedCreateWithoutProductOptionsInput>
-  connectOrCreate?: Prisma.OptionTemplateCreateOrConnectWithoutProductOptionsInput
-  connect?: Prisma.OptionTemplateWhereUniqueInput
-}
-
-export type OptionTemplateUpdateOneWithoutProductOptionsNestedInput = {
-  create?: Prisma.XOR<Prisma.OptionTemplateCreateWithoutProductOptionsInput, Prisma.OptionTemplateUncheckedCreateWithoutProductOptionsInput>
-  connectOrCreate?: Prisma.OptionTemplateCreateOrConnectWithoutProductOptionsInput
-  upsert?: Prisma.OptionTemplateUpsertWithoutProductOptionsInput
-  disconnect?: boolean
-  delete?: Prisma.OptionTemplateWhereInput | boolean
-  connect?: Prisma.OptionTemplateWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.OptionTemplateUpdateToOneWithWhereWithoutProductOptionsInput, Prisma.OptionTemplateUpdateWithoutProductOptionsInput>, Prisma.OptionTemplateUncheckedUpdateWithoutProductOptionsInput>
-}
-
-export type EnumAppTypeFieldUpdateOperationsInput = {
-  set?: $Enums.AppType
-}
-
-export type EnumOptionInputTypeFieldUpdateOperationsInput = {
-  set?: $Enums.OptionInputType
-}
-
-export type EnumOptionUITypeFieldUpdateOperationsInput = {
-  set?: $Enums.OptionUIType
-}
-
-export type EnumOptionPricingStrategyFieldUpdateOperationsInput = {
-  set?: $Enums.OptionPricingStrategy
-}
-
-export type OptionTemplateCreateWithoutProductOptionsInput = {
-  id?: string
-  name: string
-  appType: $Enums.AppType
-  inputType: $Enums.OptionInputType
-  uiType: $Enums.OptionUIType
-  pricingStrategy: $Enums.OptionPricingStrategy
-  values: runtime.InputJsonValue
-  isActive?: boolean
-  required?: boolean
-  createdAt?: Date | string
-  updatedAt?: Date | string
-}
-
-export type OptionTemplateUncheckedCreateWithoutProductOptionsInput = {
-  id?: string
-  name: string
-  appType: $Enums.AppType
-  inputType: $Enums.OptionInputType
-  uiType: $Enums.OptionUIType
-  pricingStrategy: $Enums.OptionPricingStrategy
-  values: runtime.InputJsonValue
-  isActive?: boolean
-  required?: boolean
-  createdAt?: Date | string
-  updatedAt?: Date | string
-}
-
-export type OptionTemplateCreateOrConnectWithoutProductOptionsInput = {
-  where: Prisma.OptionTemplateWhereUniqueInput
-  create: Prisma.XOR<Prisma.OptionTemplateCreateWithoutProductOptionsInput, Prisma.OptionTemplateUncheckedCreateWithoutProductOptionsInput>
-}
-
-export type OptionTemplateUpsertWithoutProductOptionsInput = {
-  update: Prisma.XOR<Prisma.OptionTemplateUpdateWithoutProductOptionsInput, Prisma.OptionTemplateUncheckedUpdateWithoutProductOptionsInput>
-  create: Prisma.XOR<Prisma.OptionTemplateCreateWithoutProductOptionsInput, Prisma.OptionTemplateUncheckedCreateWithoutProductOptionsInput>
-  where?: Prisma.OptionTemplateWhereInput
-}
-
-export type OptionTemplateUpdateToOneWithWhereWithoutProductOptionsInput = {
-  where?: Prisma.OptionTemplateWhereInput
-  data: Prisma.XOR<Prisma.OptionTemplateUpdateWithoutProductOptionsInput, Prisma.OptionTemplateUncheckedUpdateWithoutProductOptionsInput>
-}
-
-export type OptionTemplateUpdateWithoutProductOptionsInput = {
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  appType?: Prisma.EnumAppTypeFieldUpdateOperationsInput | $Enums.AppType
-  inputType?: Prisma.EnumOptionInputTypeFieldUpdateOperationsInput | $Enums.OptionInputType
-  uiType?: Prisma.EnumOptionUITypeFieldUpdateOperationsInput | $Enums.OptionUIType
-  pricingStrategy?: Prisma.EnumOptionPricingStrategyFieldUpdateOperationsInput | $Enums.OptionPricingStrategy
-  values?: runtime.InputJsonValue | runtime.InputJsonValue
-  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  required?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-}
-
-export type OptionTemplateUncheckedUpdateWithoutProductOptionsInput = {
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  appType?: Prisma.EnumAppTypeFieldUpdateOperationsInput | $Enums.AppType
-  inputType?: Prisma.EnumOptionInputTypeFieldUpdateOperationsInput | $Enums.OptionInputType
-  uiType?: Prisma.EnumOptionUITypeFieldUpdateOperationsInput | $Enums.OptionUIType
-  pricingStrategy?: Prisma.EnumOptionPricingStrategyFieldUpdateOperationsInput | $Enums.OptionPricingStrategy
-  values?: runtime.InputJsonValue | runtime.InputJsonValue
-  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  required?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-}
-
-
-/**
- * Count Type OptionTemplateCountOutputType
- */
-
-export type OptionTemplateCountOutputType = {
-  productOptions: number
-}
-
-export type OptionTemplateCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  productOptions?: boolean | OptionTemplateCountOutputTypeCountProductOptionsArgs
-}
-
-/**
- * OptionTemplateCountOutputType without action
- */
-export type OptionTemplateCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the OptionTemplateCountOutputType
-   */
-  select?: Prisma.OptionTemplateCountOutputTypeSelect<ExtArgs> | null
-}
-
-/**
- * OptionTemplateCountOutputType without action
- */
-export type OptionTemplateCountOutputTypeCountProductOptionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.ProductOptionWhereInput
-}
 
 
 export type OptionTemplateSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -580,12 +393,8 @@ export type OptionTemplateSelect<ExtArgs extends runtime.Types.Extensions.Intern
   uiType?: boolean
   pricingStrategy?: boolean
   values?: boolean
-  isActive?: boolean
-  required?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  productOptions?: boolean | Prisma.OptionTemplate$productOptionsArgs<ExtArgs>
-  _count?: boolean | Prisma.OptionTemplateCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["optionTemplate"]>
 
 
@@ -598,23 +407,15 @@ export type OptionTemplateSelectScalar = {
   uiType?: boolean
   pricingStrategy?: boolean
   values?: boolean
-  isActive?: boolean
-  required?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type OptionTemplateOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "appType" | "inputType" | "uiType" | "pricingStrategy" | "values" | "isActive" | "required" | "createdAt" | "updatedAt", ExtArgs["result"]["optionTemplate"]>
-export type OptionTemplateInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  productOptions?: boolean | Prisma.OptionTemplate$productOptionsArgs<ExtArgs>
-  _count?: boolean | Prisma.OptionTemplateCountOutputTypeDefaultArgs<ExtArgs>
-}
+export type OptionTemplateOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "appType" | "inputType" | "uiType" | "pricingStrategy" | "values" | "createdAt" | "updatedAt", ExtArgs["result"]["optionTemplate"]>
 
 export type $OptionTemplatePayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "OptionTemplate"
-  objects: {
-    productOptions: Prisma.$ProductOptionPayload<ExtArgs>[]
-  }
+  objects: {}
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
     name: string
@@ -623,8 +424,6 @@ export type $OptionTemplatePayload<ExtArgs extends runtime.Types.Extensions.Inte
     uiType: $Enums.OptionUIType
     pricingStrategy: $Enums.OptionPricingStrategy
     values: runtime.JsonValue
-    isActive: boolean
-    required: boolean
     createdAt: Date
     updatedAt: Date
   }, ExtArgs["result"]["optionTemplate"]>
@@ -990,7 +789,6 @@ readonly fields: OptionTemplateFieldRefs;
  */
 export interface Prisma__OptionTemplateClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  productOptions<T extends Prisma.OptionTemplate$productOptionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.OptionTemplate$productOptionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ProductOptionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1027,8 +825,6 @@ export interface OptionTemplateFieldRefs {
   readonly uiType: Prisma.FieldRef<"OptionTemplate", 'OptionUIType'>
   readonly pricingStrategy: Prisma.FieldRef<"OptionTemplate", 'OptionPricingStrategy'>
   readonly values: Prisma.FieldRef<"OptionTemplate", 'Json'>
-  readonly isActive: Prisma.FieldRef<"OptionTemplate", 'Boolean'>
-  readonly required: Prisma.FieldRef<"OptionTemplate", 'Boolean'>
   readonly createdAt: Prisma.FieldRef<"OptionTemplate", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"OptionTemplate", 'DateTime'>
 }
@@ -1048,10 +844,6 @@ export type OptionTemplateFindUniqueArgs<ExtArgs extends runtime.Types.Extension
    */
   omit?: Prisma.OptionTemplateOmit<ExtArgs> | null
   /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.OptionTemplateInclude<ExtArgs> | null
-  /**
    * Filter, which OptionTemplate to fetch.
    */
   where: Prisma.OptionTemplateWhereUniqueInput
@@ -1070,10 +862,6 @@ export type OptionTemplateFindUniqueOrThrowArgs<ExtArgs extends runtime.Types.Ex
    */
   omit?: Prisma.OptionTemplateOmit<ExtArgs> | null
   /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.OptionTemplateInclude<ExtArgs> | null
-  /**
    * Filter, which OptionTemplate to fetch.
    */
   where: Prisma.OptionTemplateWhereUniqueInput
@@ -1091,10 +879,6 @@ export type OptionTemplateFindFirstArgs<ExtArgs extends runtime.Types.Extensions
    * Omit specific fields from the OptionTemplate
    */
   omit?: Prisma.OptionTemplateOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.OptionTemplateInclude<ExtArgs> | null
   /**
    * Filter, which OptionTemplate to fetch.
    */
@@ -1144,10 +928,6 @@ export type OptionTemplateFindFirstOrThrowArgs<ExtArgs extends runtime.Types.Ext
    */
   omit?: Prisma.OptionTemplateOmit<ExtArgs> | null
   /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.OptionTemplateInclude<ExtArgs> | null
-  /**
    * Filter, which OptionTemplate to fetch.
    */
   where?: Prisma.OptionTemplateWhereInput
@@ -1196,10 +976,6 @@ export type OptionTemplateFindManyArgs<ExtArgs extends runtime.Types.Extensions.
    */
   omit?: Prisma.OptionTemplateOmit<ExtArgs> | null
   /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.OptionTemplateInclude<ExtArgs> | null
-  /**
    * Filter, which OptionTemplates to fetch.
    */
   where?: Prisma.OptionTemplateWhereInput
@@ -1243,10 +1019,6 @@ export type OptionTemplateCreateArgs<ExtArgs extends runtime.Types.Extensions.In
    */
   omit?: Prisma.OptionTemplateOmit<ExtArgs> | null
   /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.OptionTemplateInclude<ExtArgs> | null
-  /**
    * The data needed to create a OptionTemplate.
    */
   data: Prisma.XOR<Prisma.OptionTemplateCreateInput, Prisma.OptionTemplateUncheckedCreateInput>
@@ -1274,10 +1046,6 @@ export type OptionTemplateUpdateArgs<ExtArgs extends runtime.Types.Extensions.In
    * Omit specific fields from the OptionTemplate
    */
   omit?: Prisma.OptionTemplateOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.OptionTemplateInclude<ExtArgs> | null
   /**
    * The data needed to update a OptionTemplate.
    */
@@ -1319,10 +1087,6 @@ export type OptionTemplateUpsertArgs<ExtArgs extends runtime.Types.Extensions.In
    */
   omit?: Prisma.OptionTemplateOmit<ExtArgs> | null
   /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.OptionTemplateInclude<ExtArgs> | null
-  /**
    * The filter to search for the OptionTemplate to update in case it exists.
    */
   where: Prisma.OptionTemplateWhereUniqueInput
@@ -1348,10 +1112,6 @@ export type OptionTemplateDeleteArgs<ExtArgs extends runtime.Types.Extensions.In
    * Omit specific fields from the OptionTemplate
    */
   omit?: Prisma.OptionTemplateOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.OptionTemplateInclude<ExtArgs> | null
   /**
    * Filter which OptionTemplate to delete.
    */
@@ -1401,30 +1161,6 @@ export type OptionTemplateAggregateRawArgs<ExtArgs extends runtime.Types.Extensi
 }
 
 /**
- * OptionTemplate.productOptions
- */
-export type OptionTemplate$productOptionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the ProductOption
-   */
-  select?: Prisma.ProductOptionSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the ProductOption
-   */
-  omit?: Prisma.ProductOptionOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.ProductOptionInclude<ExtArgs> | null
-  where?: Prisma.ProductOptionWhereInput
-  orderBy?: Prisma.ProductOptionOrderByWithRelationInput | Prisma.ProductOptionOrderByWithRelationInput[]
-  cursor?: Prisma.ProductOptionWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.ProductOptionScalarFieldEnum | Prisma.ProductOptionScalarFieldEnum[]
-}
-
-/**
  * OptionTemplate without action
  */
 export type OptionTemplateDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1436,8 +1172,4 @@ export type OptionTemplateDefaultArgs<ExtArgs extends runtime.Types.Extensions.I
    * Omit specific fields from the OptionTemplate
    */
   omit?: Prisma.OptionTemplateOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.OptionTemplateInclude<ExtArgs> | null
 }

@@ -1056,9 +1056,16 @@ export type ProductScalarFieldEnum = (typeof ProductScalarFieldEnum)[keyof typeo
 export const ProductOptionScalarFieldEnum = {
   id: 'id',
   name: 'name',
-  templateId: 'templateId',
-  overrides: 'overrides',
-  productId: 'productId'
+  appType: 'appType',
+  inputType: 'inputType',
+  uiType: 'uiType',
+  pricingStrategy: 'pricingStrategy',
+  values: 'values',
+  isActive: 'isActive',
+  required: 'required',
+  productId: 'productId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 } as const
 
 export type ProductOptionScalarFieldEnum = (typeof ProductOptionScalarFieldEnum)[keyof typeof ProductOptionScalarFieldEnum]
@@ -1084,8 +1091,6 @@ export const OptionTemplateScalarFieldEnum = {
   uiType: 'uiType',
   pricingStrategy: 'pricingStrategy',
   values: 'values',
-  isActive: 'isActive',
-  required: 'required',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
@@ -1220,13 +1225,6 @@ export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel,
 
 
 /**
- * Reference to a field of type 'Json'
- */
-export type JsonFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Json'>
-    
-
-
-/**
  * Reference to a field of type 'AppType'
  */
 export type EnumAppTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'AppType'>
@@ -1279,6 +1277,13 @@ export type EnumOptionPricingStrategyFieldRefInput<$PrismaModel> = FieldRefInput
  * Reference to a field of type 'OptionPricingStrategy[]'
  */
 export type ListEnumOptionPricingStrategyFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'OptionPricingStrategy[]'>
+    
+
+
+/**
+ * Reference to a field of type 'Json'
+ */
+export type JsonFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Json'>
     
 
 
