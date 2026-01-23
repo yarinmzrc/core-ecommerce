@@ -27,7 +27,6 @@ export type AggregateProductOption = {
 export type ProductOptionMinAggregateOutputType = {
   id: string | null
   name: string | null
-  appType: $Enums.AppType | null
   inputType: $Enums.OptionInputType | null
   uiType: $Enums.OptionUIType | null
   pricingStrategy: $Enums.OptionPricingStrategy | null
@@ -41,7 +40,6 @@ export type ProductOptionMinAggregateOutputType = {
 export type ProductOptionMaxAggregateOutputType = {
   id: string | null
   name: string | null
-  appType: $Enums.AppType | null
   inputType: $Enums.OptionInputType | null
   uiType: $Enums.OptionUIType | null
   pricingStrategy: $Enums.OptionPricingStrategy | null
@@ -55,7 +53,6 @@ export type ProductOptionMaxAggregateOutputType = {
 export type ProductOptionCountAggregateOutputType = {
   id: number
   name: number
-  appType: number
   inputType: number
   uiType: number
   pricingStrategy: number
@@ -72,7 +69,6 @@ export type ProductOptionCountAggregateOutputType = {
 export type ProductOptionMinAggregateInputType = {
   id?: true
   name?: true
-  appType?: true
   inputType?: true
   uiType?: true
   pricingStrategy?: true
@@ -86,7 +82,6 @@ export type ProductOptionMinAggregateInputType = {
 export type ProductOptionMaxAggregateInputType = {
   id?: true
   name?: true
-  appType?: true
   inputType?: true
   uiType?: true
   pricingStrategy?: true
@@ -100,7 +95,6 @@ export type ProductOptionMaxAggregateInputType = {
 export type ProductOptionCountAggregateInputType = {
   id?: true
   name?: true
-  appType?: true
   inputType?: true
   uiType?: true
   pricingStrategy?: true
@@ -188,7 +182,6 @@ export type ProductOptionGroupByArgs<ExtArgs extends runtime.Types.Extensions.In
 export type ProductOptionGroupByOutputType = {
   id: string
   name: string
-  appType: $Enums.AppType
   inputType: $Enums.OptionInputType
   uiType: $Enums.OptionUIType
   pricingStrategy: $Enums.OptionPricingStrategy
@@ -224,7 +217,6 @@ export type ProductOptionWhereInput = {
   NOT?: Prisma.ProductOptionWhereInput | Prisma.ProductOptionWhereInput[]
   id?: Prisma.StringFilter<"ProductOption"> | string
   name?: Prisma.StringFilter<"ProductOption"> | string
-  appType?: Prisma.EnumAppTypeFilter<"ProductOption"> | $Enums.AppType
   inputType?: Prisma.EnumOptionInputTypeFilter<"ProductOption"> | $Enums.OptionInputType
   uiType?: Prisma.EnumOptionUITypeFilter<"ProductOption"> | $Enums.OptionUIType
   pricingStrategy?: Prisma.EnumOptionPricingStrategyFilter<"ProductOption"> | $Enums.OptionPricingStrategy
@@ -240,7 +232,6 @@ export type ProductOptionWhereInput = {
 export type ProductOptionOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
-  appType?: Prisma.SortOrder
   inputType?: Prisma.SortOrder
   uiType?: Prisma.SortOrder
   pricingStrategy?: Prisma.SortOrder
@@ -259,7 +250,6 @@ export type ProductOptionWhereUniqueInput = Prisma.AtLeast<{
   OR?: Prisma.ProductOptionWhereInput[]
   NOT?: Prisma.ProductOptionWhereInput | Prisma.ProductOptionWhereInput[]
   name?: Prisma.StringFilter<"ProductOption"> | string
-  appType?: Prisma.EnumAppTypeFilter<"ProductOption"> | $Enums.AppType
   inputType?: Prisma.EnumOptionInputTypeFilter<"ProductOption"> | $Enums.OptionInputType
   uiType?: Prisma.EnumOptionUITypeFilter<"ProductOption"> | $Enums.OptionUIType
   pricingStrategy?: Prisma.EnumOptionPricingStrategyFilter<"ProductOption"> | $Enums.OptionPricingStrategy
@@ -275,7 +265,6 @@ export type ProductOptionWhereUniqueInput = Prisma.AtLeast<{
 export type ProductOptionOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
-  appType?: Prisma.SortOrder
   inputType?: Prisma.SortOrder
   uiType?: Prisma.SortOrder
   pricingStrategy?: Prisma.SortOrder
@@ -296,7 +285,6 @@ export type ProductOptionScalarWhereWithAggregatesInput = {
   NOT?: Prisma.ProductOptionScalarWhereWithAggregatesInput | Prisma.ProductOptionScalarWhereWithAggregatesInput[]
   id?: Prisma.StringWithAggregatesFilter<"ProductOption"> | string
   name?: Prisma.StringWithAggregatesFilter<"ProductOption"> | string
-  appType?: Prisma.EnumAppTypeWithAggregatesFilter<"ProductOption"> | $Enums.AppType
   inputType?: Prisma.EnumOptionInputTypeWithAggregatesFilter<"ProductOption"> | $Enums.OptionInputType
   uiType?: Prisma.EnumOptionUITypeWithAggregatesFilter<"ProductOption"> | $Enums.OptionUIType
   pricingStrategy?: Prisma.EnumOptionPricingStrategyWithAggregatesFilter<"ProductOption"> | $Enums.OptionPricingStrategy
@@ -311,7 +299,6 @@ export type ProductOptionScalarWhereWithAggregatesInput = {
 export type ProductOptionCreateInput = {
   id?: string
   name: string
-  appType: $Enums.AppType
   inputType: $Enums.OptionInputType
   uiType: $Enums.OptionUIType
   pricingStrategy: $Enums.OptionPricingStrategy
@@ -326,7 +313,6 @@ export type ProductOptionCreateInput = {
 export type ProductOptionUncheckedCreateInput = {
   id?: string
   name: string
-  appType: $Enums.AppType
   inputType: $Enums.OptionInputType
   uiType: $Enums.OptionUIType
   pricingStrategy: $Enums.OptionPricingStrategy
@@ -340,7 +326,6 @@ export type ProductOptionUncheckedCreateInput = {
 
 export type ProductOptionUpdateInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  appType?: Prisma.EnumAppTypeFieldUpdateOperationsInput | $Enums.AppType
   inputType?: Prisma.EnumOptionInputTypeFieldUpdateOperationsInput | $Enums.OptionInputType
   uiType?: Prisma.EnumOptionUITypeFieldUpdateOperationsInput | $Enums.OptionUIType
   pricingStrategy?: Prisma.EnumOptionPricingStrategyFieldUpdateOperationsInput | $Enums.OptionPricingStrategy
@@ -354,7 +339,6 @@ export type ProductOptionUpdateInput = {
 
 export type ProductOptionUncheckedUpdateInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  appType?: Prisma.EnumAppTypeFieldUpdateOperationsInput | $Enums.AppType
   inputType?: Prisma.EnumOptionInputTypeFieldUpdateOperationsInput | $Enums.OptionInputType
   uiType?: Prisma.EnumOptionUITypeFieldUpdateOperationsInput | $Enums.OptionUIType
   pricingStrategy?: Prisma.EnumOptionPricingStrategyFieldUpdateOperationsInput | $Enums.OptionPricingStrategy
@@ -369,7 +353,6 @@ export type ProductOptionUncheckedUpdateInput = {
 export type ProductOptionCreateManyInput = {
   id?: string
   name: string
-  appType: $Enums.AppType
   inputType: $Enums.OptionInputType
   uiType: $Enums.OptionUIType
   pricingStrategy: $Enums.OptionPricingStrategy
@@ -383,7 +366,6 @@ export type ProductOptionCreateManyInput = {
 
 export type ProductOptionUpdateManyMutationInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  appType?: Prisma.EnumAppTypeFieldUpdateOperationsInput | $Enums.AppType
   inputType?: Prisma.EnumOptionInputTypeFieldUpdateOperationsInput | $Enums.OptionInputType
   uiType?: Prisma.EnumOptionUITypeFieldUpdateOperationsInput | $Enums.OptionUIType
   pricingStrategy?: Prisma.EnumOptionPricingStrategyFieldUpdateOperationsInput | $Enums.OptionPricingStrategy
@@ -396,7 +378,6 @@ export type ProductOptionUpdateManyMutationInput = {
 
 export type ProductOptionUncheckedUpdateManyInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  appType?: Prisma.EnumAppTypeFieldUpdateOperationsInput | $Enums.AppType
   inputType?: Prisma.EnumOptionInputTypeFieldUpdateOperationsInput | $Enums.OptionInputType
   uiType?: Prisma.EnumOptionUITypeFieldUpdateOperationsInput | $Enums.OptionUIType
   pricingStrategy?: Prisma.EnumOptionPricingStrategyFieldUpdateOperationsInput | $Enums.OptionPricingStrategy
@@ -421,7 +402,6 @@ export type ProductOptionOrderByRelationAggregateInput = {
 export type ProductOptionCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
-  appType?: Prisma.SortOrder
   inputType?: Prisma.SortOrder
   uiType?: Prisma.SortOrder
   pricingStrategy?: Prisma.SortOrder
@@ -436,7 +416,6 @@ export type ProductOptionCountOrderByAggregateInput = {
 export type ProductOptionMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
-  appType?: Prisma.SortOrder
   inputType?: Prisma.SortOrder
   uiType?: Prisma.SortOrder
   pricingStrategy?: Prisma.SortOrder
@@ -450,7 +429,6 @@ export type ProductOptionMaxOrderByAggregateInput = {
 export type ProductOptionMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
-  appType?: Prisma.SortOrder
   inputType?: Prisma.SortOrder
   uiType?: Prisma.SortOrder
   pricingStrategy?: Prisma.SortOrder
@@ -503,10 +481,6 @@ export type ProductOptionUncheckedUpdateManyWithoutProductNestedInput = {
   deleteMany?: Prisma.ProductOptionScalarWhereInput | Prisma.ProductOptionScalarWhereInput[]
 }
 
-export type EnumAppTypeFieldUpdateOperationsInput = {
-  set?: $Enums.AppType
-}
-
 export type EnumOptionInputTypeFieldUpdateOperationsInput = {
   set?: $Enums.OptionInputType
 }
@@ -522,7 +496,6 @@ export type EnumOptionPricingStrategyFieldUpdateOperationsInput = {
 export type ProductOptionCreateWithoutProductInput = {
   id?: string
   name: string
-  appType: $Enums.AppType
   inputType: $Enums.OptionInputType
   uiType: $Enums.OptionUIType
   pricingStrategy: $Enums.OptionPricingStrategy
@@ -536,7 +509,6 @@ export type ProductOptionCreateWithoutProductInput = {
 export type ProductOptionUncheckedCreateWithoutProductInput = {
   id?: string
   name: string
-  appType: $Enums.AppType
   inputType: $Enums.OptionInputType
   uiType: $Enums.OptionUIType
   pricingStrategy: $Enums.OptionPricingStrategy
@@ -578,7 +550,6 @@ export type ProductOptionScalarWhereInput = {
   NOT?: Prisma.ProductOptionScalarWhereInput | Prisma.ProductOptionScalarWhereInput[]
   id?: Prisma.StringFilter<"ProductOption"> | string
   name?: Prisma.StringFilter<"ProductOption"> | string
-  appType?: Prisma.EnumAppTypeFilter<"ProductOption"> | $Enums.AppType
   inputType?: Prisma.EnumOptionInputTypeFilter<"ProductOption"> | $Enums.OptionInputType
   uiType?: Prisma.EnumOptionUITypeFilter<"ProductOption"> | $Enums.OptionUIType
   pricingStrategy?: Prisma.EnumOptionPricingStrategyFilter<"ProductOption"> | $Enums.OptionPricingStrategy
@@ -593,7 +564,6 @@ export type ProductOptionScalarWhereInput = {
 export type ProductOptionCreateManyProductInput = {
   id?: string
   name: string
-  appType: $Enums.AppType
   inputType: $Enums.OptionInputType
   uiType: $Enums.OptionUIType
   pricingStrategy: $Enums.OptionPricingStrategy
@@ -606,7 +576,6 @@ export type ProductOptionCreateManyProductInput = {
 
 export type ProductOptionUpdateWithoutProductInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  appType?: Prisma.EnumAppTypeFieldUpdateOperationsInput | $Enums.AppType
   inputType?: Prisma.EnumOptionInputTypeFieldUpdateOperationsInput | $Enums.OptionInputType
   uiType?: Prisma.EnumOptionUITypeFieldUpdateOperationsInput | $Enums.OptionUIType
   pricingStrategy?: Prisma.EnumOptionPricingStrategyFieldUpdateOperationsInput | $Enums.OptionPricingStrategy
@@ -619,7 +588,6 @@ export type ProductOptionUpdateWithoutProductInput = {
 
 export type ProductOptionUncheckedUpdateWithoutProductInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  appType?: Prisma.EnumAppTypeFieldUpdateOperationsInput | $Enums.AppType
   inputType?: Prisma.EnumOptionInputTypeFieldUpdateOperationsInput | $Enums.OptionInputType
   uiType?: Prisma.EnumOptionUITypeFieldUpdateOperationsInput | $Enums.OptionUIType
   pricingStrategy?: Prisma.EnumOptionPricingStrategyFieldUpdateOperationsInput | $Enums.OptionPricingStrategy
@@ -632,7 +600,6 @@ export type ProductOptionUncheckedUpdateWithoutProductInput = {
 
 export type ProductOptionUncheckedUpdateManyWithoutProductInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  appType?: Prisma.EnumAppTypeFieldUpdateOperationsInput | $Enums.AppType
   inputType?: Prisma.EnumOptionInputTypeFieldUpdateOperationsInput | $Enums.OptionInputType
   uiType?: Prisma.EnumOptionUITypeFieldUpdateOperationsInput | $Enums.OptionUIType
   pricingStrategy?: Prisma.EnumOptionPricingStrategyFieldUpdateOperationsInput | $Enums.OptionPricingStrategy
@@ -648,7 +615,6 @@ export type ProductOptionUncheckedUpdateManyWithoutProductInput = {
 export type ProductOptionSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   name?: boolean
-  appType?: boolean
   inputType?: boolean
   uiType?: boolean
   pricingStrategy?: boolean
@@ -666,7 +632,6 @@ export type ProductOptionSelect<ExtArgs extends runtime.Types.Extensions.Interna
 export type ProductOptionSelectScalar = {
   id?: boolean
   name?: boolean
-  appType?: boolean
   inputType?: boolean
   uiType?: boolean
   pricingStrategy?: boolean
@@ -678,7 +643,7 @@ export type ProductOptionSelectScalar = {
   updatedAt?: boolean
 }
 
-export type ProductOptionOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "appType" | "inputType" | "uiType" | "pricingStrategy" | "values" | "isActive" | "required" | "productId" | "createdAt" | "updatedAt", ExtArgs["result"]["productOption"]>
+export type ProductOptionOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "inputType" | "uiType" | "pricingStrategy" | "values" | "isActive" | "required" | "productId" | "createdAt" | "updatedAt", ExtArgs["result"]["productOption"]>
 export type ProductOptionInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   product?: boolean | Prisma.ProductDefaultArgs<ExtArgs>
 }
@@ -691,7 +656,6 @@ export type $ProductOptionPayload<ExtArgs extends runtime.Types.Extensions.Inter
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
     name: string
-    appType: $Enums.AppType
     inputType: $Enums.OptionInputType
     uiType: $Enums.OptionUIType
     pricingStrategy: $Enums.OptionPricingStrategy
@@ -1096,7 +1060,6 @@ export interface Prisma__ProductOptionClient<T, Null = never, ExtArgs extends ru
 export interface ProductOptionFieldRefs {
   readonly id: Prisma.FieldRef<"ProductOption", 'String'>
   readonly name: Prisma.FieldRef<"ProductOption", 'String'>
-  readonly appType: Prisma.FieldRef<"ProductOption", 'AppType'>
   readonly inputType: Prisma.FieldRef<"ProductOption", 'OptionInputType'>
   readonly uiType: Prisma.FieldRef<"ProductOption", 'OptionUIType'>
   readonly pricingStrategy: Prisma.FieldRef<"ProductOption", 'OptionPricingStrategy'>

@@ -54,7 +54,6 @@ model ProductOption {
 
   // copied from option template
   name String
-  appType AppType
   inputType OptionInputType  
   uiType OptionUIType       
   pricingStrategy OptionPricingStrategy

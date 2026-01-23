@@ -383,6 +383,10 @@ export type OptionTemplateMinOrderByAggregateInput = {
   updatedAt?: Prisma.SortOrder
 }
 
+export type EnumAppTypeFieldUpdateOperationsInput = {
+  set?: $Enums.AppType
+}
+
 
 
 export type OptionTemplateSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{

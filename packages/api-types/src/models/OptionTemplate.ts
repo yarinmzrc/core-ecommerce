@@ -1,4 +1,5 @@
 import z from "zod"
+import { AppType } from "../shared"
 
 const OptionInput = {
   TEXT: "TEXT",
@@ -34,11 +35,13 @@ const OptionValueSchema = z.object({
 
 const OptionTemplateSchema = z.object({
   name: z.string().min(1, "Name is required"),
+  appType: z.enum(AppType),
   inputType: z.enum(OptionInput),
   uiType: z.enum(OptionUI),
   pricingStrategy: z.enum(OptionPricingStrategy),
   values: OptionValueSchema.array().min(1, "Values are required"),
-  required: z.boolean().default(true),
+  createdAt: z.date(),
+  updatedAt: z.date(),
 })
 
 export {
