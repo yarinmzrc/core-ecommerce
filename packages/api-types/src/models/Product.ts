@@ -22,9 +22,11 @@ const ProductSchema = z.object({
 type Product = z.infer<typeof ProductSchema>
 
 const ProductOptionSchema = z.object({
+  id: z.string(),
   label: z.string(),
   value: z.string().nullable(),
   overrides: OptionTemplateSchema.nullable(),
+  productId: z.string(),
 })
 
 export { type Product, ProductSchema, ImageSchema }
