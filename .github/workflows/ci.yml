@@ -57,7 +57,7 @@ jobs:
 
       - name: Generate Prisma Client
         run: pnpm prisma generate --schema=prisma/schema.prisma
-        working-directory: apps/backend
+        working-directory: apps/platform
 
       - name: Build
         run: pnpm turbo build --cache-dir=.turbo
