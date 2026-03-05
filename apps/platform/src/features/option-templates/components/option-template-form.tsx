@@ -5,21 +5,20 @@ import { Button } from "@/components/ui/button/button"
 import { Form } from "@/components/ui/form/form"
 import { FormInput } from "@/components/ui/form/form-input"
 import { FormSelect } from "@/components/ui/form/form-select"
-import { FormSwitch } from "@/components/ui/form/form-switch"
 
+import { OptionInput, OptionPricingStrategy, OptionUI } from "../dtos"
+import { optionTemplateSchema } from "../schemas"
 import {
-  OptionInput,
-  OptionPricingStrategy,
-  OptionTemplateDTO,
-  OptionUI,
-} from "../dtos"
-import { optionTemplateSchema, OptionTemplateSchemaType } from "../schemas"
+  AppType,
+  OptionTemplate,
+  OptionTemplateCreateInput,
+} from "@repo/api-types"
 
 type OptionTemplateFormProps = {
-  optionTemplate?: OptionTemplateDTO
+  optionTemplate?: OptionTemplate
 }
 
-const getDefaultValues = (optionTemplate?: OptionTemplateDTO) => {
+const getDefaultValues = (optionTemplate?: OptionTemplate) => {
   return {
     name: optionTemplate?.name ?? "",
     inputType: optionTemplate?.inputType ?? OptionInput.TEXT,
@@ -27,14 +26,14 @@ const getDefaultValues = (optionTemplate?: OptionTemplateDTO) => {
     pricingStrategy:
       optionTemplate?.pricingStrategy ?? OptionPricingStrategy.NONE,
     values: optionTemplate?.values ?? [],
-    required: optionTemplate?.required ?? true,
+    appType: optionTemplate?.appType ?? AppType.FOOD,
   }
 }
 
 export function OptionTemplateForm({
   optionTemplate,
 }: OptionTemplateFormProps) {
-  const defaultValues: OptionTemplateSchemaType = useMemo(
+  const defaultValues: OptionTemplateCreateInput = useMemo(
     () => getDefaultValues(optionTemplate),
     [optionTemplate],
   )
@@ -65,8 +64,8 @@ const defaultInputValue = {
 }
 
 type OptionTemplatesFieldProps = {
-  formState: FormState<OptionTemplateSchemaType>
-  control: Control<OptionTemplateSchemaType>
+  formState: FormState<OptionTemplateCreateInput>
+  control: Control<OptionTemplateCreateInput>
 }
 
 export function OptionTemplateField({
@@ -167,10 +166,6 @@ export function OptionTemplateField({
         <Button type="button" onClick={() => append(defaultInputValue)}>
           Add Input
         </Button>
-      </div>
-
-      <div className="col-span-2">
-        <FormSwitch name="required" control={control} label="Required" />
       </div>
     </div>
   )

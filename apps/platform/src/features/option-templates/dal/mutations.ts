@@ -1,9 +1,9 @@
 import db from "@/lib/db"
 
 import { Prisma } from "../../../../prisma/generated/prisma/client"
-import { OptionTemplateCreateDTO, OptionTemplateUpdateDTO } from "../dtos"
+import { OptionTemplateCreateInput } from "@repo/api-types"
 
-export function createOptionTemplate(dataDTO: OptionTemplateCreateDTO) {
+export function createOptionTemplate(dataDTO: OptionTemplateCreateInput) {
   const data = {
     ...dataDTO,
     values: dataDTO.values as Prisma.InputJsonValue,
@@ -14,7 +14,7 @@ export function createOptionTemplate(dataDTO: OptionTemplateCreateDTO) {
 
 export function updateOptionTemplate(
   id: string,
-  dataDTO: OptionTemplateUpdateDTO,
+  dataDTO: OptionTemplateCreateInput,
 ) {
   const data = {
     ...dataDTO,

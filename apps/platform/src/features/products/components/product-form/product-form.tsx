@@ -23,12 +23,11 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { CategoryDTO } from "@/features/categories/dtos"
 import { OptionTemplateForm } from "@/features/option-templates/components/option-template-form"
-import { OptionTemplateDTO } from "@/features/option-templates/dtos"
 
-import { ProductFullDTO } from "../../dtos"
 import { productSchema, ProductSchemaType } from "../../schemas"
+import { OptionTemplate, type Product } from "@repo/api-types"
 
-const getDefaultValues = (product?: ProductFullDTO) => {
+const getDefaultValues = (product?: Product) => {
   if (product) {
     return {
       name: product.name,
@@ -40,9 +39,14 @@ const getDefaultValues = (product?: ProductFullDTO) => {
         existing: product.images,
       },
       options: product.options.map((option) => ({
-        label: option.name,
-        value: option.templateId,
-        overrides: option.overrides,
+        id: option.id,
+        name: option.name,
+        inputType: option.inputType,
+        uiType: option.uiType,
+        pricingStrategy: option.pricingStrategy,
+        values: option.values,
+        isActive: option.isActive,
+        required: option.required,
       })),
     }
   }
@@ -62,7 +66,7 @@ const getDefaultValues = (product?: ProductFullDTO) => {
 
 type BaseProductFormProps = {
   categories: CategoryDTO[]
-  optionTemplates: OptionTemplateDTO[]
+  optionTemplates: OptionTemplate[]
 }
 
 type CreateProductFormProps = BaseProductFormProps & {
@@ -73,7 +77,7 @@ type CreateProductFormProps = BaseProductFormProps & {
 
 type UpdateProductFormProps = BaseProductFormProps & {
   mode: "update"
-  product: ProductFullDTO
+  product: Product
   onSubmit: (id: string, data: unknown) => Promise<unknown>
 }
 
@@ -259,7 +263,7 @@ function AddImagesField() {
 }
 
 type OptionButtonProps = {
-  optionTemplates: OptionTemplateDTO[]
+  optionTemplates: OptionTemplate[]
 }
 
 function OptionButtons({ optionTemplates }: OptionButtonProps) {
@@ -280,14 +284,14 @@ function OptionButtons({ optionTemplates }: OptionButtonProps) {
       {options.map((option) => (
         <Button
           type="button"
-          key={option.value}
+          key={option.name}
           variant="outline"
           onClick={() => {
-            setActiveOptionId(option.value)
+            setActiveOptionId(option.id)
             setIsModalOpen(true)
           }}
         >
-          {option.label}
+          {option.name}
         </Button>
       ))}
 

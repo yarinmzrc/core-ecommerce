@@ -8,11 +8,10 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table"
-
-import { OptionTemplateDTO } from "../dtos"
+import { OptionTemplate } from "@repo/api-types"
 
 type OptionTemplatesTableProps = {
-  options: OptionTemplateDTO[]
+  options: OptionTemplate[]
 }
 
 export function OptionTemplatesTable({ options }: OptionTemplatesTableProps) {
@@ -29,7 +28,6 @@ export function OptionTemplatesTable({ options }: OptionTemplatesTableProps) {
           <TableHead>UI Type</TableHead>
           <TableHead>Input Type</TableHead>
           <TableHead>Pricing Strategy</TableHead>
-          <TableHead>Active</TableHead>
         </TableRow>
       </TableHeader>
       <TableBody>
@@ -40,7 +38,6 @@ export function OptionTemplatesTable({ options }: OptionTemplatesTableProps) {
             <TableCell>{option.uiType}</TableCell>
             <TableCell>{option.inputType}</TableCell>
             <TableCell>{option.pricingStrategy}</TableCell>
-            <TableCell>{option.isActive ? "Yes" : "No"}</TableCell>
           </TableRow>
         ))}
       </TableBody>

@@ -24,7 +24,7 @@ type OptionUIType = (typeof OptionUI)[keyof typeof OptionUI]
 type OptionPricingStrategyType =
   (typeof OptionPricingStrategy)[keyof typeof OptionPricingStrategy]
 
-const OptionValueSchema = z.object({
+const optionValueSchema = z.object({
   value: z
     .string()
     .min(1, "Value is required")
@@ -33,24 +33,36 @@ const OptionValueSchema = z.object({
   priceDelta: z.number().optional(),
 })
 
-const OptionTemplateSchema = z.object({
+const optionTemplateSchema = z.object({
+  id: z.string(),
   name: z.string().min(1, "Name is required"),
   appType: z.enum(AppType),
   inputType: z.enum(OptionInput),
   uiType: z.enum(OptionUI),
   pricingStrategy: z.enum(OptionPricingStrategy),
-  values: OptionValueSchema.array().min(1, "Values are required"),
+  values: optionValueSchema.array().min(1, "Values are required"),
   createdAt: z.date(),
   updatedAt: z.date(),
 })
+
+type OptionValue = z.infer<typeof optionValueSchema>
+type OptionTemplate = z.infer<typeof optionTemplateSchema>
+
+type OptionTemplateCreateInput = Omit<
+  OptionTemplate,
+  "id" | "createdAt" | "updatedAt"
+>
 
 export {
   OptionInput,
   OptionUI,
   OptionPricingStrategy,
-  OptionTemplateSchema,
-  OptionValueSchema,
+  optionTemplateSchema,
+  optionValueSchema,
   type OptionInputType,
   type OptionUIType,
   type OptionPricingStrategyType,
+  type OptionTemplate,
+  type OptionValue,
+  type OptionTemplateCreateInput,
 }

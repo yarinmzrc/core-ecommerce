@@ -5,7 +5,7 @@ import { getCategories } from "@/features/categories/dal/queries"
 import { getOptionTemplates } from "@/features/option-templates/dal/queries"
 import { updateProductAction } from "@/features/products/actions/update-product"
 import { ProductForm } from "@/features/products/components/product-form/product-form"
-import { getFullProduct } from "@/features/products/dal/queries"
+import { getProduct } from "@/features/products/dal/queries"
 
 import { PageHeader } from "../../../../_components/page-header"
 
@@ -19,7 +19,7 @@ export default async function EditProductPage({
   const { id } = await params
 
   const [product, categories, optionTemplates] = await Promise.all([
-    getFullProduct(id),
+    getProduct(id),
     getCategories(),
     getOptionTemplates(),
   ])

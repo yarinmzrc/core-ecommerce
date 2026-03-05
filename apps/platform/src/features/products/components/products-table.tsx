@@ -25,10 +25,10 @@ import { paths } from "@/config/paths"
 import { formatCurrency, formatNumber } from "@/lib/format"
 
 import { deleteProduct, toggleProductAvailability } from "../dal/mutations"
-import { ProductListItemDTO } from "../dtos"
+import { AdminProductSummary } from "../dtos"
 
 type ProductsTableProps = {
-  products: ProductListItemDTO[]
+  products: AdminProductSummary[]
 }
 
 export function ProductsTable({ products }: ProductsTableProps) {

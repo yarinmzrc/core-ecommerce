@@ -1,32 +1,3 @@
-import type { AppTypeType as AppType } from "@/config/app/app-type.config"
-
-export type OptionTemplateDTO = {
-  id: string
-  name: string
-  appType: AppType
-  inputType: OptionInputType
-  uiType: OptionUIType
-  pricingStrategy: OptionPricingStrategyType
-  values: OptionValueDTO[]
-  isActive: boolean
-  required: boolean
-  createdAt: Date
-  updatedAt: Date
-}
-
-export type OptionTemplateCreateDTO = Omit<
-  OptionTemplateDTO,
-  "id" | "createdAt" | "updatedAt"
->
-
-export type OptionTemplateUpdateDTO = Partial<OptionTemplateCreateDTO>
-
-export type OptionValueDTO = {
-  value: string | number
-  label: string
-  priceDelta?: number
-}
-
 export const OptionInput = {
   TEXT: "TEXT",
   NUMBER: "NUMBER",

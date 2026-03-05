@@ -1,44 +1,16 @@
-import { unstable_cache as cache } from "next/cache"
-
-import { CACHE_TTL_IN_SECONDS } from "@/constants"
 import db from "@/lib/db"
 
-import {
-  mapBaseProduct,
-  mapProductListItem,
-  mapProductOption,
-  mapProductVariant,
-} from "../mappers"
+import { mapProduct, mapProductSummary } from "../mappers"
 
-export const getProduct = cache(
-  async (id: string) => {
-    const product = await db.product.findUnique({ where: { id } })
-    if (!product) return null
+export const getProduct = async (id: string) => {
+  const product = await db.product.findUnique({
+    where: { id },
+    include: { variants: true, options: true },
+  })
+  if (!product) return null
 
-    return mapBaseProduct(product)
-  },
-
-  ["product"],
-  { revalidate: CACHE_TTL_IN_SECONDS },
-)
-
-export const getFullProduct = cache(
-  async (id: string) => {
-    const product = await db.product.findUnique({
-      where: { id },
-      include: { variants: true, options: true },
-    })
-    if (!product) return null
-
-    return {
-      ...mapBaseProduct(product),
-      variants: product.variants.map(mapProductVariant),
-      options: product.options.map(mapProductOption),
-    }
-  },
-  ["full-product"],
-  { revalidate: CACHE_TTL_IN_SECONDS },
-)
+  return mapProduct(product)
+}
 
 export const getProductsByIds = async (ids: string[]) => {
   return db.product.findMany({
@@ -47,45 +19,32 @@ export const getProductsByIds = async (ids: string[]) => {
   })
 }
 
-export const getMostPopularProducts = cache(
-  async () => {
-    const products = await db.product.findMany({
-      where: { isAvailableForSale: true },
-      orderBy: { orderItems: { _count: "desc" } },
-      take: 6,
-    })
+export const getMostPopularProducts = async () => {
+  const products = await db.product.findMany({
+    where: { isAvailableForSale: true },
+    orderBy: { orderItems: { _count: "desc" } },
+    take: 6,
+  })
 
-    return products.map(mapBaseProduct)
-  },
+  return products.map(mapProductSummary)
+}
 
-  ["most-popular-products"],
-  { revalidate: CACHE_TTL_IN_SECONDS },
-)
+export const getNewestProducts = async () => {
+  const products = await db.product.findMany({
+    where: { isAvailableForSale: true },
+    orderBy: { createdAt: "desc" },
+    take: 6,
+  })
 
-export const getNewestProducts = cache(
-  async () => {
-    const products = await db.product.findMany({
-      where: { isAvailableForSale: true },
-      orderBy: { createdAt: "desc" },
-      take: 6,
-    })
+  return products.map(mapProductSummary)
+}
 
-    return products.map(mapBaseProduct)
-  },
-  ["newest-products"],
-  { revalidate: CACHE_TTL_IN_SECONDS },
-)
-
-export const getProductsForStore = cache(
-  async () => {
-    return db.product.findMany({
-      where: { isAvailableForSale: true },
-      orderBy: { name: "asc" },
-    })
-  },
-  ["products-for-store"],
-  { revalidate: CACHE_TTL_IN_SECONDS },
-)
+export const getProductsForStore = () => {
+  return db.product.findMany({
+    where: { isAvailableForSale: true },
+    orderBy: { name: "asc" },
+  })
+}
 
 export async function getProductsForAdmin() {
   const products = await db.product.findMany({
@@ -97,5 +56,9 @@ export async function getProductsForAdmin() {
     },
   })
 
-  return products.map(mapProductListItem)
+  return products.map((product) => ({
+    ...mapProductSummary(product),
+    orderCount: product._count.orderItems,
+    categoryName: product.category.name,
+  }))
 }

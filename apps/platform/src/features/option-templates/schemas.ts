@@ -19,5 +19,3 @@ export const optionTemplateSchema = z.object({
   values: optionValueSchema.array().min(1, "Values are required"),
   required: z.boolean().default(true),
 })
-
-export type OptionTemplateSchemaType = z.infer<typeof optionTemplateSchema>

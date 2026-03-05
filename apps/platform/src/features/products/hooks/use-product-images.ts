@@ -1,12 +1,10 @@
 "use client"
 
+import { Image } from "@repo/api-types"
 import { useState } from "react"
 
-import type { ImageDTO } from "../dtos"
-
-export function useProductImages(initialImages: ImageDTO[] = []) {
-  const [existingImages, setExistingImages] =
-    useState<ImageDTO[]>(initialImages)
+export function useProductImages(initialImages: Image[] = []) {
+  const [existingImages, setExistingImages] = useState<Image[]>(initialImages)
   const [newImageInputs, setNewImageInputs] = useState<number[]>([])
 
   const addImageInput = () => {

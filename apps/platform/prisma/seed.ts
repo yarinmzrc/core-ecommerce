@@ -7,12 +7,12 @@ import { env } from "@/config/env"
 import {
   OptionInput,
   OptionPricingStrategy,
-  OptionTemplateCreateDTO,
   OptionUI,
 } from "@/features/option-templates/dtos"
 import db from "@/lib/db"
 
 import { Role } from "./generated/prisma/enums"
+import { OptionTemplateCreateInput, ProductCreateInput } from "@repo/api-types"
 
 async function main() {
   // Clean up existsing data
@@ -35,7 +35,7 @@ async function main() {
   })
 
   // Create Option Templates
-  const optionTemplates: OptionTemplateCreateDTO[] = [
+  const optionTemplates: OptionTemplateCreateInput[] = [
     {
       name: "מידת עשייה",
       appType: AppType.FOOD,
@@ -56,8 +56,6 @@ async function main() {
           value: "WD",
         },
       ],
-      isActive: true,
-      required: true,
     },
   ]
 
@@ -104,7 +102,12 @@ async function main() {
       options: {
         create: {
           name: optionTemplate!.name,
-          templateId: optionTemplate!.id,
+          inputType: optionTemplate!.inputType,
+          uiType: optionTemplate!.uiType,
+          pricingStrategy: optionTemplate!.pricingStrategy,
+          values: {
+            create: optionTemplate!.values,
+          },
         },
       },
     },

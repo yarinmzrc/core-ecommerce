@@ -3,31 +3,36 @@ import {
   ProductOption as PrismaProductOption,
   ProductVariant as PrismaProductVariant,
 } from "../../../prisma/generated/prisma/client"
-import {
-  PrismaProductWithCategory,
-  PrismaProductWithOrderCount,
-  ProductDTO,
-  ProductListItemDTO,
-  ProductOptionDTO,
-  ProductOptionOverridesDTO,
-  ProductVariantDTO,
-} from "./dtos"
+import type {
+  Product,
+  ProductSummary,
+  ProductOption,
+  OptionValue,
+  ProductVariant,
+} from "@repo/api-types"
 
-export function mapProductOption(
-  prisma: PrismaProductOption,
-): ProductOptionDTO {
+export function mapProductOption(prisma: PrismaProductOption): ProductOption {
   return {
     id: prisma.id,
     name: prisma.name,
-    templateId: prisma.templateId,
-    overrides: (prisma.overrides as ProductOptionOverridesDTO) ?? {},
+    inputType: prisma.inputType,
+    uiType: prisma.uiType,
+    pricingStrategy: prisma.pricingStrategy,
+    values: prisma.values as OptionValue[],
+    isActive: prisma.isActive,
+    required: prisma.required,
+    productId: prisma.productId,
+    createdAt: prisma.createdAt,
+    updatedAt: prisma.updatedAt,
   }
 }
 
 export function mapProductVariant(
   prisma: PrismaProductVariant,
-): ProductVariantDTO {
+): ProductVariant {
   return {
+    id: prisma.id,
+    productId: prisma.productId,
     sku: prisma.sku,
     price: prisma.price,
     stockQuantity: prisma.stockQuantity,
@@ -36,7 +41,12 @@ export function mapProductVariant(
   }
 }
 
-export function mapBaseProduct(prisma: PrismaProduct): ProductDTO {
+export function mapProduct(
+  prisma: PrismaProduct & {
+    options: PrismaProductOption[]
+    variants: PrismaProductVariant[]
+  },
+): Product {
   return {
     id: prisma.id,
     name: prisma.name,
@@ -46,17 +56,24 @@ export function mapBaseProduct(prisma: PrismaProduct): ProductDTO {
     categoryId: prisma.categoryId,
     images: prisma.images,
     isAvailableForSale: prisma.isAvailableForSale,
+    options: prisma.options.map(mapProductOption),
+    variants: prisma.variants.map(mapProductVariant),
     createdAt: prisma.createdAt,
     updatedAt: prisma.updatedAt,
   }
 }
 
-export function mapProductListItem(
-  prisma: PrismaProductWithCategory & PrismaProductWithOrderCount,
-): ProductListItemDTO {
+export function mapProductSummary(prisma: PrismaProduct): ProductSummary {
   return {
-    ...mapBaseProduct(prisma),
-    orderCount: prisma._count.orderItems,
-    categoryName: prisma.category.name,
+    id: prisma.id,
+    name: prisma.name,
+    slug: prisma.slug,
+    basePrice: prisma.basePrice,
+    description: prisma.description,
+    images: prisma.images,
+    isAvailableForSale: prisma.isAvailableForSale,
+    createdAt: prisma.createdAt,
+    updatedAt: prisma.updatedAt,
+    categoryId: prisma.categoryId,
   }
 }
