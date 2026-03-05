@@ -1,3 +1,8 @@
+import {
+  AppTypes,
+  OptionTemplate,
+  OptionTemplateCreateInput,
+} from "@repo/api-types"
 import { useMemo } from "react"
 import { Control, FormState, useFieldArray, useWatch } from "react-hook-form"
 
@@ -8,11 +13,6 @@ import { FormSelect } from "@/components/ui/form/form-select"
 
 import { OptionInput, OptionPricingStrategy, OptionUI } from "../dtos"
 import { optionTemplateSchema } from "../schemas"
-import {
-  AppTypes,
-  OptionTemplate,
-  OptionTemplateCreateInput,
-} from "@repo/api-types"
 
 type OptionTemplateFormProps = {
   optionTemplate?: OptionTemplate

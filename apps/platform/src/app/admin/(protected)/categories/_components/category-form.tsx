@@ -1,5 +1,6 @@
 "use client"
 
+import { Category } from "@repo/api-types"
 import { useRouter } from "next/navigation"
 import { useTranslations } from "next-intl"
 import { useActionState, useEffect } from "react"
@@ -13,7 +14,6 @@ import { Label } from "@/components/ui/label"
 import { paths } from "@/config/paths"
 import { createCategoryAction } from "@/features/categories/actions/create-category"
 import { updateCategoryAction } from "@/features/categories/actions/update-category"
-import { Category } from "@repo/api-types"
 
 type CategoryFormProps = {
   category?: Category

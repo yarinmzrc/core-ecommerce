@@ -1,5 +1,6 @@
 import "dotenv/config"
 
+import { AppTypes, OptionTemplateCreateInput } from "@repo/api-types"
 import { hash } from "bcryptjs"
 
 import { env } from "@/config/env"
@@ -11,7 +12,6 @@ import {
 import db from "@/lib/db"
 
 import { Role } from "./generated/prisma/enums"
-import { AppTypes, OptionTemplateCreateInput } from "@repo/api-types"
 
 async function main() {
   // Clean up existsing data

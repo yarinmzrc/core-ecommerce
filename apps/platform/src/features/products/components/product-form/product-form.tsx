@@ -1,5 +1,6 @@
 "use client"
 
+import { Category, OptionTemplate, type Product } from "@repo/api-types"
 import { XCircleIcon } from "lucide-react"
 import React, { useMemo, useState } from "react"
 import { useFieldArray, useFormContext, useWatch } from "react-hook-form"
@@ -24,7 +25,6 @@ import { Label } from "@/components/ui/label"
 import { OptionTemplateForm } from "@/features/option-templates/components/option-template-form"
 
 import { productSchema, ProductSchemaType } from "../../schemas"
-import { Category, OptionTemplate, type Product } from "@repo/api-types"
 
 const getDefaultValues = (product?: Product) => {
   if (product) {

@@ -1,5 +1,7 @@
 "use client"
 
+import { OptionTemplate } from "@repo/api-types"
+
 import {
   Table,
   TableBody,
@@ -8,7 +10,6 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table"
-import { OptionTemplate } from "@repo/api-types"
 
 type OptionTemplatesTableProps = {
   options: OptionTemplate[]

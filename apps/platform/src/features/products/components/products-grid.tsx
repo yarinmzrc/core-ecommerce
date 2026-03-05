@@ -1,3 +1,4 @@
+import { ProductSummary } from "@repo/api-types"
 import { ArrowLeft } from "lucide-react"
 import Link from "next/link"
 import { getTranslations } from "next-intl/server"
@@ -7,7 +8,6 @@ import { Button } from "@/components/ui/button/button"
 import { paths } from "@/config/paths"
 
 import { ProductCard, ProductCardSkeleton } from "./product-card/product-card"
-import { ProductSummary } from "@repo/api-types"
 
 type ProductsGridSectionProps = {
   fetcher: () => Promise<ProductSummary[]>

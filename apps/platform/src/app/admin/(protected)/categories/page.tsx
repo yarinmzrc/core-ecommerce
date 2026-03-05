@@ -1,3 +1,4 @@
+import { Category } from "@repo/api-types"
 import Link from "next/link"
 import { getTranslations } from "next-intl/server"
 
@@ -14,7 +15,6 @@ import { paths } from "@/config/paths"
 import { getCategories } from "@/features/categories/dal/queries"
 
 import { PageHeader } from "../../_components/page-header"
-import { Category } from "@repo/api-types"
 
 export default async function AdminCategoriesPage() {
   const t = await getTranslations("admin.categories")

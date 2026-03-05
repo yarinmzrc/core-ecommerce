@@ -1,8 +1,8 @@
+import { Category } from "@repo/api-types"
 import Link from "next/link"
 
 import { Card, CardContent } from "@/components/ui/card"
 import { paths } from "@/config/paths"
-import { Category } from "@repo/api-types"
 
 export function CategoryCard({ category }: { category: Category }) {
   return (

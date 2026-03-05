@@ -1,7 +1,8 @@
+import { OptionTemplateCreateInput } from "@repo/api-types"
+
 import db from "@/lib/db"
 
 import { Prisma } from "../../../../prisma/generated/prisma/client"
-import { OptionTemplateCreateInput } from "@repo/api-types"
 
 export function createOptionTemplate(dataDTO: OptionTemplateCreateInput) {
   const data = {

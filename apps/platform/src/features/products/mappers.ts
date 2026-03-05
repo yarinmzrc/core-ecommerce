@@ -1,15 +1,16 @@
+import type {
+  OptionValue,
+  Product,
+  ProductOption,
+  ProductSummary,
+  ProductVariant,
+} from "@repo/api-types"
+
 import {
   Product as PrismaProduct,
   ProductOption as PrismaProductOption,
   ProductVariant as PrismaProductVariant,
 } from "../../../prisma/generated/prisma/client"
-import type {
-  Product,
-  ProductSummary,
-  ProductOption,
-  OptionValue,
-  ProductVariant,
-} from "@repo/api-types"
 
 export function mapProductOption(prisma: PrismaProductOption): ProductOption {
   return {
