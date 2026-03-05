@@ -2,7 +2,6 @@ import "dotenv/config"
 
 import { hash } from "bcryptjs"
 
-import { AppType } from "@/config/app/app-type.config"
 import { env } from "@/config/env"
 import {
   OptionInput,
@@ -12,7 +11,7 @@ import {
 import db from "@/lib/db"
 
 import { Role } from "./generated/prisma/enums"
-import { OptionTemplateCreateInput, ProductCreateInput } from "@repo/api-types"
+import { AppTypes, OptionTemplateCreateInput } from "@repo/api-types"
 
 async function main() {
   // Clean up existsing data
@@ -38,7 +37,7 @@ async function main() {
   const optionTemplates: OptionTemplateCreateInput[] = [
     {
       name: "מידת עשייה",
-      appType: AppType.FOOD,
+      appType: AppTypes.FOOD,
       inputType: OptionInput.TEXT,
       uiType: OptionUI.SELECT,
       pricingStrategy: OptionPricingStrategy.NONE,

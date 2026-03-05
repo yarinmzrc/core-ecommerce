@@ -9,7 +9,7 @@ import { FormSelect } from "@/components/ui/form/form-select"
 import { OptionInput, OptionPricingStrategy, OptionUI } from "../dtos"
 import { optionTemplateSchema } from "../schemas"
 import {
-  AppType,
+  AppTypes,
   OptionTemplate,
   OptionTemplateCreateInput,
 } from "@repo/api-types"
@@ -26,7 +26,7 @@ const getDefaultValues = (optionTemplate?: OptionTemplate) => {
     pricingStrategy:
       optionTemplate?.pricingStrategy ?? OptionPricingStrategy.NONE,
     values: optionTemplate?.values ?? [],
-    appType: optionTemplate?.appType ?? AppType.FOOD,
+    appType: optionTemplate?.appType ?? AppTypes.FOOD,
   }
 }
 
