@@ -21,11 +21,10 @@ import { FormSelect } from "@/components/ui/form/form-select"
 import { FormTextArea } from "@/components/ui/form/form-text-area"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import { CategoryDTO } from "@/features/categories/dtos"
 import { OptionTemplateForm } from "@/features/option-templates/components/option-template-form"
 
 import { productSchema, ProductSchemaType } from "../../schemas"
-import { OptionTemplate, type Product } from "@repo/api-types"
+import { Category, OptionTemplate, type Product } from "@repo/api-types"
 
 const getDefaultValues = (product?: Product) => {
   if (product) {
@@ -65,7 +64,7 @@ const getDefaultValues = (product?: Product) => {
 }
 
 type BaseProductFormProps = {
-  categories: CategoryDTO[]
+  categories: Category[]
   optionTemplates: OptionTemplate[]
 }
 

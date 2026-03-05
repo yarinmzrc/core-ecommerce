@@ -2,10 +2,9 @@ import Link from "next/link"
 
 import { Card, CardContent } from "@/components/ui/card"
 import { paths } from "@/config/paths"
+import { Category } from "@repo/api-types"
 
-import { CategoryDTO } from "../dtos"
-
-export function CategoryCard({ category }: { category: CategoryDTO }) {
+export function CategoryCard({ category }: { category: Category }) {
   return (
     <Link href={paths.app.category.getHref(category.id)} className="block">
       <Card className="group relative h-48 cursor-pointer overflow-hidden rounded-none shadow-none">

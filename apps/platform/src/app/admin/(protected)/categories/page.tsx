@@ -12,9 +12,9 @@ import {
 } from "@/components/ui/table"
 import { paths } from "@/config/paths"
 import { getCategories } from "@/features/categories/dal/queries"
-import { CategoryDTO } from "@/features/categories/dtos"
 
 import { PageHeader } from "../../_components/page-header"
+import { Category } from "@repo/api-types"
 
 export default async function AdminCategoriesPage() {
   const t = await getTranslations("admin.categories")
@@ -36,7 +36,7 @@ export default async function AdminCategoriesPage() {
 }
 
 type CategoriesTableProps = {
-  categories: CategoryDTO[]
+  categories: Category[]
 }
 
 async function CategoriesTable({ categories }: CategoriesTableProps) {

@@ -13,10 +13,10 @@ import { Label } from "@/components/ui/label"
 import { paths } from "@/config/paths"
 import { createCategoryAction } from "@/features/categories/actions/create-category"
 import { updateCategoryAction } from "@/features/categories/actions/update-category"
-import { CategoryDTO } from "@/features/categories/dtos"
+import { Category } from "@repo/api-types"
 
 type CategoryFormProps = {
-  category?: CategoryDTO
+  category?: Category
 }
 
 export function CategoryForm({ category }: CategoryFormProps) {
